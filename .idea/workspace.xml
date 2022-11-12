@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9936c9f-4598-407a-b22a-b57e9e77eec6" name="Changes" comment="" />
+    <list default="true" id="e9936c9f-4598-407a-b22a-b57e9e77eec6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/js/classTemplate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/dotPlotVis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/boilerplate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/boilerplate.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2FdVDSwyKBZH74elGFdY0hcrgix" />
   <component name="ProjectLevelVcsManager">
@@ -23,6 +42,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/charles/Documents/SrSem1/CS171/Onesti_Abel_Ton_CS171_Final",
+    "settings.editor.selected.configurable": "JavaScript.Libraries",
     "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -36,6 +57,7 @@
       <option name="presentableId" value="Default" />
       <updated>1664821827388</updated>
       <workItem from="1664821828530" duration="1000" />
+      <workItem from="1668130806762" duration="9640000" />
     </task>
     <servers />
   </component>
