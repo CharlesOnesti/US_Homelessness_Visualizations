@@ -25,7 +25,6 @@ class DotPlotVis {
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`)
 
         vis.svg.append('rect')
-            .attr()
 
         vis.wrangleData()
     }
@@ -38,7 +37,7 @@ class DotPlotVis {
     }
     updateVis() {
         let vis = this
-        console.log(vis.svg)
+
         const updateSim = () => {
             const circles = vis.svg
                 .selectAll('circle')
