@@ -1,0 +1,134 @@
+---
+title: "project.md"
+output: html_document
+date: "2022-11-10"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readxl)
+library(rio)
+library(plyr)
+library(dplyr)
+library(purrr)
+library(readr)
+```
+
+```{r}
+sheet <- excel_sheets("./2007-2021-PIT-Counts-by-State.xlsx")
+sheet <- sheet[sheet != "2021"]
+
+abb_df = data.frame(cbind(state.name, state.abb)) %>%
+  add_row(state.name = "Total", state.abb = "Total") %>%
+  select(state.name, state = state.abb)
+
+nst_est2020_alldata <- read_csv("nst-est2020-alldata.csv") 
+nst_est2020_alldata <- nst_est2020_alldata %>%
+  filter(STATE != "00", NAME != "Puerto Rico") %>%
+  add_row(
+    NAME = "Total",
+    POPESTIMATE2010 = sum(nst_est2020_alldata$POPESTIMATE2010),
+    POPESTIMATE2011 = sum(nst_est2020_alldata$POPESTIMATE2011),
+    POPESTIMATE2012 = sum(nst_est2020_alldata$POPESTIMATE2012),
+    POPESTIMATE2013 = sum(nst_est2020_alldata$POPESTIMATE2013),
+    POPESTIMATE2014 = sum(nst_est2020_alldata$POPESTIMATE2014),
+    POPESTIMATE2015 = sum(nst_est2020_alldata$POPESTIMATE2015),
+    POPESTIMATE2016 = sum(nst_est2020_alldata$POPESTIMATE2016),
+    POPESTIMATE2017 = sum(nst_est2020_alldata$POPESTIMATE2017),
+    POPESTIMATE2018 = sum(nst_est2020_alldata$POPESTIMATE2018),
+    POPESTIMATE2019 = sum(nst_est2020_alldata$POPESTIMATE2019),
+    POPESTIMATE2020 = sum(nst_est2020_alldata$POPESTIMATE2020),
+    ) 
+pop_df <-  select(nst_est2020_alldata,
+    state.name = NAME,
+    `2010` = POPESTIMATE2010,
+    `2011` = POPESTIMATE2011,
+    `2012` = POPESTIMATE2012,
+    `2013` = POPESTIMATE2013,
+    `2014` = POPESTIMATE2014,
+    `2015` = POPESTIMATE2015,
+    `2016` = POPESTIMATE2016,
+    `2017` = POPESTIMATE2017,
+    `2018` = POPESTIMATE2018,
+    `2019` = POPESTIMATE2019,
+    `2020` = POPESTIMATE2020,
+  ) %>% mutate(
+    `2007` = `2010`,
+    `2008` = `2010`,
+    `2009` = `2010`,
+  ) %>%
+  left_join(abb_df, by=c("state.name"))
+
+```
+
+```{r}
+
+final_df <- data.frame(matrix(ncol = 7, nrow = 0))
+colnames(final_df) <- c("year", "state", "overall", "emergency_shelter", "transitional_housing", "unsheltered", "pop")
+
+for (tbl in sheet) {
+  temp <- read_excel("./2007-2021-PIT-Counts-by-State.xlsx", sheet=tbl) %>%
+    filter(State != "AS", State != "PR", State != "GU", State != "DC", State != "MP", State != "VI")
+  for (col in 1:ncol(temp)) {
+    colnames(temp)[col] <-  gsub("- ", "", colnames(temp)[col])
+    colnames(temp)[col] <-  gsub(",", "", colnames(temp)[col])
+    colnames(temp)[col] <-  gsub(" ", "_", colnames(temp)[col])
+    colnames(temp)[col] <-  sub("_20\\d\\d", "", colnames(temp)[col])
+  }
+  assign(tbl, temp)
+  temp <- temp %>%
+    mutate(year = tbl) %>%
+    select(
+      year,
+      state = State,
+      overall = Overall_Homeless,
+      emergency_shelter = Sheltered_ES_Homeless,
+      transitional_housing = Sheltered_TH_Homeless,
+      unsheltered = Unsheltered_Homeless,
+    ) %>%
+    left_join(select(pop_df, state, tbl), by=("state")) %>%
+    rename(pop = tbl)
+  
+  final_df <- rbind(final_df, temp)
+}
+
+# write.csv(final_df, file = "state_counts_2007_2020.csv")
+
+
+```
+
+```{r}
+
+`2021` <- read_excel("./2007-2021-PIT-Counts-by-State.xlsx", sheet="2021") %>%
+  filter(State != "AS", State != "PR", State != "GU", State != "DC", State != "MP", State != "VI")
+for (col in 1:ncol(`2021`)) {
+  colnames(`2021`)[col] <-  gsub("- ", "", colnames(`2021`)[col])
+  colnames(`2021`)[col] <-  gsub(",", "", colnames(`2021`)[col])
+  colnames(`2021`)[col] <-  gsub(" ", "_", colnames(`2021`)[col])
+  colnames(`2021`)[col] <-  sub("_20\\d\\d", "", colnames(`2021`)[col])
+}
+
+piechart_df <- `2021` %>%
+  select(
+    state = "State",
+    total = "Sheltered_Total_Homeless",
+    female = "Sheltered_Total_Homeless_Female",
+    male = "Sheltered_Total_Homeless_Male",
+    trans = "Sheltered_Total_Homeless_Transgender",
+    non_conforming = "Sheltered_Total_Homeless_Gender_Non-Conforming",
+    latino = "Sheltered_Total_Homeless_Hispanic/Latino",
+    white = "Sheltered_Total_Homeless_White",
+    black = "Sheltered_Total_Homeless_Black_or_African_American",
+    asian = "Sheltered_Total_Homeless_Asian",
+    native = "Sheltered_Total_Homeless_American_Indian_or_Alaska_Native",
+    hawaiian = "Sheltered_Total_Homeless_Native_Hawaiian_or_Other_Pacific_Islander",
+    multiple = "Sheltered_Total_Homeless_Multiple_Races",
+  )
+
+
+# write.csv(piechart_df, file = "race_gender_2021.csv")
+
+```
