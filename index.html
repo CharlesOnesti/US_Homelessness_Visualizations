@@ -8,164 +8,233 @@
 
 	<!-- Load CSS libraries -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/fullpage.css"/>
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- - - - - - - - - - - - >
-<    Intro section     >
-<- - - - - - - - - - - - -->
-<div class="row text-center" id="background" style="background-color: whitesmoke">
-	<h3 class="title">Homelessness in the United States</h3>
-	<div class="row justify-content-center">
-		<div style="height: 80vh; width:100%;" >
-			<p>Introductory paragraph about the state of homelessness in the United States</p>
+<div id="fullpage">
+	<div id="slide">
+		<!-- - - - - - - - - - - - >
+		Intro section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec1">
+			<div class="container">
+				<h3 class="title">Homelessness in the United States</h3>
+				<div class="row justify-content-center">
+					<p>Introductory paragraph about the state of homelessness in the United States</p>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		DotPlot section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec2">
+			<div class="container">
+				<h3 class="title">Homelessness by the Numbers</h3>
+				<div class="row justify-content-center">
+					<div class="col-7">
+						<div id="dotplot"></div>
+					</div>
+					<div class="col-5">
+						<select onChange="changeDotPlotState(this.options[this.selectedIndex].value)">
+							<option value="Total">All States</option>
+							<option value="AL">Alabama</option>
+							<option value="AK">Alaska</option>
+							<option value="AZ">Arizona</option>
+							<option value="AR">Arkansas</option>
+							<option value="CA">California</option>
+							<option value="CO">Colorado</option>
+							<option value="CT">Connecticut</option>
+							<option value="DE">Delaware</option>
+							<option value="FL">Florida</option>
+							<option value="GA">Georgia</option>
+							<option value="HI">Hawaii</option>
+							<option value="ID">Idaho</option>
+							<option value="IL">Illinois</option>
+							<option value="IN">Indiana</option>
+							<option value="IA">Iowa</option>
+							<option value="KS">Kansas</option>
+							<option value="KY">Kentucky</option>
+							<option value="LA">Louisiana</option>
+							<option value="ME">Maine</option>
+							<option value="MD">Maryland</option>
+							<option value="MA">Massachusetts</option>
+							<option value="MI">Michigan</option>
+							<option value="MN">Minnesota</option>
+							<option value="MS">Mississippi</option>
+							<option value="MO">Missouri</option>
+							<option value="MT">Montana</option>
+							<option value="NE">Nebraska</option>
+							<option value="NV">Nevada</option>
+							<option value="NH">New Hampshire</option>
+							<option value="NJ">New Jersey</option>
+							<option value="NM">New Mexico</option>
+							<option value="NY">New York</option>
+							<option value="NC">North Carolina</option>
+							<option value="ND">North Dakota</option>
+							<option value="OH">Ohio</option>
+							<option value="OK">Oklahoma</option>
+							<option value="OR">Oregon</option>
+							<option value="PA">Pennsylvania</option>
+							<option value="RI">Rhode Island</option>
+							<option value="SC">South Carolina</option>
+							<option value="SD">South Dakota</option>
+							<option value="TN">Tennessee</option>
+							<option value="TX">Texas</option>
+							<option value="UT">Utah</option>
+							<option value="VT">Vermont</option>
+							<option value="VA">Virginia</option>
+							<option value="WA">Washington</option>
+							<option value="WV">West Virginia</option>
+							<option value="WI">Wisconsin</option>
+							<option value="WY">Wyoming</option>
+						</select>
+						<div class="row align-items-center">
+							<div class="col-sm"><div id="slider-time"></div></div>
+						</div>
+						<p>Description of how the vis works how to interact with it.  Interpretations of the numbers and trends in the visualization</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		Rising Insights Transition Section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec3">
+			<div class="container">
+				<div class="row justify-content-center">
+					<h3 class="title">Looking Closer at Homelessness Trends</h3>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		Pie section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec4">
+			<div class="container">
+				<h3 class="title">Gender and Race Breakdowns 2021</h3>
+				<div class="row justify-content-center">
+					<div class="col-7">
+						<div id="pie"></div>
+					</div>
+					<div class="col-5">
+						<p>Description of how the vis works how to interact with it.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		Category section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec5">
+			<div class="container">
+				<h3 class="title">Breakdown By Categories</h3>
+				<div class="row justify-content-center">
+					<div class="col-7">
+						<div id="cate-map"></div>
+					</div>
+					<div class="col-5">
+						<p>Description of how the vis works how to interact with it.</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		Radar section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec6">
+			<div class="container">
+				<h3 class="title">Top 5 States With the Most Homelessness</h3>
+				<div class="row justify-content-center">
+					<div class="col-7">
+						<div id="radar"></div>
+					</div>
+					<div class="col-5">
+						<p>Description of how the vis works how to interact with it.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		History Transition Section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec7">
+			<div class="container">
+				<div class="row justify-content-center">
+					<h3 class="title">Let's Take a Look at Past Events and Policies</h3>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		Timeline section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec8">
+			<div class="container">
+				<h3 class="title">Policies and Events</h3>
+				<div class="row justify-content-center">
+					<div class="col-7">
+						<div id="timeline"></div>
+					</div>
+					<div class="col-5">
+						<p>Description of how the vis works how to interact with it.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		Main Message section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec9">
+			<div class="container">
+				<h3 class="title">Main Message</h3>
+				<div class="row justify-content-center">
+					<div id="message">
+						<p>Despite the policies in place, homelessness is a persistent problem. It takes a larger movement combining the efforts from both the government and the public. Our goal is to raise awareness about the homelessness problem to the public.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		What You Can Do Section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec10">
+			<div class="container">
+				<div class="row justify-content-center">
+					<h3 class="title">What Can You Do?</h3>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		Contact section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec11">
+			<div class="container">
+				<h3 class="title">Contact Your Representative</h3>
+				<div class="row justify-content-center">
+					<div class="col-7">
+						<div id="contact-map"></div>
+					</div>
+					<div class="col-5">
+						<p>Description of how the vis works how to interact with it.</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		About section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec12">
+			<div class="container">
+				<div class="row justify-content-center">
+					<p>References to our data sources</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-
-
-<!-- - - - - - - - - - - - >
-<    DotPlot section     >
-<- - - - - - - - - - - - -->
-<div class="row text-center" id="dotplot-info" style="background-color: #C0DFC2">
-	<h3 class="title">Homelessness by the Numbers</h3>
-	<div class="row justify-content-center">
-		<div class="col-7">
-			<div id="dotplot" style="height: 80vh; width:100%;" ></div>
-		</div>
-		<div class="col-5">
-			<p>Description of how the vis works how to interact with it.  Interpretations of the numbers and trends in the visualization</p>
-		</div>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - >
-<     Rising Insights Transition Section     >
-<- - - - - - - - - - - - -->
-<div class="row text-center" id="rising-insights-info" style="background-color: whitesmoke">
-	<h3 class="title">Looking Closer at Homelessness Trends</h3>
-</div>
-
-<!-- - - - - - - - - - - - >
-<    Pie section     >
-<- - - - - - - - - - - - -->
-<div class="row text-center" id="pie-info" style="background-color: whitesmoke">
-	<h3 class="title">Gender and Race Breakdowns 2021</h3>
-	<div class="row justify-content-center">
-		<div class="col-7">
-			<div id="pie" style="height: 80vh; width:100%;" ></div>
-		</div>
-		<div class="col-5">
-			<p>Description of how the vis works how to interact with it.</p>
-		</div>
-	</div>
-</div>
-
-
-<!-- - - - - - - - - - - - >
-<    Category section     >
-<- - - - - - - - - - - - -->
-<div class="row text-center" id="cate-info" style="background-color: #C0DFC2">
-	<h3 class="title">Breakdown By Categories</h3>
-	<div class="row justify-content-center">
-		<div class="col-7">
-			<div id="cate-map" style="height: 80vh; width:100%;" ></div>
-		</div>
-		<div class="col-5">
-			<p>Description of how the vis works how to interact with it.</p>
-
-		</div>
-	</div>
-</div>
-
-
-<!-- - - - - - - - - - - - >
-<    Radar section     >
-<- - - - - - - - - - - - -->
-<div class="row text-center" id="radar-info" style="background-color: whitesmoke">
-	<h3 class="title">Top 5 States With the Most Homelessness</h3>
-	<div class="row justify-content-center">
-		<div class="col-7">
-			<div id="radar" style="height: 80vh; width:100%;" ></div>
-		</div>
-		<div class="col-5">
-			<p>Description of how the vis works how to interact with it.</p>
-		</div>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - >
-<     History Transition Section     >
-<- - - - - - - - - - - - -->
-<div class="row text-center" id="history-transition-info" style="background-color: whitesmoke">
-	<h3 class="title">Let's Take a Look at Past Events and Policies</h3>
-</div>
-
-<!-- - - - - - - - - - - - >
-<    Timeline section     >
-<- - - - - - - - - - - - -->
-<div class="row text-center" id="timeline-info" style="background-color: #C0DFC2">
-	<h3 class="title">Policies and Events</h3>
-	<div class="row justify-content-center">
-		<div class="col-7">
-			<div id="timeline" style="height: 80vh; width:100%;" ></div>
-		</div>
-		<div class="col-5">
-			<p>Description of how the vis works how to interact with it.</p>
-		</div>
-	</div>
-</div>
-
-
-
-<!-- - - - - - - - - - - - >
-<    Main Message section     >
-<- - - - - - - - - - - - -->
-<div class="row text-center" id="main-message-info" style="background-color: whitesmoke">
-	<h3 class="title">Main Message</h3>
-	<div class="row justify-content-center">
-		<div id="message" style="height: 80vh; width:100%;" >
-			<p>Despite the policies in place, homelessness is a persistent problem. It takes a larger movement combining the efforts from both the government and the public. Our goal is to raise awareness about the homelessness problem to the public.</p>
-		</div>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - >
-<     What You Can Do Transition Section     >
-<- - - - - - - - - - - - -->
-<div class="row text-center" id="solution-transition" style="background-color: whitesmoke">
-	<h3 class="title">What Can You Do?</h3>
-</div>
-
-<!-- - - - - - - - - - - - >
-<    Contact section     >
-<- - - - - - - - - - - - -->
-<div class="row text-center" id="contact-info" style="background-color: #C0DFC2">
-	<h3 class="title">Contact Your Representative</h3>
-	<div class="row justify-content-center">
-		<div class="col-7">
-			<div id="contact-map" style="height: 80vh; width:100%;" ></div>
-		</div>
-		<div class="col-5">
-			<p>Description of how the vis works how to interact with it.</p>
-
-		</div>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - >
-<    About section     >
-<- - - - - - - - - - - - -->
-<div id="about-info" style="background: #F8F5F0;">
-	<div class="row justify-content-center">
-		<div id="about" style="height: 80vh; width:100%; background-color: whitesmoke">
-			<p>References to our data sources</p>
-
-		</div>
-	</div>
-</div>
-
 
 <!-- - - - - - - - - - - - >
 <    Load JS libraries     >
@@ -187,7 +256,20 @@
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
 <script src="https://d3js.org/d3-geo.v1.min.js"></script>
-
+<script src="https://unpkg.com/d3-simple-slider"></script>
+<script type="text/javascript" src="js/fullpage.js"></script>
+<script type="text/javascript">
+	var myFullpage = new fullpage('#fullpage', {
+		anchors: [
+			'background-section', 'dotplot-section', 'rising-insights-section',
+			'pie-section', 'category-section', 'radar-section',
+			'history-transition-section', 'timeline-section', 'message-section',
+			'do-section', 'contact-section', "about-section"
+		],
+		navigation: true,
+		navigationPosition: 'right'
+	});
+</script>
 
 <!-- own js files -->
 <script src="js/contactVis.js"></script>

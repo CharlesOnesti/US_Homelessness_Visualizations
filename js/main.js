@@ -11,6 +11,9 @@ let pieVis;
 let selectedTimeRange = [];
 let selectedState = '';
 
+let dotPlotYear = 2007;
+let dotPlotState = 'Total';
+
 let radarData = [
 	{
 		'name': 'District of Columbia',
@@ -54,6 +57,7 @@ let promises = [
 	d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json"), // already projected -> you can just scale it to fit your browser window
 	d3.csv("data/governors_usa.csv"),
 	d3.csv("data/race_gender_2021.csv"),
+	d3.csv("data/state_counts_2007_2020.csv"),
 	d3.csv("data/map_category/state_2007.csv"),
 	d3.csv("data/map_category/state_2008.csv"),
 	d3.csv("data/map_category/state_2009.csv"),
@@ -82,31 +86,18 @@ Promise.all(promises)
 function initMainPage(dataArray) {
 
 	// log data
-	console.log('check out the data', dataArray);
+	// console.log('check out the data', dataArray);
 
-	let data_category = dataArray.slice(3, 17)
+	let data_category = dataArray.slice(4, 18)
 
 	contactVis = new ContactVis('contact-map', dataArray[0], dataArray[1])
 	cateMapVis = new CateMapVis('cate-map', dataArray[0], data_category)
 	cateMapVis = new PieVis('pie', dataArray[2])
-	dotPlotVis = new DotPlotVis('dotplot',[
-		{type: 1},
-		{type: 2},
-		{type: 3},
-		{type: 3},
-		{type: 2},
-		{type: 2},
-		{type: 1},
-		{type: 2},
-		{type: 3},
-		{type: 3},
-		{type: 2},
-		{type: 2},
-		{type: 1},
-		{type: 2},
-		{type: 3},
-		{type: 3},
-		{type: 2},
-		{type: 2}
-	])
+	dotPlotVis = new DotPlotVis('dotplot', dataArray[3])
+}
+
+// directly pass selected value to function in onchange!
+function changeDotPlotState(chosen) {
+	dotPlotState = chosen
+	dotPlotVis.wrangleData()
 }
