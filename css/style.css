@@ -24,5 +24,12 @@
 
 #display-year {
     font-size: 30px;
+}
 
+#cate-map {
+    height: 500px
+}
+
+#contact-map {
+    height: 500px
 }

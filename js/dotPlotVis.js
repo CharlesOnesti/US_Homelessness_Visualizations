@@ -112,7 +112,6 @@ class DotPlotVis {
     wrangleData() {
         let vis = this
         vis.selectedData = vis.data.filter(x => x.year === dotPlotYear).find(x => x.state === dotPlotState)
-        console.log(vis.selectedData)
         vis.displayData = [
             'emergency_shelter',
             'overall',
@@ -130,7 +129,6 @@ class DotPlotVis {
                 }
             })
         }).flat()
-        console.log(vis.displayData)
         vis.updateVis()
     }
     updateVis() {
