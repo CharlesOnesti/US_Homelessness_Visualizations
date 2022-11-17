@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e9936c9f-4598-407a-b22a-b57e9e77eec6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data/race_gender_2021.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/pieVis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/nouislider.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/helpers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/nouislider.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/dotPlotVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/dotPlotVis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/cateMapVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cateMapVis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/contactVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/contactVis.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +46,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/charles/Documents/SrSem1/CS171/Onesti_Abel_Ton_CS171_Final/data",
+    "last_opened_file_path": "/Users/anhton99/Onesti_Abel_Ton_CS171_Final/css",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "settings.editor.selected.configurable": "preferences.fileTypes",
     "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
@@ -48,9 +58,20 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/data" />
+      <recent name="$PROJECT_DIR$/css" />
       <recent name="$PROJECT_DIR$/js" />
+      <recent name="$PROJECT_DIR$/data" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Onesti_Abel_Ton_CS171_Final/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -63,6 +84,7 @@
       <workItem from="1664821828530" duration="1000" />
       <workItem from="1668130806762" duration="9640000" />
       <workItem from="1668387522176" duration="963000" />
+      <workItem from="1668700570644" duration="6651000" />
     </task>
     <servers />
   </component>

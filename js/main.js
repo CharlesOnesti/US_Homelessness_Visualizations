@@ -10,6 +10,7 @@ let pieVis;
 
 let selectedTimeRange = [];
 let selectedState = '';
+let slider;
 
 let dotPlotYear = 2007;
 let dotPlotState = 'Total';
@@ -100,4 +101,18 @@ function initMainPage(dataArray) {
 function changeDotPlotState(chosen) {
 	dotPlotState = chosen
 	dotPlotVis.wrangleData()
+}
+
+function update() {
+	slider = document.getElementById('slider');
+	console.log(slider.noUiSlider.get())
+
+	let start = document.getElementById('year-start')
+	let end = document.getElementById('year-end')
+
+	let handleArray = slider.noUiSlider.get()
+	start.value = handleArray[0]
+	end.value = handleArray[1]
+
+	cateMapVis.wrangleData()
 }

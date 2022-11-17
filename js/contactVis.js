@@ -82,15 +82,15 @@ class ContactVis {
         let vis = this
 
         vis.states
-            .style("fill", "lightblue")
+            .style("fill", "lightgreen")
             // .style("fill", function (d) {
             //     return vis.colorScale(d.properties.info[selectedCategory])
             // })
             .style("stroke", "black")
-            .style("stroke-width", "0.5px")
+            .style("stroke-width", "1px")
             .on('mouseover', function (event, d) {
                 d3.select(this)
-                    .style('fill', 'salmon')
+                    .style('fill', 'orange')
                     .style("opacity", 1)
 
                 vis.tooltip
@@ -108,7 +108,7 @@ class ContactVis {
             })
             .on('mouseout', function (event, d) {
                 d3.select(this)
-                    .style('fill', 'lightblue')
+                    .style('fill', 'lightgreen')
             })
     }
 
