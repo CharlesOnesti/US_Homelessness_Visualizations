@@ -39,11 +39,11 @@ class ContactVis {
         vis.path = d3.geoPath();
 
         // convert your TopoJSON data into GeoJSON data structure
-        vis.usa = topojson.feature(vis.geoData, vis.geoData.objects.states).features
+        vis.usaContact = topojson.feature(vis.geoData, vis.geoData.objects.states).features
 
         // draw states
         vis.states = vis.map.selectAll(".state")
-            .data(vis.usa)
+            .data(vis.usaContact)
             .enter()
             .append("path")
             .attr("fill", "transparent")
@@ -64,7 +64,7 @@ class ContactVis {
     wrangleData() {
         let vis = this
 
-        vis.usa.forEach(
+        vis.usaContact.forEach(
             function (d) {
                 vis.contactData.forEach(elt => {
                     if (d.properties.name == elt['state_name']) {
@@ -82,10 +82,7 @@ class ContactVis {
         let vis = this
 
         vis.states
-            .style("fill", "lightgreen")
-            // .style("fill", function (d) {
-            //     return vis.colorScale(d.properties.info[selectedCategory])
-            // })
+            .style("fill", "white")
             .style("stroke", "black")
             .style("stroke-width", "1px")
             .on('mouseover', function (event, d) {
@@ -108,7 +105,7 @@ class ContactVis {
             })
             .on('mouseout', function (event, d) {
                 d3.select(this)
-                    .style('fill', 'lightgreen')
+                    .style('fill', 'white')
             })
     }
 
