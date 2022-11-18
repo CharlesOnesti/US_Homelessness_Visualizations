@@ -10,9 +10,13 @@ let pieVis;
 
 let selectedTimeRange = [];
 let selectedState = '';
-
+let selectedCategory;
+let slider;
+let timePeriod;
 let dotPlotYear = 2007;
 let dotPlotState = 'Total';
+
+let parseDate = d3.timeParse("%Y")
 
 let radarData = [
 	{
@@ -71,7 +75,10 @@ let promises = [
 	d3.csv("data/map_category/state_2017.csv"),
 	d3.csv("data/map_category/state_2018.csv"),
 	d3.csv("data/map_category/state_2019.csv"),
-	d3.csv("data/map_category/state_2020.csv")
+	d3.csv("data/map_category/state_2020.csv"),
+	// need to have duplicates - added at the end
+	// else maps will use same method
+	d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json")
 ];
 
 Promise.all(promises)
@@ -85,14 +92,27 @@ Promise.all(promises)
 // initMainPage
 function initMainPage(dataArray) {
 
-	// log data
-	// console.log('check out the data', dataArray);
-
 	let data_category = dataArray.slice(4, 18)
+	data_category.forEach(dataPerYear => {
+		dataPerYear.forEach(
+			data => {
+				data['State'] = convertRegion(data['State'], TO_NAME)
+				data['Year'] = parseDate(data['Year'])
+				data['OverallHomeless'] = +data['OverallHomeless']
+				data['OverallHomelessIndividuals'] = +data['OverallHomelessIndividuals']
+				data['OverallHomelessFamilyHouseholds'] = +data['OverallHomelessFamilyHouseholds']
+				data['OverallHomelessVeterans'] = +data['OverallHomelessVeterans']
+			}
+		)
 
-	contactVis = new ContactVis('contact-map', dataArray[0], dataArray[1])
+		// remove undefined states
+		dataPerYear = dataPerYear.splice(3,1)
+		dataPerYear = dataPerYear.splice(26,1)
+	})
+
 	cateMapVis = new CateMapVis('cate-map', dataArray[0], data_category)
-	cateMapVis = new PieVis('pie', dataArray[2])
+	contactVis = new ContactVis('contact-map', dataArray[dataArray.length-1], dataArray[1])
+	pieVis = new PieVis('pie', dataArray[2])
 	dotPlotVis = new DotPlotVis('dotplot', dataArray[3])
 }
 
@@ -100,4 +120,19 @@ function initMainPage(dataArray) {
 function changeDotPlotState(chosen) {
 	dotPlotState = chosen
 	dotPlotVis.wrangleData()
+}
+
+function updateCateMap() {
+	slider = document.getElementById('slider');
+
+	let start = document.getElementById('year-start')
+	let end = document.getElementById('year-end')
+
+	let handleArray = slider.noUiSlider.get()
+	start.value = handleArray[0]
+	end.value = handleArray[1]
+
+	timePeriod = handleArray
+
+	cateMapVis.wrangleData()
 }
