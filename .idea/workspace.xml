@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9936c9f-4598-407a-b22a-b57e9e77eec6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data/race_gender_2021.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/pieVis.js" afterDir="false" />
+    <list default="true" id="e9936c9f-4598-407a-b22a-b57e9e77eec6" name="Changes" comment="dotplot data and rmd script">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/state_counts_2007_2020.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/state_counts_2007_2020.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/dotPlotVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/dotPlotVis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/pieVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/pieVis.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +23,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/index.html" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -40,7 +43,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/charles/Documents/SrSem1/CS171/Onesti_Abel_Ton_CS171_Final/data",
+    "last_opened_file_path": "/Users/charles/Documents/SrSem1/CS171/Onesti_Abel_Ton_CS171_Final/data/scripts",
     "settings.editor.selected.configurable": "preferences.fileTypes",
     "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
@@ -48,6 +51,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/scripts" />
       <recent name="$PROJECT_DIR$/data" />
       <recent name="$PROJECT_DIR$/js" />
     </key>
@@ -62,8 +66,17 @@
       <updated>1664821827388</updated>
       <workItem from="1664821828530" duration="1000" />
       <workItem from="1668130806762" duration="9640000" />
-      <workItem from="1668387522176" duration="963000" />
+      <workItem from="1668387522176" duration="1434000" />
+      <workItem from="1668494043868" duration="27405000" />
     </task>
+    <task id="LOCAL-00001" summary="dotplot data and rmd script">
+      <created>1668500112344</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1668500112344</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -79,5 +92,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="dotplot data and rmd script" />
+    <option name="LAST_COMMIT_MESSAGE" value="dotplot data and rmd script" />
   </component>
 </project>
