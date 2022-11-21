@@ -96,7 +96,9 @@ class ContactVis {
                     .style("top", (event.pageY + 20) + 'px')
                     .style("pointer-events", "none")
                     .html(`
-                         <div id="contact-tooltip">
+                         <div style="border-color: black; 
+                         background-color: whitesmoke; opacity: 0.8; border-radius: 0.2rem; 
+                         border-width: 0.5rem; padding: 20px 20px 20px 20px">
                              <h5>${d.properties.info['state_name']}</h5>
                              <p>Governor: ${d.properties.info['name']}</p>
                              <p>Phone: ${d.properties.info['phone']}</p>
@@ -106,6 +108,14 @@ class ContactVis {
             .on('mouseout', function (event, d) {
                 d3.select(this)
                     .style('fill', 'white')
+
+                vis.tooltip
+                    .style("pointer-events", "none")
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``)
+
             })
     }
 

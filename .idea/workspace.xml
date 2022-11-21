@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9936c9f-4598-407a-b22a-b57e9e77eec6" name="Changes" comment="dotplot data and rmd script">
-      <change afterPath="$PROJECT_DIR$/img/image2vector.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/cateMapVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cateMapVis.js" afterDir="false" />
@@ -91,6 +90,8 @@
       <workItem from="1668730037893" duration="2666000" />
       <workItem from="1668786199060" duration="500000" />
       <workItem from="1668998608713" duration="2204000" />
+      <workItem from="1669060760587" duration="136000" />
+      <workItem from="1669061412932" duration="386000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
