@@ -36,7 +36,7 @@ class DotPlotVis {
 
         this.colorScale = d3.scaleOrdinal()
             .domain(this.groups)
-            .range(["#4e79a7","#f28e2c","#e15759","#76b7b2","#59a14f"])
+            .range(['#4A8BDF','#2D375A', '#A0006D','#8FB4E3'])
 
         this.initVis()
     }
