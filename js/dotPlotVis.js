@@ -19,11 +19,11 @@ class DotPlotVis {
             'unsheltered',
         ]
 
-        const row1 = 180
+        const row1 = 200
         const col1 = 0
-        const row2 = row1+350
-        const col2 = col1+350
-        this.peoplePerDot = 4000
+        const row2 = row1+400
+        const col2 = col1+400
+        this.peoplePerDot = 5000
         this.jitter = 100
 
         this.grouping = {
@@ -46,7 +46,7 @@ class DotPlotVis {
         // margin conventions
         vis.margin = {top: 20, right: 20, bottom: 20, left: 20};
         vis.width = 800 - vis.margin.left - vis.margin.right;
-        vis.height = 760 - vis.margin.top - vis.margin.bottom;
+        vis.height = 800 - vis.margin.top - vis.margin.bottom;
         vis.groupRadius = 150
 
         // init drawing area
@@ -59,8 +59,8 @@ class DotPlotVis {
             .text(dotPlotYear)
             .attr('id', 'display-year')
             .attr('text-anchor', 'middle')
-            .attr('x', vis.width/2)
-            .attr('y', vis.height/2)
+            .attr('x', vis.width/2 + vis.margin.left)
+            .attr('y', vis.height/2 + vis.margin.top)
 
         // const circles = vis.svg.append('g')
         vis.groups.forEach(g => {
@@ -75,7 +75,7 @@ class DotPlotVis {
             group.append('text')
                 .attr('class', `dotplot-text-${g}`)
                 .attr('text-anchor', 'middle')
-                .attr('transform', `translate(0, ${-vis.groupRadius - 10})`)
+                .attr('transform', `translate(0, ${-vis.groupRadius - 20})`)
         })
 
         // Time Slider
@@ -101,6 +101,7 @@ class DotPlotVis {
 
         const gTime = d3.select('div#slider-time')
             .append('svg')
+            .attr('class', 'dotplot-year-slider')
             .attr('width', 500)
             .attr('height', 100)
             .append('g')
@@ -119,62 +120,86 @@ class DotPlotVis {
             // 'pop',
             'unsheltered',
         ].map(cat => {
-            return d3.range(0,vis.selectedData[cat] / vis.peoplePerDot).map(_ => {
+            return d3.packSiblings(d3.range(0,vis.selectedData[cat] / vis.peoplePerDot).map(_ => {
                 const jit = cat === 'overall' ? vis.jitter*2 : vis.jitter
                 return {
                     'state': vis.selectedData.state,
                     'type': cat,
-                    'x': vis.grouping[cat][0] + 200 + (Math.random()*jit - jit/2),
-                    'y': vis.grouping[cat][1] + (Math.random()*jit - jit/2),
+                    'r': 10,
                 }
-            })
+            }))
         }).flat()
+
+        vis.displayData = vis.displayData.map(x => {
+            x.x += vis.grouping[x.type][0] + 200
+            x.y += vis.grouping[x.type][1]
+            return x
+        })
         vis.updateVis()
     }
     updateVis() {
         let vis = this
 
-        const updateSimNonOverall = () => {
-            vis.svg
-                .selectAll('.non-overall')
-                .data(vis.displayData.filter(t => t.type !== 'overall'))
-                .join('circle')
-                .transition().duration(80)
-                .attr('class', 'dot non-overall')
-                .attr('r', 10)
-                .attr('fill', d => vis.colorScale(d.type))
-                .attr('stroke', 'black')
-                .attr('cx', d => d.x)
-                .attr('cy', d => d.y);
-        }
-        const updateSimOverall = () => {
-            vis.svg
-                .selectAll('.overall')
-                .data(vis.displayData.filter(t => t.type === 'overall'))
-                .join('circle')
-                .attr('class', 'dot overall')
-                .attr('r', 10)
-                .attr('fill', d => vis.colorScale(d.type))
-                .attr('stroke', 'black')
-                .attr('cx', d => d.x)
-                .attr('cy', d => d.y);
-        }
+        // const updateSimNonOverall = () => {
+        //     vis.svg
+        //         .selectAll('.non-overall')
+        //         .data(vis.displayData.filter(t => t.type !== 'overall'))
+        //         .join('circle')
+        //         .transition().duration(80)
+        //         .attr('class', 'dot non-overall')
+        //         .attr('r', 10)
+        //         .attr('fill', d => vis.colorScale(d.type))
+        //         .attr('stroke', 'black')
+        //         .attr('cx', d => d.x)
+        //         .attr('cy', d => d.y);
+        // }
+        // const updateSimOverall = () => {
+        const select = vis.svg
+            .selectAll('.not-overall')
+            .data(vis.displayData.filter(t => t.type !== 'overall'))
+        select.enter()
+            .append('circle')
+            .attr('class', 'dot not-overall')
+            .attr('r', 10)
+            .merge(select)
+            .transition().duration(500)
+            .attr('fill', d => vis.colorScale(d.type))
+            .attr('stroke', 'black')
+            .attr('cx', d => d.x)
+            .attr('cy', d => d.y);
+        select.exit().remove()
+        const selectOverall = vis.svg
+            .selectAll('.overall')
+            .data(vis.displayData.filter(t => t.type === 'overall'))
+        selectOverall.enter()
+            .append('circle')
+            // .join('circle')
+            .attr('class', 'dot overall')
+            .attr('r', 10)
+            .merge(selectOverall)
+            .transition().duration(500)
+            .attr('fill', d => vis.colorScale(d.type))
+            .attr('stroke', 'black')
+            .attr('cx', d => d.x)
+            .attr('cy', d => d.y);
+        selectOverall.exit().remove()
+        // }
 
         // Draw
-        vis.force = d3.forceSimulation()
-            .nodes(vis.displayData.filter(t => t.type !== 'overall'), k => k.index)
-            .force('charge', d3.forceManyBody().strength(1))
-            .force('x', d3.forceX().x(d => d.x))
-            .force('y', d3.forceY().y(d => d.y))
-            .force('collision', d3.forceCollide().radius(10))
-            .on('tick', updateSimNonOverall)
-        vis.force = d3.forceSimulation()
-            .nodes(vis.displayData.filter(t => t.type === 'overall'))
-            .force('charge', d3.forceManyBody().strength(3))
-            .force('x', d3.forceX().x(d => d.x))
-            .force('y', d3.forceY().y(d => d.y))
-            .force('collision', d3.forceCollide().radius(10))
-            .on('tick', updateSimOverall)
+        // vis.force = d3.forceSimulation()
+        //     .nodes(vis.displayData.filter(t => t.type !== 'overall'), k => k.index)
+        //     .force('charge', d3.forceManyBody().strength(1))
+        //     .force('x', d3.forceX().x(d => d.x))
+        //     .force('y', d3.forceY().y(d => d.y))
+        //     .force('collision', d3.forceCollide().radius(10))
+        //     .on('tick', updateSimNonOverall)
+        // vis.force = d3.forceSimulation()
+        //     .nodes(vis.displayData.filter(t => t.type === 'overall'))
+        //     .force('charge', d3.forceManyBody().strength(3))
+        //     .force('x', d3.forceX().x(d => d.x))
+        //     .force('y', d3.forceY().y(d => d.y))
+        //     .force('collision', d3.forceCollide().radius(10))
+        //     .on('tick', updateSimOverall)
 
 
         vis.groups.forEach(g => {

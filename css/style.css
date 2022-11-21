@@ -6,7 +6,7 @@
 }
 
 .title {
-    color: black;
+    color: darkred;
     text-align: center;
     margin-bottom: 20px;
     font-family: "Times New Roman", Times, serif;
@@ -16,7 +16,7 @@
 #slide {
     padding: 20px;
     margin: 10px 5px 5px 5px;
-    background-color: #ffffff;
+    background-color: whitesmoke;
 }
 
 .section {
@@ -47,4 +47,33 @@
 
 #message, #help{
     font-size: larger;
+}
+/****************/
+/*    SLIDER    */
+/****************/
+
+#time-period-slider {
+    width: 200px;
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.range-slider-value {
+    background-color: #EFE9E9;
+    color: #888;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 2px 10px;
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.noUi-connect {
+    background: #92B592;
+}
+
+.slider-tab {
+    width: 50rem
 }
