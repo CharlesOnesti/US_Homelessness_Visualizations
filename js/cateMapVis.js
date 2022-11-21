@@ -177,7 +177,7 @@ class CateMapVis {
         let vis = this
 
         vis.colorScale = d3.scaleLinear()
-            .range(["#FFFFFF", "#eb8807"])
+            .range(["#FFFFFF", "#85005b"])
             .domain([0, d3.max(vis.cateInfo, d => d[vis.selected])])
 
         console.log(vis.usa)
