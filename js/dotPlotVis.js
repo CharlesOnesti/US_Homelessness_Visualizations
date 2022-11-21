@@ -140,20 +140,6 @@ class DotPlotVis {
     updateVis() {
         let vis = this
 
-        // const updateSimNonOverall = () => {
-        //     vis.svg
-        //         .selectAll('.non-overall')
-        //         .data(vis.displayData.filter(t => t.type !== 'overall'))
-        //         .join('circle')
-        //         .transition().duration(80)
-        //         .attr('class', 'dot non-overall')
-        //         .attr('r', 10)
-        //         .attr('fill', d => vis.colorScale(d.type))
-        //         .attr('stroke', 'black')
-        //         .attr('cx', d => d.x)
-        //         .attr('cy', d => d.y);
-        // }
-        // const updateSimOverall = () => {
         const select = vis.svg
             .selectAll('.not-overall')
             .data(vis.displayData.filter(t => t.type !== 'overall'))
@@ -183,23 +169,6 @@ class DotPlotVis {
             .attr('cx', d => d.x)
             .attr('cy', d => d.y);
         selectOverall.exit().remove()
-        // }
-
-        // Draw
-        // vis.force = d3.forceSimulation()
-        //     .nodes(vis.displayData.filter(t => t.type !== 'overall'), k => k.index)
-        //     .force('charge', d3.forceManyBody().strength(1))
-        //     .force('x', d3.forceX().x(d => d.x))
-        //     .force('y', d3.forceY().y(d => d.y))
-        //     .force('collision', d3.forceCollide().radius(10))
-        //     .on('tick', updateSimNonOverall)
-        // vis.force = d3.forceSimulation()
-        //     .nodes(vis.displayData.filter(t => t.type === 'overall'))
-        //     .force('charge', d3.forceManyBody().strength(3))
-        //     .force('x', d3.forceX().x(d => d.x))
-        //     .force('y', d3.forceY().y(d => d.y))
-        //     .force('collision', d3.forceCollide().radius(10))
-        //     .on('tick', updateSimOverall)
 
 
         vis.groups.forEach(g => {

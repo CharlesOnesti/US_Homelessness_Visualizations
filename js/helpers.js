@@ -110,6 +110,7 @@ const radarData = [
         'Housing Burden': 29.5,
         'Number of Homeless/10,000': 90.4,
         'Aid Spending': 150,
+        'Population': 0.713
     },
     {
         'name': 'New York',
@@ -117,26 +118,53 @@ const radarData = [
         'Housing Burden': 31.6,
         'Number of Homeless/10,000': 46.9,
         'Aid Spending': 3000,
+        'Population': 8.468
     },
     {
         'name': 'Hawaii',
         'Shelter Capacity': 3312,
         'Housing Burden': 32,
         'Number of Homeless/10,000': 45.6,
-        'Aid Spending': 50
+        'Aid Spending': 50,
+        'Population': 1.442
     },
     {
         'name': 'California',
         'Shelter Capacity': 60582,
         'Housing Burden': 34,
         'Number of Homeless/10,000': 40.9,
-        'Aid Spending': 7200
+        'Aid Spending': 7200,
+        'Population': 39.24
     },
     {
         'name': 'Oregon',
         'Shelter Capacity': 5315,
         'Housing Burden': 30.8,
         'Number of Homeless/10,000': 34.7,
-        'Aid Spending': 2300
+        'Aid Spending': 2300,
+        'Population': 4.246
     },
+]
+
+let policyEvents = [
+	{
+		'name': 'Mayors Challenge to End Veteran Homelessness',
+		'date': new Date(2015, 5)
+	},
+	{
+		'name': 'Increased SNAP Funding',
+		'date': new Date(2013, 3)
+	},
+	{
+		'name': 'Housing Voucher Increase',
+		'date': new Date(2018, 0)
+	},
+	{
+		'name': 'The Homeless Emergency Assistance and Rapid Transition to Housing',
+		'date': new Date(2009, 4)
+	},
+    {
+        'name': 'USICH Opening Doors: The Federal Strategic Plan to Prevent and End Homelessness',
+        'date': new Date(2010, 5)
+    }
 ]

@@ -22,24 +22,6 @@ let radarState = 'All';
 
 let parseDate = d3.timeParse("%Y")
 
-// let policyEvents = [
-// 	{
-// 		'name': 'COVID'
-// 		'date':
-// 	},
-// 	{
-// 		'name': 'Increased SNAP Funding'
-// 		'date':
-// 	},
-// 	{
-// 		'name': 'Housing Voucher Increase'
-// 		'date':
-// 	},
-// 	{
-// 		'name': 'COVID'
-// 		'date':
-// 	}
-// ]
 
 // load data using promises
 let promises = [

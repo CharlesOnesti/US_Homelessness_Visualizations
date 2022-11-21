@@ -55,7 +55,6 @@ class RadarVis {
         // Axes
         vis.features.forEach((ft_name, i) => {
             let angle = (Math.PI / 2) + (2 * Math.PI * i / vis.features.length);
-            let rangle = Math.round(angle)
             let line_coordinate = vis.angleToCoordinate(angle, 10);
             let label_coordinate = vis.angleToCoordinate(angle, 11);
 
@@ -71,7 +70,7 @@ class RadarVis {
             vis.svg.append("text")
                 .attr("x", label_coordinate.x)
                 .attr("y", label_coordinate.y)
-                .attr('text-anchor', rangle === 3 || rangle === 6 ? (rangle === 3 ? 'end' : 'start') : 'middle')
+                .attr('text-anchor', angle > 5 ? 'start' : (angle < 2 ? 'middle' : 'end'))// 'middle')
                 .text(ft_name);
         })
 
