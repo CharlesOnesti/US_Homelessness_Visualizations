@@ -87,7 +87,7 @@ class ContactVis {
             .style("stroke-width", "1px")
             .on('mouseover', function (event, d) {
                 d3.select(this)
-                    .style('fill', 'orange')
+                    .style('fill', '#85005b')
                     .style("opacity", 1)
 
                 vis.tooltip
