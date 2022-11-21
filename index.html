@@ -18,16 +18,29 @@
 <div id="fullpage">
 	<div id="slide">
 		<!-- - - - - - - - - - - - >
+		Title section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec1">
+			<div class="container">
+				<h1 class="title" style="font: 3rem">Homelessness in the United States</h1>
+				<div class="row justify-content-center">
+					<img style="height: 70%; width: 70%" src="./img/image2vector.svg">
+				</div>
+
+			</div>
+		</div>
+
+		<!-- - - - - - - - - - - - >
 		Intro section
 		<- - - - - - - - - - - - -->
 		<div class="section" id="sec1">
 			<div class="container">
-				<h3 class="title">Homelessness in the United States</h3>
-				<div class="row justify-content-center">
-					<p>Introductory paragraph about the state of homelessness in the United States</p>
-				</div>
+				<h3 class="title">Despite having the world's largest economy with a 2020 GDP of 23 trillion dollars, there are more than 580,000 people experiencing homelessness in the U.S.
+					on any day.</h3>
 			</div>
 		</div>
+
+
 		<!-- - - - - - - - - - - - >
 		DotPlot section
 		<- - - - - - - - - - - - -->
@@ -38,8 +51,8 @@
 					<div class="col-7">
 						<div id="dotplot"></div>
 					</div>
-					<div class="col-5">
-						<select onChange="changeDotPlotState(this.options[this.selectedIndex].value)">
+					<div class="col-5 ">
+						<select class="custom-select" onChange="changeDotPlotState(this.options[this.selectedIndex].value)">
 							<option value="Total">All States</option>
 							<option value="AL">Alabama</option>
 							<option value="AK">Alaska</option>
@@ -95,7 +108,9 @@
 						<div class="row align-items-center">
 							<div class="col-sm"><div id="slider-time"></div></div>
 						</div>
-						<p>Description of how the vis works how to interact with it.  Interpretations of the numbers and trends in the visualization.</p>
+						<p>	This chart displays the number of homeless peole in various categories using representative symbols of 5000. In other words, each dot represents 5000 people.
+							People in a Emergency Shelter are those given temporary shelter when in economic or domestic distress. They are provided short term stability and are not forced to sign a lease or living agreement.</p>
+						<p>In Transitional Shelter, people are given temporary shelter for 6 to 24 months and are often supported in finding employment. Select a state or all states in the dropdown above  and scroll through the years to see the dots move over time.</p>
 <!--						<p>Keep in mind where the users eye goes.  make the titles pop out. fix alignment and padding of elements.  Make custom dropdown menu. increase color contrast with better palette.  Explain the narrative points relating to the story</p>-->
 					</div>
 				</div>
@@ -130,12 +145,24 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- - - - - - - - - - - - >
+		Insight section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec1">
+			<div class="container">
+				<h3 class="title">
+					Between 2007 and 2020, the number of people experiencing homelessness in America
+					peaks in California, followed by Texas, Florida, and New York.
+				</h3>
+			</div>
+		</div>
 		<!-- - - - - - - - - - - - >
 		Category section
 		<- - - - - - - - - - - - -->
 		<div class="section" id="sec5">
 			<div class="container">
-				<h3 class="title">Breakdown By Categories</h3>
+				<h3 class="title">Breakdown By Homelessness Categories</h3>
 				<div class="row slider-tab">
 					<div class="col">
 						<form class="form-inline">
@@ -177,8 +204,16 @@
 					<div class="col-7">
 						<div id="cate-map"></div>
 					</div>
-					<div class="col-5">
-						<p>Description of how the vis works how to interact with it.</p>
+					<div class="col-5 justify-content-center">
+						<br>
+						<p>
+							<i>How to interact:</i>
+						</p>
+						<ul>
+							<li>To see aggregated number for a certain category selected from dropdown,
+								either adjust the slider or type in the textbox the desired time range</li>
+							<li>To see numbers for each state, hover over the map.</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -202,7 +237,10 @@
 							<option value="California">California</option>
 							<option value="Oregon">Oregon</option>
 						</select>
-						<p>Description of how the vis works how to interact with it.</p>
+						<p>The radar plot to the left shows the shelter capacity (number of beds in the city), aid spending (in millions of dollars), housing burden (the average percent of income by a resident spent on housing),
+							number of homeless people per 10,000 people in the state, and the total population of the state.
+							Use the dropdown to select one of the top 5 states or all to compare the states.</p>
+
 					</div>
 				</div>
 			</div>
@@ -239,7 +277,7 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div id="message">
-						<p>Despite the policies in place, homelessness is a persistent problem. It takes a larger movement combining the efforts from both the government and the public. Our goal is to raise awareness about the homelessness problem to the public.</p>
+						<h3 class="title">Despite the policies in place, homelessness is a persistent problem. It takes a larger movement combining the efforts from both the government and the public. Our goal is to raise awareness about the homelessness problem to the public.</h3>
 					</div>
 				</div>
 			</div>
@@ -271,9 +309,13 @@
 					<div class="col-7">
 						<div id="contact-map"></div>
 					</div>
-					<div class="col-5">
-						<p>Description of how the vis works how to interact with it.</p>
-
+					<div class="col-5 justify-content-center">
+						<br>
+						<br>
+						<br>
+						<p>Passionate about policy advocacy and help solve the problem of homelessness?
+						You can hover over the map to see the name of State, current governor, and their
+						contact number! </p>
 					</div>
 				</div>
 			</div>
@@ -284,8 +326,13 @@
 		<div class="section" id="sec12">
 			<div class="container">
 				<div class="row justify-content-center">
-					<p>References to our data sources</p>
-					<p>2007-2021 Point in Time Estimates of Homelessness by State: https://www.huduser.gov/portal/datasets/ahar/2021-ahar-part-1-pit-estimates-of-homelessness-in-the-us.html</p>
+					<h3 class="title">References to our data sources</h3>
+					<i><ul>
+						<li>The U.S. Department of
+							Housing and Urban Development (2022). 2007-2021 Point in Time Estimates of Homelessness by State</li>
+						<li>Bureau of Economic Analysis (2021). Gross Domestic Product in the US </li>
+						<li>Lopez, German. Homeless in America (July 15, 2022). The New York Times</li>
+					</ul></i>
 				</div>
 			</div>
 		</div>
