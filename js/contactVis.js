@@ -51,7 +51,7 @@ class ContactVis {
             .attr("class","state")
 
         // add tooltip
-        vis.tooltip = d3.select('#contact-map')
+        vis.tooltip = d3.select('body')
             .append("div")
             .attr('class', "tooltip")
 

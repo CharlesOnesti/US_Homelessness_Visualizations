@@ -99,7 +99,7 @@ class CateMapVis {
             .attr("class","state")
 
         // add tooltip
-        vis.tooltip = d3.select('#cate-map')
+        vis.tooltip = d3.select('body')
             .append("div")
             .attr('class', "tooltip")
 
