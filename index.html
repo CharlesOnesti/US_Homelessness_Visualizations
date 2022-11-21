@@ -104,7 +104,7 @@
 		<div class="section" id="sec3">
 			<div class="container">
 				<div class="row justify-content-center">
-					<h3 class="title">Looking Closer at Homelessness Trends</h3>
+					<h3 class="title">Let's Take a Closer Look at Trends in Homelessness</h3>
 				</div>
 			</div>
 		</div>
@@ -113,14 +113,17 @@
 		<- - - - - - - - - - - - -->
 		<div class="section" id="sec4">
 			<div class="container">
-				<h3 class="title">Gender and Race Breakdowns 2021</h3>
-				<div class="row justify-content-center">
-					<div class="col-7">
-						<div id="pie"></div>
+				<h3 class="title">Gender and Race Breakdown of the U.S. Homeless Population in 2021</h3>
+				<div class="row">
+					<div class="col pie-col">
+						<div id="pieGender"></div>
 					</div>
-					<div class="col-5">
-						<p>Description of how the vis works how to interact with it.</p>
+					<div class="col">
+						<div id="pieRace"></div>
 					</div>
+				</div>
+				<div class="col">
+					<p>The pie chart on the left shows the percentage of homeless in the U.S. in 2021 who identify as Male, Female, Transgender or Gender Non-Conforming. The pie chart to the right shows the race breakdown of homelessness in 2021.</p>
 				</div>
 			</div>
 		</div>
@@ -163,7 +166,7 @@
 		<div class="section" id="sec7">
 			<div class="container">
 				<div class="row justify-content-center">
-					<h3 class="title">Let's Take a Look at Past Events and Policies</h3>
+					<h3 class="title">Policies and historical events can have an effect on homelessness</h3>
 				</div>
 			</div>
 		</div>
@@ -172,13 +175,14 @@
 		<- - - - - - - - - - - - -->
 		<div class="section" id="sec8">
 			<div class="container">
-				<h3 class="title">Policies and Events</h3>
+				<h3 class="title">Recent Policies and Events and their Effect on Overall Homelessness</h3>
 				<div class="row justify-content-center">
 					<div class="col-7">
 						<div id="timeline"></div>
 					</div>
-					<div class="col-5">
-						<p>Description of how the vis works how to interact with it.</p>
+					<div class="row">
+						<p>The circles on the timeline above show the relative size of total homelessness in that year. As we can see from this visualization, overall homelessness numbers have not changed substantially over the years despite
+							new policies and events.</p>
 					</div>
 				</div>
 			</div>
@@ -188,7 +192,6 @@
 		<- - - - - - - - - - - - -->
 		<div class="section" id="sec9">
 			<div class="container">
-				<h3 class="title">Main Message</h3>
 				<div class="row justify-content-center">
 					<div id="message">
 						<p>Despite the policies in place, homelessness is a persistent problem. It takes a larger movement combining the efforts from both the government and the public. Our goal is to raise awareness about the homelessness problem to the public.</p>
@@ -201,8 +204,15 @@
 		<- - - - - - - - - - - - -->
 		<div class="section" id="sec10">
 			<div class="container">
-				<div class="row justify-content-center">
+				<div class="row justify-content-center" id="help">
 					<h3 class="title">What Can You Do?</h3>
+					<p>As we have seen, thousands of people across the country are homeless with limited help in sight.</p>
+					<p>Here are some things you can do to help:</p>
+					<li>Volunteer at a soup kitchen, homeless shelter, or charities involved in helping the homeless.</li>
+					<li>Fundraise for charities helping the homeless</li>
+					<li>Donate clothes and food.</li>
+					<li>Educate yourself and others about the homeless population and the homelessness issue.</li>
+					<li>Contact your representative to advocate for policies that help the homeless!</li>
 				</div>
 			</div>
 		</div>
@@ -230,6 +240,7 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<p>References to our data sources</p>
+					<p>2007-2021 Point in Time Estimates of Homelessness by State: https://www.huduser.gov/portal/datasets/ahar/2021-ahar-part-1-pit-estimates-of-homelessness-in-the-us.html</p>
 				</div>
 			</div>
 		</div>
@@ -267,7 +278,8 @@
 			'do-section', 'contact-section', "about-section"
 		],
 		navigation: true,
-		navigationPosition: 'right'
+		navigationPosition: 'right',
+		autoScrolling: false
 	});
 </script>
 
@@ -276,6 +288,7 @@
 <script src="js/cateMapVis.js"></script>
 <script src="js/dotPlotVis.js"></script>
 <script src="js/pieVis.js"></script>
+<script src="js/timelineVis.js"></script>
 <script src="js/main.js"></script>
 
 </body>

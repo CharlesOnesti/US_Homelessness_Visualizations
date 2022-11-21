@@ -6,7 +6,9 @@
 let contactVis;
 let cateMapVis;
 let dotPlotVis;
-let pieVis;
+let genderPieVis;
+let racePieVis;
+let timelineVis;
 
 let selectedTimeRange = [];
 let selectedState = '';
@@ -52,6 +54,25 @@ let radarData = [
 	},
 ]
 
+// let policyEvents = [
+// 	{
+// 		'name': 'COVID'
+// 		'date':
+// 	},
+// 	{
+// 		'name': 'Increased SNAP Funding'
+// 		'date':
+// 	},
+// 	{
+// 		'name': 'Housing Voucher Increase'
+// 		'date':
+// 	},
+// 	{
+// 		'name': 'COVID'
+// 		'date':
+// 	}
+// ]
+
 // load data using promises
 let promises = [
 	d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json"), // already projected -> you can just scale it to fit your browser window
@@ -92,8 +113,10 @@ function initMainPage(dataArray) {
 
 	contactVis = new ContactVis('contact-map', dataArray[0], dataArray[1])
 	cateMapVis = new CateMapVis('cate-map', dataArray[0], data_category)
-	cateMapVis = new PieVis('pie', dataArray[2])
+	genderPieVis = new PieVis('pieGender', dataArray[2], "Gender")
+	racePieVis = new PieVis('pieRace', dataArray[2], "Race")
 	dotPlotVis = new DotPlotVis('dotplot', dataArray[3])
+	timelineVis = new Timeline('timeline', dataArray[3])
 }
 
 // directly pass selected value to function in onchange!
