@@ -191,6 +191,14 @@
 						<div id="radar"></div>
 					</div>
 					<div class="col-5">
+						<select onChange="changeRadarState(this.options[this.selectedIndex].value)">
+							<option value="All">All</option>
+							<option value="District of Columbia">District of Colombia</option>
+							<option value="New York">New York</option>
+							<option value="Hawaii">Hawaii</option>
+							<option value="California">California</option>
+							<option value="Oregon">Oregon</option>
+						</select>
 						<p>Description of how the vis works how to interact with it.</p>
 					</div>
 				</div>
@@ -322,7 +330,7 @@
 		],
 		navigation: true,
 		navigationPosition: 'right',
-		autoScrolling: true,
+		autoScrolling: false,
 	});
 </script>
 
@@ -333,6 +341,7 @@
 <script src="js/cateMapVis.js"></script>
 <script src="js/dotPlotVis.js"></script>
 <script src="js/pieVis.js"></script>
+<script src="js/radarVis.js"></script>
 <script src="js/main.js"></script>
 <script src="js/helpers.js"></script>
 

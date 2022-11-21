@@ -7,6 +7,7 @@ let contactVis;
 let cateMapVis;
 let dotPlotVis;
 let pieVis;
+let radarVis;
 
 let selectedTimeRange = [];
 let selectedState = '';
@@ -15,46 +16,9 @@ let slider;
 let timePeriod;
 let dotPlotYear = 2007;
 let dotPlotState = 'Total';
+let radarState = 'All';
 
 let parseDate = d3.timeParse("%Y")
-
-let radarData = [
-	{
-		'name': 'District of Columbia',
-		'shelter_capacity': 6272,
-		'housing': 29.5,
-		'per10000': 90.4,
-		'spending': 150000000,
-	},
-	{
-		'name': 'New York',
-		'shelter_capacity': 83720,
-		'housing': 31.6,
-		'per10000': 46.9,
-		'spending': 3000000000,
-	},
-	{
-		'name': 'Hawaii',
-		'shelter_capacity': 3312,
-		'housing': 32,
-		'per10000': 45.6,
-		'spending': 50000000
-	},
-	{
-		'name': 'California',
-		'shelter_capacity': 60582,
-		'housing': 32.9,
-		'per10000': 40.9,
-		'spending': 7200000000
-	},
-	{
-		'name': 'Oregon',
-		'shelter_capacity': 5315,
-		'housing': 30.8,
-		'per10000': 34.7,
-		'spending': 2300000000
-	},
-]
 
 // load data using promises
 let promises = [
@@ -114,12 +78,18 @@ function initMainPage(dataArray) {
 	contactVis = new ContactVis('contact-map', dataArray[dataArray.length-1], dataArray[1])
 	pieVis = new PieVis('pie', dataArray[2])
 	dotPlotVis = new DotPlotVis('dotplot', dataArray[3])
+	radarVis = new RadarVis('radar', radarData)
 }
 
 // directly pass selected value to function in onchange!
 function changeDotPlotState(chosen) {
 	dotPlotState = chosen
 	dotPlotVis.wrangleData()
+}
+
+function changeRadarState(chosen) {
+	radarState = chosen
+	radarVis.wrangleData()
 }
 
 function updateCateMap() {
