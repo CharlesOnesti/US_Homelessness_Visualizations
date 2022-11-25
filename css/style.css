@@ -11,12 +11,13 @@
     margin-bottom: 40px;
     font-family: "American Typewriter", serif;
     font-size: 2.5rem;
+    font-weight: bold;
 }
 
 #slide {
     padding: 20px;
     margin: 10px 5px 5px 5px;
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 .section {
@@ -35,6 +36,7 @@
     height: 500px
 }
 
+/*Pie Graph Style*/
 #pieGender #pieRace {
     text-align: center;
 }
@@ -44,9 +46,54 @@
     margin: 0 auto;
 }
 
+.pie-title, #pieTooltip, #timelineTooltip {
+    font-family: "American Typewriter", serif;
+    /*font-weight: bold;*/
+    font-size: 24px;
+}
+
+#pie-description {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+#pie-legend {
+    font-family: "American Typewriter", serif;
+}
+
 #message, #help{
     font-size: larger;
 }
+
+#title-img {
+    width: 50%;
+    transform: translate(700px, 0px);
+
+}
+
+#top-title {
+    text-align: left;
+    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 3rem;
+}
+#authors {
+    font-size: 20px;
+    text-align: left;
+    color: #4A8BDF;
+}
+
+.subtitles {
+    color: #2D375A;
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: "American Typewriter", serif;
+    font-size: 2.5rem;
+}
+
+/*.text {*/
+/*    background-color: #2D375A;*/
+/*}*/
 /****************/
 /*    SLIDER    */
 /****************/

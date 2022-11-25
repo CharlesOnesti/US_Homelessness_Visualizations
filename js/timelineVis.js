@@ -86,7 +86,7 @@ class Timeline {
                     .style("left", event.pageX + 20 + "px")
                     .style("top", event.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 10px">
+                         <div style="border: solid grey; border-radius: 5px; background: whitesmoke; padding: 10px">
                             <h3>Event: ${d.name}</h3>
                             <h3>Date: ${d.date.toLocaleString().split(',')[0]}</h3>
                          </div>`);
@@ -119,7 +119,7 @@ class Timeline {
                     .style("left", event.pageX + 20 + "px")
                     .style("top", event.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 10px">
+                         <div style="border: solid grey; border-radius: 5px; background: whitesmoke; padding: 10px">
                             <h3>Year: ${d.year}</h3>
                              <h3>Number of Total Homeless: ${d.overall}<h3>
                          </div>`);

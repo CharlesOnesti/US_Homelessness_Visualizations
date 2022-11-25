@@ -80,8 +80,8 @@ class RadarVis {
             .y(d => d.y);
         vis.colors = d3.scaleOrdinal()
             .domain(vis.data.map(x => x.name))
-            .range(['#4A8BDF','#2D375A', '#A0006D', '#8FB4E3', '#ED47B9', '#ABB0B8']);
-
+            .range(['#4A8BDF','#2D375A', '#ABB0B8', '#A0006D', '#F0C3EB', '#ABB0B8']);
+            //['#4A8BDF','#2D375A', '#A0006D','#F0C3EB'
         // add tooltip
         vis.tooltip = d3.select('body')
             .append("div")

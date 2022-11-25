@@ -6,7 +6,7 @@ class PieVis {
         this.data = data
         this.chartType = chartType
         this.displayData = []
-        this.circleColors = ['#4A8BDF','#2D375A', '#A0006D','#8FB4E3', '#000000', '#ED47B9', '#ABB0B8']
+        this.circleColors = ['#A0006D','#2D375A', '#4A8BDF', '#F0C3EB', '#000000', '#ED47B9', '#ABB0B8']
         this.initVis()
     }
 
@@ -55,6 +55,9 @@ class PieVis {
             .attr('id', 'pieTooltip')
         console.log(this.tooltip)
 
+        // Create legend group
+        vis.legendGroup = vis.svg.append("g")
+            .attr("transform", "translate(0, 425)")
 
         // Wrangle data
         vis.wrangleData()
@@ -68,10 +71,10 @@ class PieVis {
         })
         if (vis.chartType === "Gender") {
             vis.displayData = vis.displayData.filter(x => x.key === 'Female' || x.key === 'Male' ||
-                x.key === 'Transgender' || x.key === 'Non Conforming')
+                x.key === 'Transgender or Non-Conforming')
         } else {
             vis.displayData = vis.displayData.filter(x => x.key === 'White' || x.key === 'Black' ||
-                x.key === 'Latino' || x.key === 'Asian' || x.key === 'Native' || x.key === 'Hawaiian' || x.key === 'Multiple')
+                x.key === 'Hispanic/Latino' || x.key === 'Other')
         }
 
         vis.updateVis()
@@ -100,9 +103,10 @@ class PieVis {
                     .style("left", event.pageX + 20 + "px")
                     .style("top", event.pageY + "px")
                     .html(`
-                         <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
+                         <div style="border: solid grey; border-radius: 5px; background: whitesmoke; padding: 20px">
                              <h3>${d.data.key}<h3>
-                             <h4>${d.data.value}</h4>
+                             <h4>${(d.data.value/326126 * 100).toFixed(2)}%</h4>
+                             <h4>${d.data.value.toLocaleString("en-US")} People</h4>
                          </div>`);
             })
             .on('mouseout', function(event, d){
@@ -121,6 +125,27 @@ class PieVis {
             .style("fill", function(d, index) { return color(index); });
 
         arcs.exit().remove()
+
+        // Create legend colors
+        vis.legendGroup.selectAll(".rect")
+            .data(vis.displayData)
+            .enter()
+            .append("rect")
+            .attr("width", 20)
+            .attr("height", 20)
+            .attr("x", 0)
+            .attr("y", (d,i) => i * 30)
+            .attr("fill", (d,i) => vis.circleColors[i])
+
+        // Create legend labels
+        vis.legendGroup.selectAll(".text")
+            .data(vis.displayData)
+            .enter()
+            .append("text")
+            .text(d => d.key)
+            .attr("x", 25)
+            .attr("y", (d,i) => i * 30 + 17)
+            .attr("id", "pie-legend")
 
     }
 
