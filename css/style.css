@@ -130,3 +130,25 @@ p, li {font-family: "American Typewriter", serif; color: #2D375A}
     width: 100%;
     height: 400px;
 }
+
+.dropdown-div {
+    padding: 93px 0 0 50px;
+}
+
+.custom-select {
+    margin-left: 15px;
+    padding: 10px;
+    width: 430px;
+}
+
+.select-p {
+    margin-top: 30px;
+}
+
+.dotplot-text {
+    font-family: "American Typewriter", serif;
+}
+
+text {
+    font-family: "American Typewriter", serif;
+}

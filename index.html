@@ -22,7 +22,7 @@
 		<- - - - - - - - - - - - -->
 		<div class="section" id="sec1">
 			<div class="container">
-				<h1 id="top-title" class="title" style="font: 3rem; tran">Homelessness in the United States</h1>
+				<h1 id="top-title" class="title">Homelessness in the United States</h1>
 				<h2 id="authors" class="subtitles"> By Caroline Abel, Charles Onesti, and Emma Ton</h2>
 				<img id="title-img" src="./img/homeless_art-transformed.webp">
 			</div>
@@ -49,7 +49,7 @@
 					<div class="col-7">
 						<div id="dotplot"></div>
 					</div>
-					<div class="col-5 ">
+					<div class="col-5 dropdown-div">
 						<select class="custom-select" onChange="changeDotPlotState(this.options[this.selectedIndex].value)">
 							<option value="Total">All States</option>
 							<option value="AL">Alabama</option>
@@ -106,6 +106,7 @@
 						<div class="row align-items-center">
 							<div class="col-sm"><div id="slider-time"></div></div>
 						</div>
+						<svg height="50" width="200"><circle r="10" cx="25" cy="10"></circle><text x="45" y="15"> =  5,000 people</text></svg>
 						<p>	This chart displays the number of homeless peole in various categories using representative symbols of 5000. In other words, each dot represents 5000 people.
 							People in a Emergency Shelter are those given temporary shelter when in economic or domestic distress. They are provided short term stability and are not forced to sign a lease or living agreement.</p>
 						<p>In Transitional Housing, people are given temporary shelter for 6 to 24 months and are often supported in finding employment. Select a state or all states in the dropdown above  and scroll through the years to see the dots move over time.</p>
@@ -227,8 +228,8 @@
 					<div class="col-7">
 						<div id="radar"></div>
 					</div>
-					<div class="col-5">
-						<select onChange="changeRadarState(this.options[this.selectedIndex].value)">
+					<div class="col-5 dropdown-div">
+						<select class="custom-select" onChange="changeRadarState(this.options[this.selectedIndex].value)">
 							<option value="All">All</option>
 							<option value="District of Columbia">District of Colombia</option>
 							<option value="New York">New York</option>
@@ -236,9 +237,21 @@
 							<option value="California">California</option>
 							<option value="Oregon">Oregon</option>
 						</select>
-						<p>The radar plot to the left shows the shelter capacity (number of beds in the city), aid spending (in millions of dollars), housing burden (the average percent of income by a resident spent on housing),
-							number of homeless people per 10,000 people in the state, and the total population of the state.
-							Use the dropdown to select one of the top 5 states or all to compare the states.</p>
+						<svg height="180" width="220">
+							<circle r="10" cx="25" cy="40" fill="#4A8BDF"></circle><text x="45" y="45"> =  District of Columbia</text>
+							<circle r="10" cx="25" cy="70" fill="#2D375A"></circle><text x="45" y="75"> =  New York</text>
+							<circle r="10" cx="25" cy="100" fill="rgb(171, 176, 184)"></circle><text x="45" y="105"> =  Hawaii</text>
+							<circle r="10" cx="25" cy="130" fill="rgb(160, 0, 109)"></circle><text x="45" y="135"> =  California</text>
+							<circle r="10" cx="25" cy="160" fill="rgb(240, 195, 235)"></circle><text x="45" y="165"> =  Oregon</text>
+						</svg>
+						<p class="select-p">Use the dropdown to select one of the top 5 states or all to compare the states.</p>
+						<ul>
+							<li>Shelter Capacity: Number of beds in homeless shelters</li>
+							<li>Aid Spending: Millions of dollars spend</li>
+							<li>Housing Burden: Average percent of income spent on housing</li>
+							<li>Number of Homeless/10,000: Proportion of homeless per 10,000 residents</li>
+							<li>Population: Total state population in millions</li>
+						</ul>
 
 					</div>
 				</div>

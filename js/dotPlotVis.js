@@ -73,7 +73,7 @@ class DotPlotVis {
                 .attr('stroke-width', 6)
                 .attr('fill', 'white')
             group.append('text')
-                .attr('class', `dotplot-text-${g}`)
+                .attr('class', `dotplot-text-${g} dotplot-text`)
                 .attr('text-anchor', 'middle')
                 .attr('transform', `translate(0, ${-vis.groupRadius - 20})`)
         })
@@ -121,7 +121,6 @@ class DotPlotVis {
             'unsheltered',
         ].map(cat => {
             return d3.packSiblings(d3.range(0,vis.selectedData[cat] / vis.peoplePerDot).map(_ => {
-                const jit = cat === 'overall' ? vis.jitter*2 : vis.jitter
                 return {
                     'state': vis.selectedData.state,
                     'type': cat,
@@ -140,36 +139,47 @@ class DotPlotVis {
     updateVis() {
         let vis = this
 
-        const select = vis.svg
-            .selectAll('.not-overall')
+        vis.svg.selectAll('.not-overall')
             .data(vis.displayData.filter(t => t.type !== 'overall'))
-        select.enter()
-            .append('circle')
-            .attr('class', 'dot not-overall')
-            .attr('r', 10)
-            .merge(select)
-            .transition().duration(500)
-            .attr('fill', d => vis.colorScale(d.type))
-            .attr('stroke', 'black')
-            .attr('cx', d => d.x)
-            .attr('cy', d => d.y);
-        select.exit().remove()
-        const selectOverall = vis.svg
-            .selectAll('.overall')
-            .data(vis.displayData.filter(t => t.type === 'overall'))
-        selectOverall.enter()
-            .append('circle')
-            // .join('circle')
-            .attr('class', 'dot overall')
-            .attr('r', 10)
-            .merge(selectOverall)
-            .transition().duration(500)
-            .attr('fill', d => vis.colorScale(d.type))
-            .attr('stroke', 'black')
-            .attr('cx', d => d.x)
-            .attr('cy', d => d.y);
-        selectOverall.exit().remove()
+            .join(
+                enter => enter.append('circle')
+                    .attr('class', 'dot not-overall')
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y)
+                    .transition().duration(1000)
+                    .attr('r', 10)
+                    .attr('fill', d => vis.colorScale(d.type))
+                    .attr('stroke', 'black'),
+                update => update.transition().duration(1000)
+                    .attr('fill', d => vis.colorScale(d.type))
+                    .attr('stroke', 'black')
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y),
+                exit => exit.transition().duration(1000)
+                    .attr('r', 0)
+                    .remove()
+            )
 
+        vis.svg.selectAll('.overall')
+            .data(vis.displayData.filter(t => t.type === 'overall'))
+            .join(
+                enter => enter.append('circle')
+                    .attr('class', 'dot overall')
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y)
+                    .attr('fill', d => vis.colorScale(d.type))
+                    .attr('stroke', 'black')
+                    .transition().duration(1000)
+                    .attr('r', 10),
+                update => update.transition().duration(1000)
+                    .attr('fill', d => vis.colorScale(d.type))
+                    .attr('stroke', 'black')
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y),
+                exit => exit.transition().duration(1000)
+                    .attr('r', 0)
+                    .remove()
+            )
 
         vis.groups.forEach(g => {
             vis.svg.select(`.dotplot-text-${g}`)
