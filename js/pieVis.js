@@ -20,7 +20,7 @@ class PieVis {
 
         vis.svg = d3.select("#" + vis.parentElement)
                     .append("svg")
-                    .attr("width", vis.width + vis.margin.left + vis.margin.right + 10)
+                    .attr("width", vis.width + vis.margin.left + vis.margin.right + 80)
                     .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
                     .append('g')
                     .attr("class", "pie-svg")
@@ -56,7 +56,7 @@ class PieVis {
 
         // Create legend group
         vis.legendGroup = vis.svg.append("g")
-            .attr("transform", "translate(0, 425)")
+            .attr("transform", "translate(400, 200)")
 
         // Wrangle data
         vis.wrangleData()
@@ -70,7 +70,7 @@ class PieVis {
         })
         if (vis.chartType === "Gender") {
             vis.displayData = vis.displayData.filter(x => x.key === 'Female' || x.key === 'Male' ||
-                x.key === 'Transgender_or_Non_Conforming')
+                x.key === 'Other_Genders')
         } else {
             vis.displayData = vis.displayData.filter(x => x.key === 'White' || x.key === 'Black' ||
                 x.key === 'Hispanic_or_Latino' || x.key === 'Other')
@@ -125,14 +125,13 @@ class PieVis {
         arcs.exit().remove()
 
         // Create legend colors
-        vis.legendGroup.selectAll(".rect")
+        vis.legendGroup.selectAll(".circle")
             .data(vis.displayData)
             .enter()
-            .append("rect")
-            .attr("width", 20)
-            .attr("height", 20)
-            .attr("x", 0)
-            .attr("y", (d,i) => i * 30)
+            .append("circle")
+            .attr("r", 10)
+            .attr("cx", 12)
+            .attr("cy", (d,i) => i * 30 + 10)
             .attr("fill", (d,i) => vis.circleColors[i])
             .on('mouseover', function(event, d){
                 d3.select(this)
@@ -152,7 +151,7 @@ class PieVis {
             .enter()
             .append("text")
             .text(d => d.key.split("_").join(" "))
-            .attr("x", 25)
+            .attr("x", 30)
             .attr("y", (d,i) => i * 30 + 17)
             .attr("id", "pie-legend")
             .on('mouseover', function(event, d){

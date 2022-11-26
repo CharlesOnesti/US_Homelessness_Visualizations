@@ -85,11 +85,13 @@
 
 .subtitles {
     color: #2D375A;
-    text-align: center;
+    text-align: left;
     margin-bottom: 40px;
     font-family: "American Typewriter", serif;
     font-size: 2.25rem;
     font-weight: 575;
+    line-height: 1.6;
+
 }
 
 /*.text {*/
@@ -160,4 +162,8 @@ text {
 
 b {
     font-weight: 647;
+}
+
+.can-do-p {
+    font-size: 24px;
 }

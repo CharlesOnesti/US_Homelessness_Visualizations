@@ -90,7 +90,7 @@ class Timeline {
             .attr("y1", -(vis.margin.top))
             .attr("x2", d => vis.x(d.date))
             .attr("y2", vis.height)
-            .style("stroke-width", 3)
+            .style("stroke-width", 4)
             .style("stroke", "#A0006D")
             .style("fill", "none")
             .on('mouseover', function(event, d){
