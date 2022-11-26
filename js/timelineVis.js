@@ -24,9 +24,8 @@ class Timeline {
         // SVG drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
-            // .append("g")
-            // .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + 150 + ")")
+            .attr("height", vis.height + vis.margin.top + vis.margin.bottom + 15)
+
 
         // Scales and axes
         vis.x = d3.scaleTime()
@@ -35,11 +34,22 @@ class Timeline {
         vis.xAxis = d3.axisBottom()
             .scale(vis.x)
 
-        // Append x-axis
+        vis.y = d3.scaleLinear()
+            .range([vis.height, 0])
+
+        vis.yAxis = d3.axisLeft()
+            .scale(vis.y)
+
+        // Append x-axis and y-axis
         vis.svg.append("g")
-            .attr("class", "x-axis axis")
-            .attr("transform", `translate(${vis.margin.left}, ${vis.height / 2})`)
+            .attr("class", "x-axis axis timeline-axis")
+            .attr("transform", `translate(50, 370)`)
             .call(vis.xAxis)
+
+        vis.svg.append("g")
+            .attr("class", "y-axis axis timeline-axis")
+            .attr("transform", `translate(50, 0)`)
+            .call(vis.yAxis)
 
         // Radii scale
         vis.circleScale = d3.scaleLinear()
@@ -50,6 +60,10 @@ class Timeline {
             .attr('class', "tooltip")
             .attr('id', 'timelineTooltip')
 
+        // Line graph
+        vis.line = d3.line()
+            .x(function(d) { return vis.x(new Date(d.year, 0))})
+            .y(function(d) { return vis.y(d.overall)})
         vis.wrangleData()
     }
 
@@ -63,7 +77,9 @@ class Timeline {
         let vis = this
 
         vis.x.domain(d3.extent(vis.displayData, function(d) {return new Date(d.year, 0) }))
+        vis.y.domain([0, d3.max(vis.displayData, d => d.overall)])
         vis.svg.select('.x-axis').call(vis.xAxis)
+        vis.svg.select('.y-axis').call(vis.yAxis)
 
         // Create event lines
         vis.svg.selectAll('.event-lines')
@@ -74,13 +90,12 @@ class Timeline {
             .attr("y1", -(vis.margin.top))
             .attr("x2", d => vis.x(d.date))
             .attr("y2", vis.height)
-            .style("stroke-width", 4)
+            .style("stroke-width", 3)
             .style("stroke", "#A0006D")
             .style("fill", "none")
             .on('mouseover', function(event, d){
-                console.log(d)
                 d3.select(this)
-                    .style('stroke', 'green')
+                    .style('stroke', '#2D375A')
                 vis.tooltip
                     .style("opacity", 1)
                     .style("left", event.pageX + 20 + "px")
@@ -109,11 +124,12 @@ class Timeline {
             .attr('stroke', 'black')
             .attr('stroke-width', '2px')
             .attr("fill", '#4A8BDF')
+            .attr("opacity", 0.5)
             .on('mouseover', function(event, d){
                 d3.select(this)
                     .attr('stroke-width', '2px')
                     .attr('stroke', 'black')
-                    .attr('fill', 'rgba(173,222,255,0.62)')
+                    .attr('fill', '#2D375A')
                 vis.tooltip
                     .style("opacity", 1)
                     .style("left", event.pageX + 20 + "px")
@@ -121,7 +137,7 @@ class Timeline {
                     .html(`
                          <div style="border: solid grey; border-radius: 5px; background: whitesmoke; padding: 10px">
                             <h3>Year: ${d.year}</h3>
-                             <h3>Number of Total Homeless: ${d.overall}<h3>
+                             <h3>Number of Total Homeless: ${parseInt(d.overall).toLocaleString()}<h3>
                          </div>`);
             })
             .on('mouseout', function(event, d){
@@ -134,6 +150,16 @@ class Timeline {
                     .style("top", 0)
                     .html(``);
             })
+            .attr("transform", `translate(3, 225)`)
+
+
+        // Add the line
+        vis.svg.append("path")
+            .datum(vis.displayData)
+            .attr("fill", "none")
+            .attr("stroke", "steelblue")
+            .attr("stroke-width", 4.0)
+            .attr("d", vis.line)
 
     }
 }

@@ -204,8 +204,8 @@ class CateMapVis {
                     .style("top", (event.pageY + 20) + 'px')
                     .style("pointer-events", "none")
                     .html(`
-                         <div id="contact-tooltip" style="border-color: black; 
-                         background-color: whitesmoke; opacity: 0.8; border-radius: 0.2rem; 
+                         <div id="contact-tooltip" style="border-color: black;
+                         background-color: whitesmoke; opacity: 0.95; border-radius: 0.2rem; 
                          border-width: 0.5rem; padding: 20px 20px 20px 20px">
                              <h5>${d.properties.info['State']}</h5>
                              <p>Total homeless population: ${d.properties.info['OverallHomeless']}</p>

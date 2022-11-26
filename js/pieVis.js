@@ -20,7 +20,7 @@ class PieVis {
 
         vis.svg = d3.select("#" + vis.parentElement)
                     .append("svg")
-                    .attr("width", vis.width + vis.margin.left + vis.margin.right)
+                    .attr("width", vis.width + vis.margin.left + vis.margin.right + 10)
                     .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
                     .append('g')
                     .attr("class", "pie-svg")
@@ -53,7 +53,6 @@ class PieVis {
         vis.tooltip = d3.select("body").append('div')
             .attr('class', "tooltip")
             .attr('id', 'pieTooltip')
-        console.log(this.tooltip)
 
         // Create legend group
         vis.legendGroup = vis.svg.append("g")
@@ -71,10 +70,10 @@ class PieVis {
         })
         if (vis.chartType === "Gender") {
             vis.displayData = vis.displayData.filter(x => x.key === 'Female' || x.key === 'Male' ||
-                x.key === 'Transgender or Non-Conforming')
+                x.key === 'Transgender_or_Non_Conforming')
         } else {
             vis.displayData = vis.displayData.filter(x => x.key === 'White' || x.key === 'Black' ||
-                x.key === 'Hispanic/Latino' || x.key === 'Other')
+                x.key === 'Hispanic_or_Latino' || x.key === 'Other')
         }
 
         vis.updateVis()
@@ -89,30 +88,29 @@ class PieVis {
             .data(vis.pie(vis.displayData))
 
         // Append paths
-        arcs.enter()
+        arcs.data(vis.pie(vis.displayData))
+            .enter()
             .append("path")
+            .attr("id", d => d.data.key)
             .attr("class", "arc")
             .on('mouseover', function(event, d){
-                console.log("D", d)
                 d3.select(this)
                     .attr('stroke-width', '2px')
                     .attr('stroke', 'black')
-                    .attr('fill', 'rgba(173,222,255,0.62)')
                 vis.tooltip
                     .style("opacity", 1)
                     .style("left", event.pageX + 20 + "px")
                     .style("top", event.pageY + "px")
                     .html(`
                          <div style="border: solid grey; border-radius: 5px; background: whitesmoke; padding: 20px">
-                             <h3>${d.data.key}<h3>
+                             <h3>${d.data.key.split("_").join(" ")}<h3>
                              <h4>${(d.data.value/326126 * 100).toFixed(2)}%</h4>
-                             <h4>${d.data.value.toLocaleString("en-US")} People</h4>
+                             <h4>${parseInt((d.data.value), 10).toLocaleString()} People</h4>
                          </div>`);
             })
             .on('mouseout', function(event, d){
                 d3.select(this)
                     .attr('stroke-width', '0px')
-                    .attr("fill", d => d.data.color)
 
                 vis.tooltip
                     .style("opacity", 0)
@@ -120,7 +118,6 @@ class PieVis {
                     .style("top", 0)
                     .html(``);
             })
-            .merge(arcs)
             .attr("d", vis.arc)
             .style("fill", function(d, index) { return color(index); });
 
@@ -136,17 +133,50 @@ class PieVis {
             .attr("x", 0)
             .attr("y", (d,i) => i * 30)
             .attr("fill", (d,i) => vis.circleColors[i])
+            .on('mouseover', function(event, d){
+                d3.select(this)
+                    .attr('stroke-width', '2px')
+                    .attr('stroke', 'black')
+                vis.highlightSegment(d)
+            })
+            .on('mouseout', function(event, d){
+                d3.select(this)
+                    .attr('stroke-width', '0px')
+                vis.unhighlightSegment(d)
+            })
 
         // Create legend labels
         vis.legendGroup.selectAll(".text")
             .data(vis.displayData)
             .enter()
             .append("text")
-            .text(d => d.key)
+            .text(d => d.key.split("_").join(" "))
             .attr("x", 25)
             .attr("y", (d,i) => i * 30 + 17)
             .attr("id", "pie-legend")
+            .on('mouseover', function(event, d){
+                d3.select(this)
+                    .attr('stroke-width', '1px')
+                    .attr('stroke', 'black')
+                vis.highlightSegment(d)
+            })
+            .on('mouseout', function(event, d){
+                d3.select(this)
+                    .attr('stroke-width', '0px')
+                vis.unhighlightSegment(d)
+            })
 
+    }
+
+    highlightSegment(d) {
+        d3.selectAll("#" + d.key)
+            .attr('stroke-width', '4px')
+            .attr('stroke', 'black')
+    }
+
+    unhighlightSegment(d) {
+        d3.selectAll("#" + d.key)
+            .attr('stroke-width', '0px')
     }
 
 }
