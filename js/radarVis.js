@@ -112,12 +112,12 @@ class RadarVis {
     }
     updateVis() {
         let vis = this
-
+        console.log(vis.displayData)
         // Draw
         const paths = vis.svg.selectAll('.radar-path')
             .data(vis.displayData)
         paths.enter().append('path')
-            .attr('class', 'radar-path')
+            .attr('class', d => `radar-path radar-path-${d.name.split(' ').join('_')}`)
             .attr("stroke-opacity", 1)
             .attr("opacity", 0.5)
             .attr("stroke-width", 3)
@@ -139,6 +139,10 @@ class RadarVis {
         circles.enter().append('circle')
             .attr('class', `radar-circle`)
             .on('mouseover', function(event, d) {
+                vis.svg.select(`.radar-path-${d.state.split(' ').join('_')}`)
+                    .attr('fill', 'green')
+                    .attr('stroke', 'green')
+
                 vis.tooltip
                     .style("opacity", 1)
                     .style("left", (event.pageX + 10) + 'px') //event.pageX & event.pageY refer to the mouse Coors on the webpage, not the Coors inside the svg
@@ -150,6 +154,10 @@ class RadarVis {
                     `)
             })
             .on('mouseout', function (event, d) {
+                vis.svg.select(`.radar-path-${d.state.split(' ').join('_')}`)
+                    .attr("stroke", d => vis.colors(d[0].state))
+                    .attr("fill", d => vis.colors(d[0].state))
+
                 vis.tooltip
                     .style("opacity", 0)
             })

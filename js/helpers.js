@@ -110,7 +110,7 @@ const radarData = [
         'Housing Burden': 29.5,
         'Number of Homeless/10,000': 90.4,
         'Aid Spending': 150,
-        'Population': 0.713
+        'Population': 0.71
     },
     {
         'name': 'New York',
@@ -118,7 +118,7 @@ const radarData = [
         'Housing Burden': 31.6,
         'Number of Homeless/10,000': 46.9,
         'Aid Spending': 3000,
-        'Population': 8.468
+        'Population': 8.47
     },
     {
         'name': 'Hawaii',
@@ -126,7 +126,7 @@ const radarData = [
         'Housing Burden': 32,
         'Number of Homeless/10,000': 45.6,
         'Aid Spending': 50,
-        'Population': 1.442
+        'Population': 1.44
     },
     {
         'name': 'California',
@@ -142,7 +142,7 @@ const radarData = [
         'Housing Burden': 30.8,
         'Number of Homeless/10,000': 34.7,
         'Aid Spending': 2300,
-        'Population': 4.246
+        'Population': 4.25
     },
 ]
 
