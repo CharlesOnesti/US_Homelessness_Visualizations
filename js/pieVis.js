@@ -94,9 +94,10 @@ class PieVis {
             .attr("id", d => d.data.key)
             .attr("class", "arc")
             .on('mouseover', function(event, d){
-                d3.select(this)
-                    .attr('stroke-width', '2px')
+                let a = d3.select(this)
+                    .attr('stroke-width', '4px')
                     .attr('stroke', 'black')
+                a.raise()
                 vis.tooltip
                     .style("opacity", 1)
                     .style("left", event.pageX + 20 + "px")
@@ -106,7 +107,7 @@ class PieVis {
                              <h3>${d.data.key.split("_").join(" ")}<h3>
                              <h4>${(d.data.value/326126 * 100).toFixed(2)}%</h4>
                              <h4>${parseInt((d.data.value), 10).toLocaleString()} People</h4>
-                         </div>`);
+                         </div>`)
             })
             .on('mouseout', function(event, d){
                 d3.select(this)
@@ -169,10 +170,10 @@ class PieVis {
     }
 
     highlightSegment(d) {
-        let x = d3.selectAll("#" + d.key)
+        let a = d3.selectAll("#" + d.key)
             .attr('stroke-width', '4px')
             .attr('stroke', 'black')
-        x.raise()
+        a.raise()
     }
 
     unhighlightSegment(d) {
