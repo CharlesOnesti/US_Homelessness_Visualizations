@@ -131,17 +131,21 @@ class RadarVis {
             .attr("stroke", d => vis.colors(d[0].state))
             .attr("fill", d => vis.colors(d[0].state))
         paths.exit().remove()
+
         const circles = vis.svg.selectAll(`.radar-circle`)
             .data(vis.displayData.map(x => vis.getPathCoordinates(x).map(y => {
                 y.state = x.name
                 return y
             })).flat())
         circles.enter().append('circle')
-            .attr('class', `radar-circle`)
+            .attr('class', d=> `radar-circle radar-circle-${d.state.split(' ').join('_')}`)
             .on('mouseover', function(event, d) {
-                vis.svg.select(`.radar-path-${d.state.split(' ').join('_')}`)
-                    .attr('fill', 'green')
-                    .attr('stroke', 'green')
+                let p = vis.svg.select(`.radar-path-${d.state.split(' ').join('_')}`)
+                    .attr('opacity', 1.0)
+                p.raise()
+                let c = vis.svg.select(`.radar-circle-${d.state.split(' ').join('_')}`)
+                    .attr('opacity', 1.0)
+                c.raise()
 
                 vis.tooltip
                     .style("opacity", 1)
@@ -156,10 +160,12 @@ class RadarVis {
             .on('mouseout', function (event, d) {
                 vis.svg.select(`.radar-path-${d.state.split(' ').join('_')}`)
                     .attr("stroke", d => vis.colors(d[0].state))
-                    .attr("fill", d => vis.colors(d[0].state))
-
+                    .attr("opacity", 0.5)
                 vis.tooltip
                     .style("opacity", 0)
+                let c = vis.svg.selectAll(`.radar-circle`)
+                    .attr('opacity', 1.0)
+                c.raise()
             })
             .merge(circles)
             .transition().duration(400)

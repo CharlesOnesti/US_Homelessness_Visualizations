@@ -169,9 +169,10 @@ class PieVis {
     }
 
     highlightSegment(d) {
-        d3.selectAll("#" + d.key)
+        let x = d3.selectAll("#" + d.key)
             .attr('stroke-width', '4px')
             .attr('stroke', 'black')
+        x.raise()
     }
 
     unhighlightSegment(d) {
