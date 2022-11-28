@@ -96,16 +96,15 @@ class ContactVis {
                     .style("top", (event.pageY + 20) + 'px')
                     .style("pointer-events", "none")
                     .html(`
-                         <div style="border-color: black; 
-                         background-color: whitesmoke; opacity: 0.95; border-radius: 0.2rem; 
-                         border-width: 0.5rem; padding: 20px 20px 20px 20px">
-                             <h5>${d.properties.info['state_name']}</h5>
-                             <p>Governor: ${d.properties.info['name']}</p>
-                             <p>Phone: ${d.properties.info['phone']}</p>
+                         <div style=" font-size:20px; border: solid grey; border-radius: 5px; background: whitesmoke; padding: 20px; font-family: "American Typewriter", serif; font-size:20px">
+                             <p style="font-size:24px; font-weight: 700">${d.properties.info['state_name']}</p>
+                             <p><b>Governor</b>: ${d.properties.info['name']}</p>
+                             <p><b>Phone</b>: ${d.properties.info['phone']}</p>
+                             <p><b>Website</b>: ${d.properties.info['website']}</p>
                          </div>
                     `)
             })
-            .on('mouseout', function (event, d) {
+            .on('mouseout', function () {
                 d3.select(this)
                     .style('fill', 'white')
 
@@ -117,8 +116,7 @@ class ContactVis {
                     .html(``)
 
             })
+            .on('click', showEdition)
     }
-
-
 
 }

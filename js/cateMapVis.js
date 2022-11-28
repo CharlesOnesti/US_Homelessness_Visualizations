@@ -52,18 +52,18 @@ class CateMapVis {
         // default time range
         vis.yearStart = vis.parseDate("1930")
         vis.yearEnd = vis.parseDate("2014")
-        vis.slider = document.getElementById('slider');
-        vis.slider_info = noUiSlider.create(vis.slider, {
-            start: [vis.yearStart, vis.yearEnd],
-            connect: true,
-            behaviour: 'drag',
-            step: 1,
-            tooltips: true,
-            range: {
-                'min': 2007,
-                'max': 2020
-            }
-        })
+        // vis.slider = document.getElementById('slider');
+        // vis.slider_info = noUiSlider.create(vis.slider, {
+        //     start: [vis.yearStart, vis.yearEnd],
+        //     connect: true,
+        //     behaviour: 'drag',
+        //     step: 1,
+        //     tooltips: true,
+        //     range: {
+        //         'min': 2007,
+        //         'max': 2020
+        //     }
+        // })
 
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -134,14 +134,14 @@ class CateMapVis {
             .property("value"))
 
         // update slider
-        vis.slider.noUiSlider.set([vis.formatDate(vis.yearStart), null]);
+        // vis.slider.noUiSlider.set([vis.formatDate(vis.yearStart), null]);
 
         // update time end
         vis.yearEnd = vis.parseDate(d3.select("#year-end")
             .property("value"))
 
         // update slider
-        vis.slider.noUiSlider.set([null, vis.formatDate(vis.yearEnd)]);
+        // vis.slider.noUiSlider.set([null, vis.formatDate(vis.yearEnd)]);
 
         vis.filteredData = vis.cateData.filter(dataPerYear =>
             dataPerYear[0]['Year'] >= vis.yearStart && dataPerYear[0]['Year'] <= vis.yearEnd
@@ -177,7 +177,7 @@ class CateMapVis {
         let vis = this
 
         vis.colorScale = d3.scaleLinear()
-            .range(["#FFFFFF", "#85005b"])
+            .range(["#FFFFFF", "#A0006DFF"])
             .domain([0, d3.max(vis.cateInfo, d => d[vis.selected])])
 
         console.log(vis.usa)
@@ -195,8 +195,11 @@ class CateMapVis {
             .style("stroke-width", "2px")
             .on('mouseover', function (event, d) {
                 d3.select(this)
-                    .style('fill', 'gray')
+                    .style('fill', '#ABB0B8FF')
                     .style("opacity", 1)
+
+
+                // ${parseInt((d.properties.info['OverallHomelessVeterans']), 10).toLocaleString()}
 
                 vis.tooltip
                     .style("opacity", 1)
@@ -204,14 +207,12 @@ class CateMapVis {
                     .style("top", (event.pageY + 20) + 'px')
                     .style("pointer-events", "none")
                     .html(`
-                         <div id="contact-tooltip" style="border-color: black;
-                         background-color: whitesmoke; opacity: 0.95; border-radius: 0.2rem; 
-                         border-width: 0.5rem; padding: 20px 20px 20px 20px">
-                             <h5>${d.properties.info['State']}</h5>
-                             <p>Total homeless population: ${d.properties.info['OverallHomeless']}</p>
-                             <p>Homeless Individuals: ${d.properties.info['OverallHomelessIndividuals']}</p>
-                             <p>Homeless Families: ${d.properties.info['OverallHomelessFamilyHouseholds']}</p>
-                             <p>Homeless Veterans: ${d.properties.info['OverallHomelessVeterans']}</p>
+                         <div id="contact-tooltip" style=" font-size:20px; border: solid grey; border-radius: 5px; background: whitesmoke; padding: 20px; font-family: "American Typewriter", serif; font-size:20px">
+                             <p style="font-size:24px; font-weight: 700">${d.properties.info['State']}</p>
+                             <p><b>Total homeless population:</b> ${parseInt((d.properties.info['OverallHomeless']), 10).toLocaleString()}</p>
+                             <p><b>Homeless Individuals:</b> ${parseInt((d.properties.info['OverallHomelessIndividuals']), 10).toLocaleString()}</p>
+                             <p><b>Homeless Families:</b> ${parseInt((d.properties.info['OverallHomelessFamilyHouseholds']), 10).toLocaleString()}</p>
+                             <p><b>Homeless Veterans:</b> ${parseInt((d.properties.info['OverallHomelessVeterans']), 10).toLocaleString()}</p>
                          </div>
                     `)
             })
@@ -257,6 +258,7 @@ class CateMapVis {
             .range([0, 100])
             .domain([0, 100])
 
+
         // console.log(typeof d3.max(vis.stateInfo, d => d[selectedCategory]))
 
         let maxLegend = d3.max(vis.cateInfo, d => d[vis.selected])
@@ -266,7 +268,7 @@ class CateMapVis {
             .scale(vis.appearScale)
             .ticks(3)
             .tickValues([0,100])
-            .tickFormat((d, i) => ['0', maxLegend][i])
+            .tickFormat((d, i) => ['0', parseInt(maxLegend, 10).toLocaleString()][i])
 
         // call the legend axis inside the legend axis group
         vis.legendGroup

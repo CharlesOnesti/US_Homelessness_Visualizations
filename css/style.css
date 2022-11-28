@@ -29,11 +29,48 @@
 }
 
 #cate-map {
-    height: 500px
+    font-family: "American Typewriter", serif;
+    height: 550px;
+    font-size: 18px;
+}
+
+#selectButton {
+    font-family: American Typewriter, serif;
+}
+
+
+#year-end {
+    font-family: American Typewriter, serif;
+}
+
+#year-start {
+    font-family: American Typewriter, serif;
+}
+
+#name {
+    font-family: American Typewriter, serif;
+    font-weight: 700;
+    font-size: 23px;
+    text-align: center;
+}
+
+#table-summary {
+    font-family: American Typewriter, serif;
+    font-size: 18px
+}
+
+#filter {
+    font-family: American Typewriter, serif;
 }
 
 #contact-map {
-    height: 500px
+    font-family: "American Typewriter", serif;
+    height: 500px;
+    font-size: 18px;
+}
+
+#interact {
+    color: #85005b;
 }
 
 /*Pie Graph Style*/

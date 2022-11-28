@@ -97,17 +97,69 @@ function changeRadarState(chosen) {
 	radarVis.wrangleData()
 }
 
-function updateCateMap() {
-	slider = document.getElementById('slider');
+// function updateCateMap() {
+// 	slider = document.getElementById('slider');
+//
+// 	let start = document.getElementById('year-start')
+// 	let end = document.getElementById('year-end')
+//
+// 	let handleArray = slider.noUiSlider.get()
+// 	start.value = handleArray[0]
+// 	end.value = handleArray[1]
+//
+// 	timePeriod = handleArray
+//
+// 	cateMapVis.wrangleData()
+// }
 
-	let start = document.getElementById('year-start')
-	let end = document.getElementById('year-end')
+function showEdition(d) {
+	console.log(d)
+	let data = d.path[0].__data__
+	// add edition name
+	// delete existing name to prevent duplicates
+	if (document.querySelector('#table-name')) {
+		document.querySelector('#table-name').remove()
+	}
 
-	let handleArray = slider.noUiSlider.get()
-	start.value = handleArray[0]
-	end.value = handleArray[1]
+	let name_container = document.getElementById('name')
+	let p = document.createElement("p")
+	p.setAttribute('id', 'table-name')
+	p.appendChild(document.createTextNode(`Contact Governor of ${data.properties.info['state_name']}`))
+	name_container.appendChild(p)
 
-	timePeriod = handleArray
+	let summary = {
+		"State": data.properties.info['state_name'],
+		"Governor": data.properties.info['name'],
+		"Phone number": data.properties.info['phone'],
+		"Website": data.properties.info['website']
+	}
 
-	cateMapVis.wrangleData()
+	// delete existing table to prevent duplicates
+	if (document.querySelectorAll('#table-summary tbody tr').length > 0) {
+		document.querySelector('#table-summary tbody').remove()
+	}
+
+
+	let table = document.getElementById('table-summary')
+	let tblBody = document.createElement("tbody");
+	let cellText2;
+	for (const [key, value] of Object.entries(summary)) {
+		const row = document.createElement("tr")
+		const title = document.createElement("td")
+		const data = document.createElement("td")
+		const cellText = document.createTextNode(`${key}`)
+		if (key == 'Website') {
+			cellText2 = document.createElement("a")
+			cellText2.setAttribute("href", `${value}`)
+			cellText2.innerHTML = `${value}`
+		} else {
+			cellText2 = document.createTextNode(`${value}`)
+		}
+		title.appendChild(cellText)
+		data.appendChild(cellText2)
+		row.appendChild(title);
+		row.appendChild(data);
+		tblBody.appendChild(row);
+	}
+	table.appendChild(tblBody)
 }
