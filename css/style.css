@@ -172,6 +172,10 @@
     width: 50rem
 }
 
+.instructions {
+    color: #85005b;
+}
+
 p, li {font-family: "American Typewriter", serif; color: #2D375A}
 
 /*Timeline Style*/
