@@ -108,6 +108,12 @@ class DotPlotVis {
             .attr('transform', 'translate(30,30)');
         gTime.call(sliderTime);
 
+        d3.selectAll('#slider-time * text')
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "translate(-5,-5) rotate(-45)")
+
         vis.wrangleData()
     }
     wrangleData() {

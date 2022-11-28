@@ -37,9 +37,17 @@
 }
 
 /*Pie Graph Style*/
-#pieGender #pieRace {
-    text-align: center;
+/*#pieGender #pieRace {*/
+/*    text-align: center;*/
+/*}*/
+#pieGender {
+    height: 550px;
 }
+
+#pieRace {
+    height: 550px;
+}
+
 
 .pie-svg {
     display: block;
@@ -166,4 +174,25 @@ b {
 
 .can-do-p {
     font-size: 24px;
+}
+
+.dotplot-year-slider > text {
+
+}
+
+#slider-time > svg > g > g.axis * text {
+    font-size: 15px;
+    fill: #2D375A;
+}
+#slider-time > svg > g > g.slider > g > text {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#pieGender {
+    height: 550px;
+}
+
+#pieRace {
+    height: 550px;
 }

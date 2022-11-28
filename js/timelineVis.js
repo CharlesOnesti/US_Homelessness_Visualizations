@@ -16,40 +16,51 @@ class Timeline {
         // store keyword this which refers to the object it belongs to in variable vis
         let vis = this
 
-        vis.margin = {top: 0, right: 50, bottom: 30, left: 50}
-
+        vis.margin = {top: 0, right: 100, bottom: 50, left: 100}
+        console.log(document.getElementById(vis.parentElement).getBoundingClientRect())
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
         // SVG drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom + 15)
+            .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
 
 
         // Scales and axes
         vis.x = d3.scaleTime()
-            .range([0, vis.width])
+            .range([vis.margin.left, vis.margin.left + vis.width])
 
         vis.xAxis = d3.axisBottom()
             .scale(vis.x)
 
-        vis.y = d3.scaleLinear()
-            .range([vis.height, 0])
+        vis.yLeft = d3.scaleLinear()
+            .range([vis.height - vis.margin.top, vis.margin.bottom])
 
-        vis.yAxis = d3.axisLeft()
-            .scale(vis.y)
+        vis.yAxisLeft = d3.axisLeft()
+            .scale(vis.yLeft)
+
+        vis.yRight = d3.scaleLinear()
+            .range([vis.height - vis.margin.top, vis.margin.bottom])
+
+        vis.yAxisRight = d3.axisRight()
+            .scale(vis.yRight)
 
         // Append x-axis and y-axis
         vis.svg.append("g")
             .attr("class", "x-axis axis timeline-axis")
-            .attr("transform", `translate(50, 370)`)
+            .attr("transform", `translate(0, ${vis.height})`)
             .call(vis.xAxis)
 
         vis.svg.append("g")
-            .attr("class", "y-axis axis timeline-axis")
+            .attr("class", "y-axisLeft axis timeline-axis")
             .attr("transform", `translate(50, 0)`)
-            .call(vis.yAxis)
+            .call(vis.yAxisLeft)
+
+        vis.svg.append("g")
+            .attr("class", "y-axisRight axis timeline-axis")
+            .attr("transform", `translate(${vis.width + vis.margin.left + vis.margin.right - 50}, 0)`)
+            .call(vis.yAxisRight)
 
         // Radii scale
         vis.circleScale = d3.scaleLinear()
@@ -63,7 +74,7 @@ class Timeline {
         // Line graph
         vis.line = d3.line()
             .x(function(d) { return vis.x(new Date(d.year, 0))})
-            .y(function(d) { return vis.y(d.overall)})
+            .y(function(d) { return vis.yRight(d.overall)})
         vis.wrangleData()
     }
 
@@ -77,25 +88,25 @@ class Timeline {
         let vis = this
 
         vis.x.domain(d3.extent(vis.displayData, function(d) {return new Date(d.year, 0) }))
-        vis.y.domain([0, d3.max(vis.displayData, d => d.overall)])
+        // vis.y.domain([d3.min(vis.displayData, d => d.overall) - 50000, d3.max(vis.displayData, d => d.overall)])
+        vis.yRight.domain([d3.min(vis.displayData, d => d.overall) - 50000, d3.max(vis.displayData, d => d.overall)])
+        vis.yLeft.domain([0, d3.max(vis.displayData, d => d.overall)])
         vis.svg.select('.x-axis').call(vis.xAxis)
-        vis.svg.select('.y-axis').call(vis.yAxis)
+        vis.svg.select('.y-axisLeft').call(vis.yAxisLeft)
+        vis.svg.select('.y-axisRight').call(vis.yAxisRight)
 
         // Create event lines
-        vis.svg.selectAll('.event-lines')
+        const eventLineGroup = vis.svg.selectAll('.event-line-group')
             .data(policyEvents)
             .enter()
-            .append('line')
-            .attr("x1", d => vis.x(d.date))
-            .attr("y1", -(vis.margin.top))
-            .attr("x2", d => vis.x(d.date))
-            .attr("y2", vis.height)
-            .style("stroke-width", 4)
-            .style("stroke", "#A0006D")
-            .style("fill", "none")
+            .append('g')
+            .attr('class', 'event-line-group')
+            .attr("transform", d => `translate(${vis.x(d.date)}, ${-(vis.margin.top)})`)
             .on('mouseover', function(event, d){
-                d3.select(this)
+                d3.select(this).selectAll('line, rect')
                     .style('stroke', '#2D375A')
+                    .style('fill', '#2D375A')
+
                 vis.tooltip
                     .style("opacity", 1)
                     .style("left", event.pageX + 20 + "px")
@@ -107,20 +118,47 @@ class Timeline {
                          </div>`);
             })
             .on('mouseout', function(event, d){
-                d3.select(this)
+                d3.select(this).selectAll('line, rect')
                     .style("stroke", "#A0006D")
+                    .style("fill", "#A0006D")
+                
                 vis.tooltip
                     .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``)
             })
 
+        eventLineGroup.append('line')
+            .attr("y2", vis.height)
+            .style("stroke-width", 4)
+            .style("stroke", "#A0006D")
+            .style("fill", "none")
+        eventLineGroup.append('rect')
+            .attr('width', 60)
+            .attr('height', 40)
+            .style("stroke-width", 4)
+            .style("stroke", "#A0006D")
+            .style("fill", "#A0006D")
+        eventLineGroup.append('text')
+            .attr("x", 30)
+            .attr("y", 26)
+            .style('stroke', '#F5F5F5FF')
+            .style('fill', '#F5F5F5FF')
+            .attr('text-anchor', 'middle')
+            .attr('pointer-events', 'none')
+            .text("Event")
+
         // Create circles
-        vis.svg.selectAll("circle")
+        vis.svg.selectAll(".timeline-bar")
             .data(vis.displayData)
             .enter()
-            .append("circle")
-            .attr("r", d => vis.circleScale(d.overall))
-            .attr("cx", d => vis.x(new Date(d.year, 0)) + vis.margin.left)
-            .attr("cy", d => vis.height/2 - vis.circleScale(d.overall))
+            .append("rect")
+            .attr('class', 'timeline-bar')
+            .attr("x", d => vis.x(new Date(d.year, 0)) - (vis.x(new Date(d.year + 1, 0)) - vis.x(new Date(d.year, 0)))/2)
+            .attr("y", d => vis.yLeft(d.overall))
+            .attr('height', d => vis.height - vis.yLeft(d.overall))
+            .attr('width', d => vis.x(new Date(d.year + 1, 0)) - vis.x(new Date(d.year, 0)))
             .attr('stroke', 'black')
             .attr('stroke-width', '2px')
             .attr("fill", '#4A8BDF')
@@ -150,15 +188,13 @@ class Timeline {
                     .style("top", 0)
                     .html(``);
             })
-            .attr("transform", `translate(3, 225)`)
-
 
         // Add the line
         vis.svg.append("path")
             .datum(vis.displayData)
             .attr("fill", "none")
-            .attr("stroke", "steelblue")
-            .attr("stroke-width", 4.0)
+            .attr("stroke", "#A0006D")
+            .attr("stroke-width", 5.0)
             .attr("d", vis.line)
 
     }
