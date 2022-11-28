@@ -152,8 +152,8 @@ class RadarVis {
                     .style("left", (event.pageX + 10) + 'px') //event.pageX & event.pageY refer to the mouse Coors on the webpage, not the Coors inside the svg
                     .style("top", (event.pageY + 20) + 'px')
                     .html(`
-                         <div>
-                             <h5>${vis.data.find(x => x.name === d.state)[d.name]}</h5>
+                         <div style="border: solid grey; border-radius: 5px; background: whitesmoke; padding: 8px">
+                             <p>${vis.data.find(x => x.name === d.state)[d.name]}</p>
                          </div>
                     `)
             })

@@ -195,7 +195,7 @@ class CateMapVis {
             .style("stroke-width", "2px")
             .on('mouseover', function (event, d) {
                 d3.select(this)
-                    .style('fill', '#ABB0B8FF')
+                    .style('fill', '#2D375A')
                     .style("opacity", 1)
 
 

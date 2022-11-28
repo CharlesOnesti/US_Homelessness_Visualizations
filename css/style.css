@@ -198,7 +198,7 @@ p, li {font-family: "American Typewriter", serif; color: #2D375A}
     font-family: "American Typewriter", serif;
 }
 
-text {
+text, select {
     font-family: "American Typewriter", serif;
 }
 #timeline-p {
@@ -213,9 +213,6 @@ b {
     font-size: 24px;
 }
 
-.dotplot-year-slider > text {
-
-}
 
 #slider-time > svg > g > g.axis * text {
     font-size: 15px;

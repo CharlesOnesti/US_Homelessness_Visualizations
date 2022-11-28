@@ -108,7 +108,7 @@ const radarData = [
         'name': 'District of Columbia',
         'Shelter Capacity': 6272,
         'Housing Burden': 29.5,
-        'Number of Homeless/10,000': 90.4,
+        'Homeless per 10,000': 90.4,
         'Aid Spending': 150,
         'Population': 0.71
     },
@@ -116,7 +116,7 @@ const radarData = [
         'name': 'New York',
         'Shelter Capacity': 83720,
         'Housing Burden': 31.6,
-        'Number of Homeless/10,000': 46.9,
+        'Homeless per 10,000': 46.9,
         'Aid Spending': 3000,
         'Population': 8.47
     },
@@ -124,7 +124,7 @@ const radarData = [
         'name': 'Hawaii',
         'Shelter Capacity': 3312,
         'Housing Burden': 32,
-        'Number of Homeless/10,000': 45.6,
+        'Homeless per 10,000': 45.6,
         'Aid Spending': 50,
         'Population': 1.44
     },
@@ -132,7 +132,7 @@ const radarData = [
         'name': 'California',
         'Shelter Capacity': 60582,
         'Housing Burden': 34,
-        'Number of Homeless/10,000': 40.9,
+        'Homeless per 10,000': 40.9,
         'Aid Spending': 7200,
         'Population': 39.24
     },
@@ -140,7 +140,7 @@ const radarData = [
         'name': 'Oregon',
         'Shelter Capacity': 5315,
         'Housing Burden': 30.8,
-        'Number of Homeless/10,000': 34.7,
+        'Homeless per 10,000': 34.7,
         'Aid Spending': 2300,
         'Population': 4.25
     },
