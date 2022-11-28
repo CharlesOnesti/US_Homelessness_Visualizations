@@ -166,52 +166,54 @@
 			<div class="container">
 				<h3 class="title">Breakdown By Homelessness Categories</h3>
 				<div class="row slider-tab">
-					<div class="col">
-						<form class="form-inline">
-							<div class="row">
-								<label style="font-family: American Typewriter, serif;">Select an option:</label>
-								<select class="form-select" id="selectButton"></select>
-							</div>
-						</form>
-					</div>
-					<div class="col">
-						<form class="form-inline">
-							<div class="row form-group">
-								<label style="font-family: American Typewriter, serif;">Years (2007-2020)</label>
-								<div class="col">
-<!--									<label style="font-family: American Typewriter, serif;"></label>-->
-									<div class="col">
-										<input type="number" class="form-control time-range" id="year-start" min="2007" max="2020" value="2007"/>
-									</div>
-								</div>
-								<div class="col">
-<!--									<label> </label>-->
-									<div class="col">
-										<input type="number" class="form-control time-range" id="year-end" min="2007" max="2020" value="2020" />
-									</div>
-								</div>
-								<div class="col">
-<!--									<label> </label>-->
-									<div class="col">
-										<button class="btn btn-success" id="filter" type="button" onclick="updateCateMap()">Filter</button>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
+<!--					<div class="col">-->
+<!--						<form class="form-inline">-->
+<!--							<div class="row">-->
+<!--								<div class="col-5">-->
+<!--									<label style="font-family: American Typewriter, serif; margin-bottom: 0.8rem; display:block">Select an option:</label>-->
+<!--									<select class="form-select" id="selectButton"></select>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</form>-->
+<!--					</div>-->
+<!--					<div class="col">-->
+<!--						<form class="form-inline">-->
+<!--							<div class="row form-group">-->
+<!--								<label style="font-family: American Typewriter, serif;">Years (2007-2020)</label>-->
+<!--								<div class="col">-->
+<!--									<div class="col">-->
+<!--										<input type="number" class="form-control time-range" id="year-start" min="2007" max="2020" value="2007"/>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								<div class="col">-->
+<!--									<div class="col">-->
+<!--										<input type="number" class="form-control time-range" id="year-end" min="2007" max="2020" value="2020" />-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								<div class="col">-->
+<!--									<div class="col">-->
+<!--										<button class="btn btn-success" id="filter" type="button" onclick="updateCateMap()">Filter</button>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</form>-->
+<!--					</div>-->
 				</div>
-<!--				<div class="row mb-2 slider-tab">-->
-<!--					<div class="col-10">-->
-<!--						<div id="slider"></div>-->
-<!--					</div>-->
-<!--					<div class="col-1">-->
-<!--					</div>-->
-<!--				</div>-->
+
 				<div class="row justify-content-center">
-					<div class="col-7">
+					<div class="col-7 mt-2">
+						<div id="slider"></div>
 						<div id="cate-map"></div>
 					</div>
 					<div class="col-5 justify-content-center">
+						<form class="form-inline">
+							<!--							<div class="row">-->
+							<!--								<div class="col-5">-->
+							<label style="font-family: American Typewriter, serif; margin-bottom: 0.8rem; display:block">Select an option:</label>
+							<select class="form-select" id="selectButton"></select>
+							<!--								</div>-->
+							<!--							</div>-->
+						</form>
 						<div id="interact">
 							<br>
 							<i>

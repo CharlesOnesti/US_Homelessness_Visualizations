@@ -77,7 +77,7 @@ function initMainPage(dataArray) {
 		dataPerYear = dataPerYear.splice(26,1)
 	})
 
-	cateMapVis = new CateMapVis('cate-map', dataArray[0], data_category)
+	// cateMapVis = new CateMapVis('cate-map', dataArray[0], data_category)
 	genderPieVis = new PieVis('pieGender', dataArray[2], "Gender")
 	racePieVis = new PieVis('pieRace', dataArray[2], "Race")
 	dotPlotVis = new DotPlotVis('dotplot', dataArray[3])
@@ -97,20 +97,21 @@ function changeRadarState(chosen) {
 	radarVis.wrangleData()
 }
 
-// function updateCateMap() {
-// 	slider = document.getElementById('slider');
-//
-// 	let start = document.getElementById('year-start')
-// 	let end = document.getElementById('year-end')
-//
-// 	let handleArray = slider.noUiSlider.get()
-// 	start.value = handleArray[0]
-// 	end.value = handleArray[1]
-//
-// 	timePeriod = handleArray
-//
-// 	cateMapVis.wrangleData()
-// }
+function updateCateMap() {
+	slider = document.getElementById('slider');
+
+	// let start = document.getElementById('year-start')
+	// let end = document.getElementById('year-end')
+
+	let handleArray = slider.noUiSlider.get()
+	console.log(handleArray)
+	// start.value = handleArray[0]
+	// end.value = handleArray[1]
+
+	// timePeriod = handleArray
+
+	cateMapVis.wrangleData()
+}
 
 function showEdition(d) {
 	console.log(d)

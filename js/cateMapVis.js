@@ -52,18 +52,19 @@ class CateMapVis {
         // default time range
         vis.yearStart = vis.parseDate("1930")
         vis.yearEnd = vis.parseDate("2014")
-        // vis.slider = document.getElementById('slider');
-        // vis.slider_info = noUiSlider.create(vis.slider, {
-        //     start: [vis.yearStart, vis.yearEnd],
-        //     connect: true,
-        //     behaviour: 'drag',
-        //     step: 1,
-        //     tooltips: true,
-        //     range: {
-        //         'min': 2007,
-        //         'max': 2020
-        //     }
-        // })
+        vis.slider = document.getElementById('slider');
+
+        vis.slider_info = noUiSlider.create(vis.slider, {
+            start: vis.yearStart,
+            connect: true,
+            behaviour: 'drag',
+            step: 1,
+            tooltips: true,
+            range: {
+                'min': 2007,
+                'max': 2020
+            }
+        })
 
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -130,43 +131,47 @@ class CateMapVis {
         let vis = this
 
         // update time start
-        vis.yearStart = vis.parseDate(d3.select("#year-start")
-            .property("value"))
+        // vis.yearStart = vis.parseDate(d3.select("#year-start")
+        //     .property("value"))
 
-        // update slider
-        // vis.slider.noUiSlider.set([vis.formatDate(vis.yearStart), null]);
+        // let start = document.getElementById('year-start')
+        // let end = document.getElementById('year-end')
 
         // update time end
-        vis.yearEnd = vis.parseDate(d3.select("#year-end")
-            .property("value"))
+        // vis.yearEnd = vis.parseDate(d3.select("#year-end")
+        //     .property("value"))
 
-        // update slider
-        // vis.slider.noUiSlider.set([null, vis.formatDate(vis.yearEnd)]);
+        // update slider and year start
+        vis.slider.noUiSlider.on('update', function (values) {
+            vis.yearStart = vis.parseDate(values[0])
+        })
+        console.log(vis.yearStart)
+        console.log(vis.cateData)
 
         vis.filteredData = vis.cateData.filter(dataPerYear =>
-            dataPerYear[0]['Year'] >= vis.yearStart && dataPerYear[0]['Year'] <= vis.yearEnd
+            dataPerYear[0]['Year'] == vis.yearStart
         )
 
-        vis.cateInfo = vis.filteredData[0]
-        for (let i = 1; i < vis.filteredData.length; i++) {
-            let catePerYear = vis.filteredData[i]
-            for (let j = 0; j < catePerYear.length; j++) {
-                vis.cateInfo[j]['OverallHomeless'] += catePerYear[j]['OverallHomeless']
-                vis.cateInfo[j]['OverallHomelessIndividuals'] += catePerYear[j]['OverallHomelessIndividuals']
-                vis.cateInfo[j]['OverallHomelessFamilyHouseholds'] += catePerYear[j]['OverallHomelessFamilyHouseholds']
-                vis.cateInfo[j]['OverallHomelessVeterans'] += catePerYear[j]['OverallHomelessVeterans']
-            }
-        }
+        console.log(vis.filteredData)
+        // for (let i = 1; i < vis.filteredData.length; i++) {
+        //     let catePerYear = vis.filteredData[i]
+        //     for (let j = 0; j < catePerYear.length; j++) {
+        //         vis.cateInfo[j]['OverallHomeless'] += catePerYear[j]['OverallHomeless']
+        //         vis.cateInfo[j]['OverallHomelessIndividuals'] += catePerYear[j]['OverallHomelessIndividuals']
+        //         vis.cateInfo[j]['OverallHomelessFamilyHouseholds'] += catePerYear[j]['OverallHomelessFamilyHouseholds']
+        //         vis.cateInfo[j]['OverallHomelessVeterans'] += catePerYear[j]['OverallHomelessVeterans']
+        //     }
+        // }
 
-        vis.usa.forEach(
-            function (d) {
-                vis.cateInfo.forEach(elt => {
-                    if (d.properties.name == elt['State']) {
-                        d.properties.info = elt
-                    }
-                })
-            }
-        )
+        // vis.usa.forEach(
+        //     function (d) {
+        //         vis.cateInfo.forEach(elt => {
+        //             if (d.properties.name == elt['State']) {
+        //                 d.properties.info = elt
+        //             }
+        //         })
+        //     }
+        // )
 
         console.log(vis.usa)
 
@@ -180,8 +185,10 @@ class CateMapVis {
             .range(["#FFFFFF", "#A0006DFF"])
             .domain([0, d3.max(vis.cateInfo, d => d[vis.selected])])
 
-        console.log(vis.usa)
-        console.log(vis.cateInfo)
+        // console.log(vis.usa)
+        // console.log(vis.cateInfo)
+
+
         vis.states
             .style("fill", function (d) {
                 if (d.properties.info && d.properties.info[vis.selected]) {
@@ -197,9 +204,6 @@ class CateMapVis {
                 d3.select(this)
                     .style('fill', '#ABB0B8FF')
                     .style("opacity", 1)
-
-
-                // ${parseInt((d.properties.info['OverallHomelessVeterans']), 10).toLocaleString()}
 
                 vis.tooltip
                     .style("opacity", 1)
