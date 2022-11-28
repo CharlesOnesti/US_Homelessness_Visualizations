@@ -8,9 +8,9 @@
 
 	<!-- Load CSS libraries -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/22a997d455.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="css/fullpage.css"/>
 	<link rel="stylesheet" href="css/style.css">
-	<!-- slider -->
 	<link href="./css/nouislider.css" rel="stylesheet">
 </head>
 <body>
@@ -167,7 +167,7 @@
 					<div class="col">
 						<form class="form-inline">
 							<div class="row">
-								<label>Select an option:</label>
+								<label style="font-family: American Typewriter, serif;">Select an option:</label>
 								<select class="form-select" id="selectButton"></select>
 							</div>
 						</form>
@@ -175,45 +175,61 @@
 					<div class="col">
 						<form class="form-inline">
 							<div class="row form-group">
+								<label style="font-family: American Typewriter, serif;">Years (2007-2020)</label>
 								<div class="col">
-									<label>Years (2007-2020)</label>
+<!--									<label style="font-family: American Typewriter, serif;"></label>-->
 									<div class="col">
 										<input type="number" class="form-control time-range" id="year-start" min="2007" max="2020" value="2007"/>
 									</div>
 								</div>
 								<div class="col">
-									<label> </label>
+<!--									<label> </label>-->
 									<div class="col">
 										<input type="number" class="form-control time-range" id="year-end" min="2007" max="2020" value="2020" />
+									</div>
+								</div>
+								<div class="col">
+<!--									<label> </label>-->
+									<div class="col">
+										<button class="btn btn-success" id="filter" type="button" onclick="updateCateMap()">Filter</button>
 									</div>
 								</div>
 							</div>
 						</form>
 					</div>
 				</div>
-				<p class="mt-3 mb-1">Time slider:</p>
-				<div class="row mb-2 slider-tab">
-					<div class="col-10">
-						<div id="slider"></div>
-					</div>
-					<div class="col-1">
-						<button class="btn btn-success" type="button" onclick="updateCateMap()">Filter</button>
-					</div>
-				</div>
+<!--				<div class="row mb-2 slider-tab">-->
+<!--					<div class="col-10">-->
+<!--						<div id="slider"></div>-->
+<!--					</div>-->
+<!--					<div class="col-1">-->
+<!--					</div>-->
+<!--				</div>-->
 				<div class="row justify-content-center">
 					<div class="col-7">
 						<div id="cate-map"></div>
 					</div>
 					<div class="col-5 justify-content-center">
-						<br>
-						<p>
-							<i>How to interact:</i>
-						</p>
-						<ul>
-							<li>To see aggregated number for a certain category selected from dropdown,
-								either adjust the slider or type in the textbox the desired time range</li>
-							<li>To see numbers for each state, hover over the map.</li>
-						</ul>
+						<div id="interact">
+							<br>
+							<i>
+								<ul>
+									<li style="color: #85005b;">To see aggregated number for a certain category selected from dropdown,
+										either adjust the slider or type in the textbox the desired time range</li>
+									<li style="color: #85005b;">To see numbers for each state, hover over the map.</li>
+								</ul>
+							</i>
+							<p style="margin-left:1.5rem; display: block; font-size:1.1rem"><b>Some remarkable insights:</b></p>
+							<ul>
+								<li>Across all states, the majority of homeless population is
+									<b>homeless individuals</b></li>
+								<li><b>California</b> dominates the map as the state with the largest number
+									of homeless population, homeless individuals, and homeless veterans.</li>
+								<li><b>New York</b> has the largest number of homeless families.</li>
+								<li><b>Population:</b> Total state population in millions</li>
+							</ul>
+						</div>
+
 					</div>
 				</div>
 			</div>
@@ -244,7 +260,10 @@
 							<circle r="10" cx="25" cy="130" fill="rgb(160, 0, 109)"></circle><text x="45" y="135"> =  California</text>
 							<circle r="10" cx="25" cy="160" fill="rgb(240, 195, 235)"></circle><text x="45" y="165"> =  Oregon</text>
 						</svg>
-						<p class="select-p">Use the dropdown to select one of the top 5 states or all to compare the states.</p>
+						<p class="select-p" style="color: #85005b;">
+							<i>Use the dropdown to select one of the top 5 states or all to compare the states.
+							</i>
+						</p>
 						<ul>
 							<li><b>Shelter Capacity:</b> Number of beds in homeless shelters</li>
 							<li><b>Aid Spending:</b> Millions of dollars spend</li>
@@ -303,11 +322,25 @@
 					<h3 class="title">What Can You Do?</h3>
 					<p class="can-do-p">As we have seen, thousands of people across the country are homeless with limited help in sight.</p>
 					<p class="can-do-p">Here are some things you can do to help:</p>
-					<li class="can-do-p">Volunteer at a soup kitchen, homeless shelter, or charities involved in helping the homeless.</li>
-					<li class="can-do-p">Fundraise for charities helping the homeless</li>
-					<li class="can-do-p">Donate clothes and food.</li>
-					<li class="can-do-p">Educate yourself and others about the homeless population and the homelessness issue.</li>
-					<li class="can-do-p">Contact your representative to advocate for policies that help the homeless!</li>
+					<p class="can-do-p">
+						<i class="fa-solid fa-people-roof fa-lg"></i>
+						<span style="margin-left:1.1rem; display:inline-block;">Volunteer at a soup kitchen, homeless shelter, or charities involved in helping the homeless.</span></p>
+					<p class="can-do-p">
+						<i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i>
+						<span style="margin-left:1.5rem; display:inline-block;">
+							Fundraise for charities helping the homeless
+						</span></p>
+					<p class="can-do-p">
+						<i class="fa-solid fa-hand-holding-medical fa-lg"></i>
+						<span style="margin-left:1.1rem; display:inline-block;">Donate clothes and food.</span></p>
+					<p class="can-do-p">
+						<i class="fa-solid fa-book fa-lg"></i>
+						<span style="margin-left:1.5rem; display:inline-block;">Educate yourself and others about the homeless population and the homelessness issue.</span>
+					</p>
+					<p class="can-do-p">
+						<i class="fa-solid fa-phone-volume fa-lg"></i>
+						<span style="margin-left:1.1rem; display:inline-block;">Contact your representative to advocate for policies that help the homeless!</span>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -323,11 +356,19 @@
 					</div>
 					<div class="col-5 justify-content-center">
 						<br>
-						<br>
-						<br>
-						<p>Passionate about policy advocacy and help solve the problem of homelessness?
-						You can hover over the map to see the name of State, current governor, and their
-						contact number! </p>
+						<i>
+							<p style="color: #85005b;">Passionate about policy advocacy and help solve the problem of homelessness?
+								You can hover over the map to see the name of State, current governor, and their
+								contact number! </p>
+						</i>
+
+						<div class="panel panel-default hidden" id="edition-info">
+							<div class="panel-heading" id="name"></div>
+							<div class="panel-body">
+								<table class="table text-left" id="table-summary"></table>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>

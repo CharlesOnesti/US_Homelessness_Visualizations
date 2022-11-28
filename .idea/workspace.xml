@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e9936c9f-4598-407a-b22a-b57e9e77eec6" name="Changes" comment="dotplot data and rmd script">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/cateMapVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cateMapVis.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/contactVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/contactVis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +93,12 @@
       <workItem from="1668786199060" duration="500000" />
       <workItem from="1668998608713" duration="2204000" />
       <workItem from="1669060760587" duration="136000" />
-      <workItem from="1669061412932" duration="386000" />
+      <workItem from="1669061412932" duration="898000" />
+      <workItem from="1669316791383" duration="11000" />
+      <workItem from="1669318561539" duration="72000" />
+      <workItem from="1669404355392" duration="1000" />
+      <workItem from="1669508938225" duration="8304000" />
+      <workItem from="1669609752445" duration="1075000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
