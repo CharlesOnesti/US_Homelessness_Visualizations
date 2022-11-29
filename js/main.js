@@ -77,7 +77,7 @@ function initMainPage(dataArray) {
 		dataPerYear = dataPerYear.splice(26,1)
 	})
 
-	// cateMapVis = new CateMapVis('cate-map', dataArray[0], data_category)
+	cateMapVis = new CateMapVis('cate-map', dataArray[0], data_category)
 	genderPieVis = new PieVis('pieGender', dataArray[2], "Gender")
 	racePieVis = new PieVis('pieRace', dataArray[2], "Race")
 	dotPlotVis = new DotPlotVis('dotplot', dataArray[3])

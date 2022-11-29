@@ -18,7 +18,7 @@ class CateMapVis {
         let vis = this
 
         // margin conventions
-        vis.margin = {top: 30, right: 50, bottom: 20, left: 50};
+        vis.margin = {top: 30, right: 50, bottom: 20, left: -50};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
@@ -59,10 +59,14 @@ class CateMapVis {
             connect: true,
             behaviour: 'drag',
             step: 1,
-            tooltips: true,
             range: {
                 'min': 2007,
                 'max': 2020
+            },
+            pips: {
+                mode: 'steps',
+                stepped: true,
+                density: 4
             }
         })
 
@@ -119,10 +123,10 @@ class CateMapVis {
                 vis.wrangleData()
             })
 
-        d3.selectAll(".time-range")
-            .on("change", function() {
-                vis.wrangleData()
-            })
+        vis.slider.noUiSlider.on('update', function (values) {
+            vis.yearStart = values[0]
+            vis.wrangleData()
+        })
 
         vis.wrangleData()
 
@@ -130,51 +134,28 @@ class CateMapVis {
     wrangleData() {
         let vis = this
 
-        // update time start
-        // vis.yearStart = vis.parseDate(d3.select("#year-start")
-        //     .property("value"))
+        vis.cateInfo = {}
 
-        // let start = document.getElementById('year-start')
-        // let end = document.getElementById('year-end')
+        let years = Array.from(new Array(14), (x, i) => i + 2007);
 
-        // update time end
-        // vis.yearEnd = vis.parseDate(d3.select("#year-end")
-        //     .property("value"))
+        for (let i = 0; i < years.length; i++) {
+            vis.cateInfo[String(years[i])] = vis.cateData[i]
+        }
 
-        // update slider and year start
-        vis.slider.noUiSlider.on('update', function (values) {
-            vis.yearStart = vis.parseDate(values[0])
-        })
-        console.log(vis.yearStart)
-        console.log(vis.cateData)
-
-        vis.filteredData = vis.cateData.filter(dataPerYear =>
-            dataPerYear[0]['Year'] == vis.yearStart
-        )
+        vis.filteredData = vis.cateInfo[parseInt(vis.yearStart)]
 
         console.log(vis.filteredData)
-        // for (let i = 1; i < vis.filteredData.length; i++) {
-        //     let catePerYear = vis.filteredData[i]
-        //     for (let j = 0; j < catePerYear.length; j++) {
-        //         vis.cateInfo[j]['OverallHomeless'] += catePerYear[j]['OverallHomeless']
-        //         vis.cateInfo[j]['OverallHomelessIndividuals'] += catePerYear[j]['OverallHomelessIndividuals']
-        //         vis.cateInfo[j]['OverallHomelessFamilyHouseholds'] += catePerYear[j]['OverallHomelessFamilyHouseholds']
-        //         vis.cateInfo[j]['OverallHomelessVeterans'] += catePerYear[j]['OverallHomelessVeterans']
-        //     }
-        // }
 
-        // vis.usa.forEach(
-        //     function (d) {
-        //         vis.cateInfo.forEach(elt => {
-        //             if (d.properties.name == elt['State']) {
-        //                 d.properties.info = elt
-        //             }
-        //         })
-        //     }
-        // )
-
+        vis.usa.forEach(
+            function (d) {
+                vis.filteredData.forEach(elt => {
+                    if (d.properties.name == elt['State']) {
+                        d.properties.info = elt
+                    }
+                })
+            }
+        )
         console.log(vis.usa)
-
         vis.updateVis()
     }
 
@@ -183,11 +164,7 @@ class CateMapVis {
 
         vis.colorScale = d3.scaleLinear()
             .range(["#FFFFFF", "#A0006DFF"])
-            .domain([0, d3.max(vis.cateInfo, d => d[vis.selected])])
-
-        // console.log(vis.usa)
-        // console.log(vis.cateInfo)
-
+            .domain([0, d3.max(vis.filteredData, d => d[vis.selected])])
 
         vis.states
             .style("fill", function (d) {
@@ -241,8 +218,8 @@ class CateMapVis {
 
         // update legend
         vis.gradientRange = d3.range(0,
-            d3.max(vis.cateInfo, d => d[vis.selected]),
-            d3.max(vis.cateInfo, d => d[vis.selected])/100);
+            d3.max(vis.filteredData, d => d[vis.selected]),
+            d3.max(vis.filteredData, d => d[vis.selected])/100);
 
         // Update the legend fill
         vis.legend = vis.legendGroup.selectAll(".rect")
@@ -265,7 +242,7 @@ class CateMapVis {
 
         // console.log(typeof d3.max(vis.stateInfo, d => d[selectedCategory]))
 
-        let maxLegend = d3.max(vis.cateInfo, d => d[vis.selected])
+        let maxLegend = d3.max(vis.filteredData, d => d[vis.selected])
 
         // create a legend axis
         vis.legendAxis = d3.axisBottom()
@@ -281,7 +258,5 @@ class CateMapVis {
             .call(vis.legendAxis)
 
     }
-
-
 
 }

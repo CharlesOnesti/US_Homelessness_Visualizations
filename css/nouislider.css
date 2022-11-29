@@ -179,10 +179,12 @@
 .noUi-pips * {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  font-family: "American Typewriter", serif;
 }
 .noUi-pips {
   position: absolute;
-  color: #999;
+  color: #2D375A;
+  font-family: "American Typewriter", serif;
 }
 /* Values;
  *
@@ -277,6 +279,7 @@
   padding: 5px;
   text-align: center;
   white-space: nowrap;
+  font-family: "American Typewriter", serif;
 }
 .noUi-horizontal .noUi-tooltip {
   -webkit-transform: translate(-50%, 0);
