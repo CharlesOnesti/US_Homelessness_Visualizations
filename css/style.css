@@ -44,19 +44,47 @@
 #cate-map {
     font-family: "American Typewriter", serif;
     height: 550px;
+    display: block;
     font-size: 18px;
 }
 
+.icon11 {
+    margin-left:1.1rem;
+    display:inline-block;
+}
+
+.icon15 {
+    margin-left:1.5rem; display:inline-block;
+}
+
+#remarkable {
+    margin-left:1.5rem;
+    display: block;
+    font-size:1.1rem
+}
+
+#current-year {
+    display: block;
+    /*align-items: center;*/
+    text-align: left;
+    /*padding-left: 200px;*/
+    padding-top: 1.1rem;
+}
+
+.instructions {
+    color: #85005b;
+    font-family: "American Typewriter", serif;
+    display: block;
+}
+
+#label-ins {
+    font-family: American Typewriter, serif;
+    margin-bottom: 0.8rem;
+    display:block;
+    color: #85005b;
+}
+
 #selectButton {
-    font-family: American Typewriter, serif;
-}
-
-
-#year-end {
-    font-family: American Typewriter, serif;
-}
-
-#year-start, label {
     font-family: American Typewriter, serif;
 }
 
@@ -82,6 +110,14 @@
 
 #filter {
     font-family: American Typewriter, serif;
+}
+
+#slider {
+    display: flex;
+    width: 85%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.8rem;
 }
 
 #contact-map {
@@ -200,6 +236,10 @@
 
 .instructions {
     color: #85005b;
+}
+
+p, li {font-family: "American Typewriter", serif; color: #2D375A}
+=======
     font-style: italic;
 }
 
@@ -220,7 +260,7 @@ p, li {
 }
 
 .dropdown-div {
-    padding: 93px 0 0 50px;
+    padding: 92px 0 0 50px;
 }
 
 .custom-select {
@@ -259,6 +299,22 @@ b {
 .can-do-p {
     font-size: 24px;
 }
+
+#slider-time > svg > g > g.axis * text {
+    font-size: 15px;
+    fill: #2D375A;
+}
+#slider-time > svg > g > g.slider > g > text {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#pieGender {
+    height: 550px;
+}
+
+#pieRace {
+    height: 550px;
 
 .icon-span {
     margin-left:1.1rem;
