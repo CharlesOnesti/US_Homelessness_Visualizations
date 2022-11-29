@@ -1,0 +1,272 @@
+/**** ADD YOUR STYLES ****/
+
+.body {
+    font-family: "American Typewriter", serif;
+    color: black;
+}
+
+.title {
+    color: #2D375A;
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: "American Typewriter", serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+#slide {
+    padding: 20px;
+    margin: 10px 5px 5px 5px;
+    background-color: white;
+}
+
+.section {
+    height: 100vh;
+}
+
+#display-year {
+    font-size: 30px;
+}
+
+#cate-map {
+    font-family: "American Typewriter", serif;
+    height: 550px;
+    display: block;
+    font-size: 18px;
+}
+
+.icon11 {
+    margin-left:1.1rem;
+    display:inline-block;
+}
+
+.icon15 {
+    margin-left:1.5rem; display:inline-block;
+}
+
+#remarkable {
+    margin-left:1.5rem;
+    display: block;
+    font-size:1.1rem
+}
+
+#current-year {
+    display: block;
+    /*align-items: center;*/
+    text-align: left;
+    /*padding-left: 200px;*/
+    padding-top: 1.1rem;
+}
+
+.instructions {
+    color: #85005b;
+    font-family: "American Typewriter", serif;
+    display: block;
+}
+
+#label-ins {
+    font-family: American Typewriter, serif;
+    margin-bottom: 0.8rem;
+    display:block;
+    color: #85005b;
+}
+
+#selectButton {
+    font-family: American Typewriter, serif;
+}
+
+#name {
+    font-family: American Typewriter, serif;
+    font-weight: 700;
+    font-size: 23px;
+    text-align: center;
+}
+
+#table-summary {
+    font-family: American Typewriter, serif;
+    font-size: 18px
+}
+
+#filter {
+    font-family: American Typewriter, serif;
+}
+
+#slider {
+    display: flex;
+    width: 85%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.8rem;
+}
+
+#contact-map {
+    font-family: "American Typewriter", serif;
+    height: 500px;
+    font-size: 18px;
+}
+
+#interact {
+    color: #85005b;
+}
+
+/*Pie Graph Style*/
+/*#pieGender #pieRace {*/
+/*    text-align: center;*/
+/*}*/
+#pieGender {
+    height: 550px;
+}
+
+#pieRace {
+    height: 550px;
+}
+
+
+.pie-svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.pie-title, #pieTooltip, #timelineTooltip {
+    font-family: "American Typewriter", serif;
+    /*font-weight: bold;*/
+    font-size: 24px;
+}
+
+#pie-description {
+    margin-top: 0px;
+    font-size: 16px;
+}
+
+#pie-legend, .timeline-axis {
+    font-family: "American Typewriter", serif;
+}
+
+#message, #help{
+    font-size: larger;
+}
+
+#title-img {
+    width: 50%;
+    transform: translate(700px, 0px);
+
+}
+
+#top-title {
+    text-align: left;
+    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 3rem;
+}
+#authors {
+    font-size: 20px;
+    text-align: left;
+    color: #4A8BDF;
+}
+
+.subtitles {
+    color: #2D375A;
+    text-align: left;
+    margin-bottom: 40px;
+    font-family: "American Typewriter", serif;
+    font-size: 2.25rem;
+    font-weight: 575;
+    line-height: 1.6;
+
+}
+
+/*.text {*/
+/*    background-color: #2D375A;*/
+/*}*/
+/****************/
+/*    SLIDER    */
+/****************/
+
+#time-period-slider {
+    width: 200px;
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.range-slider-value {
+    background-color: #EFE9E9;
+    color: #888;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 2px 10px;
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.noUi-connect {
+    background: #92B592;
+}
+
+.slider-tab {
+    width: 50rem
+}
+
+.instructions {
+    color: #85005b;
+}
+
+p, li {font-family: "American Typewriter", serif; color: #2D375A}
+
+/*Timeline Style*/
+#timeline {
+    width: 100%;
+    height: 400px;
+}
+
+.dropdown-div {
+    padding: 92px 0 0 50px;
+}
+
+.custom-select {
+    margin-left: 15px;
+    padding: 10px;
+    width: 430px;
+}
+
+.select-p {
+    margin-top: 30px;
+}
+
+.dotplot-text {
+    font-family: "American Typewriter", serif;
+}
+
+text, select {
+    font-family: "American Typewriter", serif;
+}
+#timeline-p {
+    margin-top: 40px;
+}
+
+b {
+    font-weight: 647;
+}
+
+.can-do-p {
+    font-size: 24px;
+}
+
+
+#slider-time > svg > g > g.axis * text {
+    font-size: 15px;
+    fill: #2D375A;
+}
+#slider-time > svg > g > g.slider > g > text {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#pieGender {
+    height: 550px;
+}
+
+#pieRace {
+    height: 550px;
+}
