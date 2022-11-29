@@ -96,20 +96,21 @@ function changeRadarState(chosen) {
 	radarVis.wrangleData()
 }
 
-// function updateCateMap() {
-// 	slider = document.getElementById('slider');
-//
-// 	let start = document.getElementById('year-start')
-// 	let end = document.getElementById('year-end')
-//
-// 	let handleArray = slider.noUiSlider.get()
-// 	start.value = handleArray[0]
-// 	end.value = handleArray[1]
-//
-// 	timePeriod = handleArray
-//
-// 	cateMapVis.wrangleData()
-// }
+function updateCateMap() {
+	slider = document.getElementById('slider');
+
+	// let start = document.getElementById('year-start')
+	// let end = document.getElementById('year-end')
+
+	let handleArray = slider.noUiSlider.get()
+	console.log(handleArray)
+	// start.value = handleArray[0]
+	// end.value = handleArray[1]
+
+	// timePeriod = handleArray
+
+	cateMapVis.wrangleData()
+}
 
 function showEdition(d) {
 	console.log(d)

@@ -18,7 +18,7 @@ class CateMapVis {
         let vis = this
 
         // margin conventions
-        vis.margin = {top: 30, right: 50, bottom: 20, left: 50};
+        vis.margin = {top: 0, right: 150, bottom: 50, left: -30};
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
@@ -52,18 +52,23 @@ class CateMapVis {
         // default time range
         vis.yearStart = vis.parseDate("1930")
         vis.yearEnd = vis.parseDate("2014")
-        // vis.slider = document.getElementById('slider');
-        // vis.slider_info = noUiSlider.create(vis.slider, {
-        //     start: [vis.yearStart, vis.yearEnd],
-        //     connect: true,
-        //     behaviour: 'drag',
-        //     step: 1,
-        //     tooltips: true,
-        //     range: {
-        //         'min': 2007,
-        //         'max': 2020
-        //     }
-        // })
+        vis.slider = document.getElementById('slider');
+
+        vis.slider_info = noUiSlider.create(vis.slider, {
+            start: vis.yearStart,
+            connect: true,
+            behaviour: 'drag',
+            step: 1,
+            range: {
+                'min': 2007,
+                'max': 2020
+            },
+            pips: {
+                mode: 'steps',
+                stepped: true,
+                density: 4
+            }
+        })
 
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -118,10 +123,12 @@ class CateMapVis {
                 vis.wrangleData()
             })
 
-        d3.selectAll(".time-range")
-            .on("change", function() {
-                vis.wrangleData()
-            })
+        vis.slider.noUiSlider.on('update', function (values, handle) {
+            vis.yearStart = values[0]
+            document.getElementById('current-year')
+                .innerHTML = `Year Selected: <b style="font-size: 18px;">${values[0]}</b>`
+            vis.wrangleData()
+        })
 
         vis.wrangleData()
 
@@ -129,47 +136,26 @@ class CateMapVis {
     wrangleData() {
         let vis = this
 
-        // update time start
-        vis.yearStart = vis.parseDate(d3.select("#year-start")
-            .property("value"))
+        vis.cateInfo = {}
 
-        // update slider
-        // vis.slider.noUiSlider.set([vis.formatDate(vis.yearStart), null]);
+        let years = Array.from(new Array(14), (x, i) => i + 2007);
 
-        // update time end
-        vis.yearEnd = vis.parseDate(d3.select("#year-end")
-            .property("value"))
-
-        // update slider
-        // vis.slider.noUiSlider.set([null, vis.formatDate(vis.yearEnd)]);
-
-        vis.filteredData = vis.cateData.filter(dataPerYear =>
-            dataPerYear[0]['Year'] >= vis.yearStart && dataPerYear[0]['Year'] <= vis.yearEnd
-        )
-
-        vis.cateInfo = vis.filteredData[0]
-        for (let i = 1; i < vis.filteredData.length; i++) {
-            let catePerYear = vis.filteredData[i]
-            for (let j = 0; j < catePerYear.length; j++) {
-                vis.cateInfo[j]['OverallHomeless'] += catePerYear[j]['OverallHomeless']
-                vis.cateInfo[j]['OverallHomelessIndividuals'] += catePerYear[j]['OverallHomelessIndividuals']
-                vis.cateInfo[j]['OverallHomelessFamilyHouseholds'] += catePerYear[j]['OverallHomelessFamilyHouseholds']
-                vis.cateInfo[j]['OverallHomelessVeterans'] += catePerYear[j]['OverallHomelessVeterans']
-            }
+        for (let i = 0; i < years.length; i++) {
+            vis.cateInfo[String(years[i])] = vis.cateData[i]
         }
+
+        vis.filteredData = vis.cateInfo[parseInt(vis.yearStart)]
+
 
         vis.usa.forEach(
             function (d) {
-                vis.cateInfo.forEach(elt => {
+                vis.filteredData.forEach(elt => {
                     if (d.properties.name == elt['State']) {
                         d.properties.info = elt
                     }
                 })
             }
         )
-
-        // console.log(vis.usa)
-
         vis.updateVis()
     }
 
@@ -178,10 +164,8 @@ class CateMapVis {
 
         vis.colorScale = d3.scaleLinear()
             .range(["#FFFFFF", "#A0006DFF"])
-            .domain([0, d3.max(vis.cateInfo, d => d[vis.selected])])
+            .domain([0, d3.max(vis.filteredData, d => d[vis.selected])])
 
-        // console.log(vis.usa)
-        // console.log(vis.cateInfo)
         vis.states
             .style("fill", function (d) {
                 if (d.properties.info && d.properties.info[vis.selected]) {
@@ -197,9 +181,6 @@ class CateMapVis {
                 d3.select(this)
                     .style('fill', '#2D375A')
                     .style("opacity", 1)
-
-
-                // ${parseInt((d.properties.info['OverallHomelessVeterans']), 10).toLocaleString()}
 
                 vis.tooltip
                     .style("opacity", 1)
@@ -237,10 +218,10 @@ class CateMapVis {
 
         // update legend
         vis.gradientRange = d3.range(0,
-            d3.max(vis.cateInfo, d => d[vis.selected]),
-            d3.max(vis.cateInfo, d => d[vis.selected])/100);
+            d3.max(vis.filteredData, d => d[vis.selected]),
+            d3.max(vis.filteredData, d => d[vis.selected])/100);
 
-        // Update the legend fill
+        // Update legend fill
         vis.legend = vis.legendGroup.selectAll(".rect")
             .data(vis.gradientRange)
             .enter()
@@ -258,10 +239,7 @@ class CateMapVis {
             .range([0, 100])
             .domain([0, 100])
 
-
-        // console.log(typeof d3.max(vis.stateInfo, d => d[selectedCategory]))
-
-        let maxLegend = d3.max(vis.cateInfo, d => d[vis.selected])
+        let maxLegend = d3.max(vis.filteredData, d => d[vis.selected])
 
         // create a legend axis
         vis.legendAxis = d3.axisBottom()
@@ -277,7 +255,5 @@ class CateMapVis {
             .call(vis.legendAxis)
 
     }
-
-
 
 }

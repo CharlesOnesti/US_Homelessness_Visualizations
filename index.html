@@ -46,11 +46,18 @@
 		<div class="section" id="sec2">
 			<div class="container">
 				<h3 class="title">Homelessness by the Numbers</h3>
-				<div class="row justify-content-center">
-					<div class="col-7">
+				<div class="row">
+					<div class="col-lg-7 col-xs-12 col-md-12">
 						<div id="dotplot"></div>
 					</div>
-					<div class="col-5 dropdown-div">
+					<div class="col-lg-5 col-md-12 col-xs-12 dropdown-div">
+						<p class="instructions">
+							<i>
+								Select one or all states and adjust the slider to see how
+								the number of people living in different homelessness situations
+								has changed from 2007 to 2020
+							</i>
+						</p>
 						<select class="custom-select" onChange="changeDotPlotState(this.options[this.selectedIndex].value)">
 							<option value="Total">All States</option>
 							<option value="AL">Alabama</option>
@@ -108,11 +115,13 @@
 							<div class="col-sm"><div id="slider-time"></div></div>
 						</div>
 						<svg height="50" width="200"><circle r="10" cx="25" cy="10"></circle><text x="45" y="15"> =  5,000 people</text></svg>
-						<p class="instructions">This chart displays the number of homeless people in various categories using representative symbols of 5,000. In other words, each dot represents 5,000 people. Select a state or all states in the dropdown above  and scroll through the years to see the dots move over time.</p>
-						<p>People in an Emergency Shelter are those given temporary shelter when in economic or domestic distress. They are provided short term stability and are not forced to sign a lease or living agreement.</p>
-						<p>In Transitional Housing, people are given temporary shelter for 6 to 24 months and are often supported in finding employment.</p>
-						<p>Unsheltered people are those who reside in areas not meant for habitation such as cars, abandoned buildings, or on the street.</p>
-
+						<p>	This chart displays the number of homeless peole in various categories using representative symbols of 5000. Each dot represents 5000 people.
+						</p>
+						<p>
+							People in a <b>Emergency Shelter</b> are those given temporary shelter when in economic or domestic distress.
+							They are provided short term stability and are not forced to sign a lease or living agreement.
+						</p>
+						<p>In <b>Transitional Housing</b>, people are given temporary shelter for 6 to 24 months and are often supported in finding employment.</p>
 					</div>
 				</div>
 			</div>
@@ -135,19 +144,27 @@
 				<h3 class="title">Gender and Race Breakdown of the U.S. Homeless Population in 2021</h3>
 				<div class="row">
 					<div class="col">
-						<div id="pieGender"></div>
+						<div class="row">
+							<div id="pieGender"></div>
+							<p>The gender pie chart shows the share of homeless in the U.S. in 2021
+								who identify as Male, Female, or Other Genders (including Transgender or Gender
+								Non Conforming). The vast majority
+								of homeless identify as <b>Male (56%)</b> followed by <b>Female (43.4%)</b>.
+							</p>
+						</div>
+
 					</div>
 					<div class="col">
-						<div id="pieRace"></div>
+						<div class="row">
+							<div id="pieRace"></div>
+							<p>
+								The race pie chart shows the breakdown by race of homeless in
+								2021.
+								The majority of homeless people identify as either <b>White or Black.</b>
+								The third largest number of homeless people identify as <b>Hispanic or Latino</b>.
+							</p>
+						</div>
 					</div>
-				</div>
-				<div class="col" id="pie-description">
-					<p class="instructions">Hover over the legends above to highlight the corresponding sectors of the pie charts.  See each sector for details on the demographics.</p>
-					<p>The pie chart on the left shows the share of homeless in the U.S. in 2021 who identify as Male, Female, or Other Genders (including Transgender or Gender Non Conforming). We can see that the vast majority
-						of homeless identify as Male or Female with the majority as Male.
-						The pie chart to the right shows the breakdown by race of homeless in 2021. We see the most homeless identify as either White or Black and the third largest number of homeless people identify as Hispanic or Latino.
-						About 10% of people identify as another race which includes Asian, Native American, Hawaiian or Pacific Islander, or Multiple Races.
-					</p>
 				</div>
 			</div>
 		</div>
@@ -169,61 +186,39 @@
 		<div class="section" id="sec5">
 			<div class="container">
 				<h3 class="title">Breakdown By Homelessness Categories</h3>
-				<div class="row slider-tab">
-					<div class="col">
-						<form class="form-inline">
-							<div class="row">
-								<label>Select an option:</label>
-								<select class="form-select" id="selectButton"></select>
-							</div>
-						</form>
-					</div>
-					<div class="col">
-						<form class="form-inline">
-							<div class="row form-group">
-								<label>Years (2007-2020)</label>
-								<div class="col">
-									<div class="col">
-										<input type="number" class="form-control time-range" id="year-start" min="2007" max="2020" value="2007"/>
-									</div>
-								</div>
-								<div class="col">
-									<div class="col">
-										<input type="number" class="form-control time-range" id="year-end" min="2007" max="2020" value="2020" />
-									</div>
-								</div>
-								<div class="col">
-									<div class="col">
-										<button class="btn btn-success" id="filter" type="button" onclick="updateCateMap()">Filter</button>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
 				<div class="row justify-content-center">
 					<div class="col-7">
+						<p class="instructions">
+							<i>
+								Adjust the slider to see changes through the years 2007-2020
+							</i>
+						</p>
+						<div id="slider"></div>
+						<p id="current-year"></p>
+
 						<div id="cate-map"></div>
 					</div>
 					<div class="col-5 justify-content-center">
-						<div id="interact">
+						<form class="form-inline">
+							<label id="label-ins">
+								<i>
+									Click the dropdown and select an option:
+								</i>
+							</label>
+							<select class="form-select" id="selectButton"></select>
+						</form>
+						<div class="instructions">
 							<br>
-							<i>
-								<ul>
-									<li class="instructions">To see aggregated number for a certain category selected from dropdown,
-										type in the textbox the desired time range</li>
-									<li class="instructions">To see numbers for each state, hover over the map.</li>
-								</ul>
-							</i>
-							<p><b>Some remarkable insights:</b></p>
-							<ul>
-								<li>Across all states, the majority of homeless population is
-									<b>homeless individuals</b></li>
-								<li><b>California</b> dominates the map as the state with the largest number
-									of homeless population, homeless individuals, and homeless veterans.</li>
-								<li><b>New York</b> has the largest number of homeless families.</li>
-								<li><b>Population:</b> Total state population in millions</li>
-							</ul>
+							<p>This map shows number of homeless people across different categories
+								(individuals, families, veterans, and total homeless population) across 50
+								states during 2007-2020</p>
+							<p>
+								Across all states, the majority of homeless population is
+								<b>homeless individuals</b>
+							</p>
+							<p><b>California</b> dominates the map as the state with the largest number
+								of homeless population, homeless individuals, and homeless veterans.</p>
+							<p><b>New York</b> has the largest number of homeless families.</p>
 						</div>
 
 					</div>
@@ -241,6 +236,11 @@
 						<div id="radar"></div>
 					</div>
 					<div class="col-5 dropdown-div">
+						<p class="select-p instructions">
+							<i>
+							Use the dropdown to select one of the top 5 states or all to compare the states. Hover each dot to get the specific value of each vertex and highlight that state's area in the All States selection.
+							</i>
+						</p>
 						<select class="custom-select" onChange="changeRadarState(this.options[this.selectedIndex].value)">
 							<option value="All">All States</option>
 							<option value="District of Columbia">1) District of Columbia</option>
@@ -256,9 +256,6 @@
 							<circle r="10" cx="25" cy="130" fill="rgb(160, 0, 109)"></circle><text x="45" y="135"> California</text>
 							<circle r="10" cx="25" cy="160" fill="rgb(240, 195, 235)"></circle><text x="45" y="165"> Oregon</text>
 						</svg>
-						<p class="select-p instructions">
-							Use the dropdown to select one of the top 5 states or all to compare the states. Hover each dot to get the specific value of each vertex and highlight that state's area in the All States selection.
-						</p>
 						<ul>
 							<li><b>Shelter Capacity:</b> Number of beds in homeless shelters</li>
 							<li><b>Aid Spending:</b> Millions of dollars spend</li>
@@ -295,9 +292,12 @@
 				</div>
 
 				<div class="row">
-					<p class="instructions">Hover the event flags to learn more about historical policies and events.  Click the axis button to zoom in and see the yearly differences in greater relative magnitude. Each bar will also give you specifics on the data point from that year.</p>
-					<p id="timeline-p">The circles on the timeline above show the relative size of total homelessness in that year. As we can see from this visualization, overall homelessness numbers have not changed substantially over the years despite
-						new policies and events.</p>
+					<p id="timeline-p">The circles on the timeline above show the relative size of total homelessness in that year.
+					</p>
+					<p>
+						Overall homelessness numbers <b>have not changed substantially</b> over the years despite
+						new policies and events.
+					</p>
 				</div>
 			</div>
 		</div>
@@ -324,22 +324,22 @@
 					<p class="can-do-p">Here are some things you can do to help:</p>
 					<p class="can-do-p">
 						<i class="fa-solid fa-people-roof fa-lg"></i>
-						<span class="icon-span">Volunteer at a soup kitchen, homeless shelter, or charities involved in helping the homeless.</span></p>
+						<span class="icon11">Volunteer at a soup kitchen, homeless shelter, or charities involved in helping the homeless.</span></p>
 					<p class="can-do-p">
 						<i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i>
-						<span class="icon-span">
+						<span class="icon15">
 							Fundraise for charities helping the homeless
 						</span></p>
 					<p class="can-do-p">
 						<i class="fa-solid fa-hand-holding-medical fa-lg"></i>
-						<span class="icon-span">Donate clothes and food.</span></p>
+            <span class="icon11">Donate clothes and food.</span></p>
 					<p class="can-do-p">
 						<i class="fa-solid fa-book fa-lg"></i>
-						<span class="icon-span">Educate yourself and others about the homeless population and the homelessness issue.</span>
+						<span class="icon15">Educate yourself and others about the homeless population and the homelessness issue.</span>
 					</p>
 					<p class="can-do-p">
 						<i class="fa-solid fa-phone-volume fa-lg"></i>
-						<span class="icon-span">Contact your representative to advocate for policies that help the homeless!</span>
+						<span class="icon11">Contact your representative to advocate for policies that help the homeless!</span>
 					</p>
 				</div>
 			</div>

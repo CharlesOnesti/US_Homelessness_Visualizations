@@ -98,9 +98,7 @@ class ContactVis {
                     .html(`
                          <div style=" font-size:20px; border: solid grey; border-radius: 5px; background: whitesmoke; padding: 20px; font-family: "American Typewriter", serif; font-size:20px">
                              <p style="font-size:24px; font-weight: 700">${d.properties.info['state_name']}</p>
-                             <p><b>Governor</b>: ${d.properties.info['name']}</p>
-                             <p><b>Phone</b>: ${d.properties.info['phone']}</p>
-                             <p><b>Website</b>: ${d.properties.info['website']}</p>
+                             <p>Click me for more details!</p>
                          </div>
                     `)
             })

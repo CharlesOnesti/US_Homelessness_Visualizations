@@ -1,0 +1,230 @@
+---
+title: "project.md"
+output: html_document
+date: "2022-11-10"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+install.packages("readxl")
+```
+
+```{r}
+install.packages("rio")
+```
+
+```{r}
+install.packages("tidyverse")
+```
+
+```{r}
+install.packages("plyr")
+```
+
+
+```{r}
+library(readxl)
+library(rio)
+```
+
+```{r}
+library(plyr)
+library(dplyr)
+```
+
+
+```{r}
+PIT_Count_States <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx")
+```
+
+
+```{r}
+excel_sheets("~/OneDrive - Harvard University/PIT-Count-States.xlsx")
+
+```
+
+```{r}
+sheet <- excel_sheets("~/OneDrive - Harvard University/PIT-Count-States.xlsx")
+
+```
+
+```{r}
+state_2007 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2007")
+
+state_2008 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2008")
+
+state_2009 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2009")
+
+state_2010 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2010")
+
+state_2011 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2011")
+
+state_2012 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2012")
+
+state_2013 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2013")
+
+state_2014 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2014")
+
+state_2015 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2015")
+
+state_2016 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2016")
+
+state_2017 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2017")
+
+state_2018 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2018")
+
+state_2019 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2019")
+
+state_2020 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2020")
+
+state_2021 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2021")
+
+```
+
+```{r}
+state_2021 <- read_excel("~/OneDrive - Harvard University/PIT-Count-States.xlsx", sheet="2021")
+```
+
+
+```{r}
+# add a year column
+state_2007$Year <- 2007
+
+```
+
+
+```{r}
+# remove all ", "
+for ( col in 1:ncol(state_2007)){
+    colnames(state_2007)[col] <-  sub(", 20\\d\\d", "", colnames(state_2007)[col])
+}
+
+
+
+```
+
+
+```{r}
+# remove whitespace 
+state_2007 %>% 
+  rename_at(vars(everything()), ~str_replace_all(., "\\s+", "")) %>% 
+  select("Year",
+         "State",
+         "OverallHomeless", 
+         "OverallHomelessIndividuals",
+         "OverallHomelessFamilyHouseholds",
+         "OverallHomelessVeterans"
+         ) %>% 
+  head
+  
+  
+```
+```{r}
+clean_year <- function(df) { # create a function with the name my_function
+  # add a year column
+  df$Year <- deparse(substitute(df)) %>% 
+      str_replace("state_", "")
+  
+  # remove all ", "
+  for ( col in 1:ncol(df)){
+      colnames(df)[col] <-  sub(", 20\\d\\d", "", colnames(df)[col])
+  }
+  
+  ## remove whitespace 
+  new_df <- df %>% 
+    rename_at(vars(everything()), ~str_replace_all(., "\\s+", "")) %>%
+    select(
+           "State",
+           "OverallHomeless",
+           "OverallHomelessIndividuals",
+           "OverallHomelessFamilyHouseholds",
+           "OverallHomelessVeterans",
+           "Year"
+           ) %>% 
+    slice(1:(n()-1))
+  
+  return(new_df)
+
+}
+```
+
+
+```{r}
+state_2007 <- clean_year(state_2007)
+state_2008 <- clean_year(state_2008)
+state_2009 <- clean_year(state_2009)
+state_2010 <- clean_year(state_2010)
+state_2011 <- clean_year(state_2011)
+state_2012 <- clean_year(state_2012)
+state_2013 <- clean_year(state_2013)
+state_2014 <- clean_year(state_2014)
+state_2015 <- clean_year(state_2015)
+state_2016 <- clean_year(state_2016)
+state_2017 <- clean_year(state_2017)
+state_2018 <- clean_year(state_2018)
+state_2019 <- clean_year(state_2019)
+state_2020 <- clean_year(state_2020)
+
+# state_2021 <- clean_year(state_2021)
+```
+
+
+```{r}
+
+
+state_07_12 <- join_all(list(state_2007,
+              state_2008,
+              state_2009,
+              state_2010,
+              state_2011,
+              state_2012), by=c('State'='State', 
+                                "Year"="Year",
+                                 "OverallHomeless", 
+                                 "OverallHomelessIndividuals",
+                                 "OverallHomelessFamilyHouseholds",
+                                 "OverallHomelessVeterans"), type='left')
+
+```
+
+```{r}
+write_csv(state_2007, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2007.csv")
+```
+
+```{r}
+write_csv(state_2008, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2008.csv")
+
+write_csv(state_2009, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2009.csv")
+
+write_csv(state_2010, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2010.csv")
+
+write_csv(state_2011, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2011.csv")
+
+write_csv(state_2012, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2012.csv")
+
+write_csv(state_2013, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2013.csv")
+
+write_csv(state_2014, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2014.csv")
+
+write_csv(state_2015, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2015.csv")
+
+write_csv(state_2016, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2016.csv")
+
+write_csv(state_2017, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2017.csv")
+
+write_csv(state_2018, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2018.csv")
+
+write_csv(state_2019, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2019.csv")
+
+write_csv(state_2020, file = "~/Onesti_Abel_Ton_CS171_Final/data/state_2020.csv")
+
+```
+
