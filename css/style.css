@@ -135,14 +135,15 @@
 
 }
 
-#top-title {
+.top-title {
     text-align: left;
-    margin-bottom: 25px;
+    margin-bottom: 0px;
     font-weight: bold;
     font-size: 3rem;
 }
 #authors {
     font-size: 20px;
+    margin-top: 20px;
     text-align: left;
     color: #4A8BDF;
 }
