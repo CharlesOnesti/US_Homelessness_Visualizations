@@ -73,6 +73,7 @@
 
 .instructions {
     color: #85005b;
+    font-style: italic;
     font-family: "American Typewriter", serif;
     display: block;
 }
@@ -234,15 +235,6 @@
     width: 50rem
 }
 
-.instructions {
-    color: #85005b;
-}
-
-p, li {font-family: "American Typewriter", serif; color: #2D375A}
-=======
-    font-style: italic;
-}
-
 p, li {
     font-family: "American Typewriter", serif;
     font-size: 17px;
@@ -300,23 +292,4 @@ b {
     font-size: 24px;
 }
 
-#slider-time > svg > g > g.axis * text {
-    font-size: 15px;
-    fill: #2D375A;
-}
-#slider-time > svg > g > g.slider > g > text {
-    font-weight: bold;
-    font-size: 17px;
-}
 
-#pieGender {
-    height: 550px;
-}
-
-#pieRace {
-    height: 550px;
-
-.icon-span {
-    margin-left:1.1rem;
-    display:inline-block;
-}

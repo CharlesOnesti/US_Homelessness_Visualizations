@@ -122,6 +122,7 @@
 							They are provided short term stability and are not forced to sign a lease or living agreement.
 						</p>
 						<p>In <b>Transitional Housing</b>, people are given temporary shelter for 6 to 24 months and are often supported in finding employment.</p>
+						<p><b>Unsheltered</b> people are those who reside in areas not meant for habitation such as cars, abandoned buildings, or on the street.</p>
 					</div>
 				</div>
 			</div>
@@ -143,6 +144,7 @@
 			<div class="container">
 				<h3 class="title">Gender and Race Breakdown of the U.S. Homeless Population in 2021</h3>
 				<div class="row">
+					<p class="instructions">Hover over the legends below to highlight the corresponding sectors of the pie charts.  See each sector for details on the demographics.</p>
 					<div class="col">
 						<div class="row">
 							<div id="pieGender"></div>
@@ -237,9 +239,7 @@
 					</div>
 					<div class="col-5 dropdown-div">
 						<p class="select-p instructions">
-							<i>
 							Use the dropdown to select one of the top 5 states or all to compare the states. Hover each dot to get the specific value of each vertex and highlight that state's area in the All States selection.
-							</i>
 						</p>
 						<select class="custom-select" onChange="changeRadarState(this.options[this.selectedIndex].value)">
 							<option value="All">All States</option>
@@ -292,11 +292,12 @@
 				</div>
 
 				<div class="row">
-					<p id="timeline-p">The circles on the timeline above show the relative size of total homelessness in that year.
+					<p class="instructions">Hover the event flags to learn more about historical policies and events.  Click the axis button to zoom in and see the yearly differences in greater relative magnitude. Each bar will also give you specifics on the data point from that year.</p>
+					<p id="timeline-p">The bars on the timeline above show the amount of total homelessness in that year.
 					</p>
 					<p>
 						Overall homelessness numbers <b>have not changed substantially</b> over the years despite
-						new policies and events.
+						new policies and events.  If interested in seeing yearly changes close up, click the zoom button.  Notice how homelessness fell slightly from 2012 to 2017 during greater economic growth in the US and has recently been rising perhaps from the public health crises and slowed economic growth
 					</p>
 				</div>
 			</div>
