@@ -64,6 +64,8 @@ class PieVis {
 
     wrangleData() {
         let vis = this
+
+        // Filter data
         const totals = vis.data.filter(x => x.state === 'Total')[0]
         vis.displayData = Object.keys(totals).filter(x => x && x !== 'state').map(x => {
             return {'key': x, "value": totals[x]}
@@ -158,6 +160,7 @@ class PieVis {
 
     }
 
+    // highlightSegment and unhighlightSegment are used for the legend hover
     highlightSegment(d) {
         let a = d3.selectAll("#" + d.key)
             .attr('stroke-width', '4px')
