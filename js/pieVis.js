@@ -38,7 +38,7 @@ class PieVis {
                         .attr("transform", "translate(" + vis.width / 2 + "," + vis.height / 2 + ")")
 
 
-        let outerRadius = vis.width / 2;
+        let outerRadius = vis.width / 2 - 10;
         let innerRadius = 0;
 
         // Define a default pie layout
@@ -125,35 +125,12 @@ class PieVis {
         arcs.exit().remove()
 
         // Create legend colors
-        vis.legendGroup.selectAll(".circle")
+        const legend = vis.svg.selectAll('.legend-group')
             .data(vis.displayData)
             .enter()
-            .append("circle")
-            .attr("r", 10)
-            .attr("cx", 12)
-            .attr("cy", (d,i) => i * 30 + 10)
-            .attr("fill", (d,i) => vis.circleColors[i])
-            .on('mouseover', function(event, d){
-                d3.select(this)
-                    .attr('stroke-width', '2px')
-                    .attr('stroke', 'black')
-                vis.highlightSegment(d)
-            })
-            .on('mouseout', function(event, d){
-                d3.select(this)
-                    .attr('stroke-width', '0px')
-                vis.unhighlightSegment(d)
-            })
-
-        // Create legend labels
-        vis.legendGroup.selectAll(".text")
-            .data(vis.displayData)
-            .enter()
-            .append("text")
-            .text(d => d.key.split("_").join(" "))
-            .attr("x", 30)
-            .attr("y", (d,i) => i * 30 + 17)
-            .attr("id", "pie-legend")
+            .append('g')
+            .attr('class', 'legend-group')
+            .attr('transform', (d,i) => `translate(420, ${i * 30 + (vis.height/2 - vis.displayData.length * 15)})`)
             .on('mouseover', function(event, d){
                 d3.select(this)
                     .attr('stroke-width', '1px')
@@ -165,6 +142,19 @@ class PieVis {
                     .attr('stroke-width', '0px')
                 vis.unhighlightSegment(d)
             })
+
+        // Create legend circles
+        legend.append('circle')
+            .attr("r", 10)
+            .attr("fill", (d,i) => vis.circleColors[i])
+
+        // Create legend labels
+        legend.append("text")
+            .text(d => d.key.split("_").join(" "))
+            .attr("x", 20)
+            .attr("y", 5)
+            .attr("id", "pie-legend")
+            .attr('cursor', 'default')
 
     }
 

@@ -168,7 +168,7 @@ class CateMapVis {
             }
         )
 
-        console.log(vis.usa)
+        // console.log(vis.usa)
 
         vis.updateVis()
     }
@@ -180,8 +180,8 @@ class CateMapVis {
             .range(["#FFFFFF", "#A0006DFF"])
             .domain([0, d3.max(vis.cateInfo, d => d[vis.selected])])
 
-        console.log(vis.usa)
-        console.log(vis.cateInfo)
+        // console.log(vis.usa)
+        // console.log(vis.cateInfo)
         vis.states
             .style("fill", function (d) {
                 if (d.properties.info && d.properties.info[vis.selected]) {

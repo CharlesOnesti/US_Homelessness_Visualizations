@@ -112,7 +112,6 @@ class RadarVis {
     }
     updateVis() {
         let vis = this
-        console.log(vis.displayData)
         // Draw
         const paths = vis.svg.selectAll('.radar-path')
             .data(vis.displayData)
@@ -136,7 +135,7 @@ class RadarVis {
             .data(vis.displayData.map(x => vis.getPathCoordinates(x).map(y => {
                 y.state = x.name
                 return y
-            })).flat())
+            })).flat(), k => k.name)
         circles.enter().append('circle')
             .attr('class', d=> `radar-circle radar-circle-${d.state.split(' ').join('_')}`)
             .on('mouseover', function(event, d) {
@@ -152,7 +151,7 @@ class RadarVis {
                     .style("left", (event.pageX + 10) + 'px') //event.pageX & event.pageY refer to the mouse Coors on the webpage, not the Coors inside the svg
                     .style("top", (event.pageY + 20) + 'px')
                     .html(`
-                         <div style="border: solid grey; border-radius: 5px; background: whitesmoke; padding: 8px">
+                         <div style="border: solid grey; border-radius: 5px; background: whitesmoke; padding: 8px; height: 45px;">
                              <p>${vis.data.find(x => x.name === d.state)[d.name]}</p>
                          </div>
                     `)
@@ -163,6 +162,9 @@ class RadarVis {
                     .attr("opacity", 0.5)
                 vis.tooltip
                     .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``)
                 let c = vis.svg.selectAll(`.radar-circle`)
                     .attr('opacity', 1.0)
                 c.raise()
