@@ -5,7 +5,6 @@ class Timeline {
         this.parentElement = _parentElement
         this.data = _data
 
-        // No data wrangling, no update sequence
         this.displayData = _data
         this.initVis()
     }
@@ -74,14 +73,15 @@ class Timeline {
 
     wrangleData() {
         let vis = this
+        // Filtering
         vis.displayData = vis.data.filter(x => x.state === 'Total')
-
         vis.updateVis()
     }
 
     updateVis() {
         let vis = this
 
+        // Create domain depending on scale
         vis.x.domain(d3.extent(vis.displayData, function(d) {return new Date(d.year, 0) }))
         vis.svg.select('.x-axis').call(vis.xAxis)
         if (timelineState === 'Absolute') {
@@ -125,6 +125,7 @@ class Timeline {
                     .html(``)
             })
 
+        // Create flags for hovering
         eventLineGroup.append('line')
             .attr("y2", vis.height)
             .style("stroke-width", 4)
@@ -188,6 +189,7 @@ class Timeline {
             .attr("opacity", 0.5)
 
         vis.svg.selectAll('path').remove()
+
         // Add the line
         vis.svg.append("path")
             .datum(vis.displayData)

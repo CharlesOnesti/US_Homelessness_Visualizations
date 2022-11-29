@@ -24,7 +24,6 @@ class DotPlotVis {
         const row2 = row1+400
         const col2 = col1+400
         this.peoplePerDot = 5000
-        this.jitter = 100
 
         this.grouping = {
             'emergency_shelter': [col1, row1],
@@ -53,7 +52,6 @@ class DotPlotVis {
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width)
             .attr("height", vis.height)
-            // .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`)
 
         const displayYear = vis.svg.append('text')
             .text(dotPlotYear)
@@ -62,7 +60,6 @@ class DotPlotVis {
             .attr('x', vis.width/2 + vis.margin.left)
             .attr('y', vis.height/2 + vis.margin.top)
 
-        // const circles = vis.svg.append('g')
         vis.groups.forEach(g => {
             const group = vis.svg.append('g')
                 .attr('transform', `translate(${vis.grouping[g][0] + 200}, ${vis.grouping[g][1]})`)
@@ -118,12 +115,12 @@ class DotPlotVis {
     }
     wrangleData() {
         let vis = this
+        // Filtering and mapping
         vis.selectedData = vis.data.filter(x => x.year === dotPlotYear).find(x => x.state === dotPlotState)
         vis.displayData = [
             'emergency_shelter',
             'overall',
             'transitional_housing',
-            // 'pop',
             'unsheltered',
         ].map(cat => {
             return d3.packSiblings(d3.range(0,vis.selectedData[cat] / vis.peoplePerDot).map(_ => {
@@ -145,6 +142,7 @@ class DotPlotVis {
     updateVis() {
         let vis = this
 
+        // Circles for categories other than "Overall"
         vis.svg.selectAll('.not-overall')
             .data(vis.displayData.filter(t => t.type !== 'overall'))
             .join(
@@ -165,7 +163,7 @@ class DotPlotVis {
                     .attr('r', 0)
                     .remove()
             )
-
+        // Circles for "Overall"
         vis.svg.selectAll('.overall')
             .data(vis.displayData.filter(t => t.type === 'overall'))
             .join(

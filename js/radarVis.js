@@ -81,7 +81,7 @@ class RadarVis {
         vis.colors = d3.scaleOrdinal()
             .domain(vis.data.map(x => x.name))
             .range(['#4A8BDF','#2D375A', '#ABB0B8', '#A0006D', '#F0C3EB', '#ABB0B8']);
-            //['#4A8BDF','#2D375A', '#A0006D','#F0C3EB'
+
         // add tooltip
         vis.tooltip = d3.select('body')
             .append("div")
@@ -91,7 +91,7 @@ class RadarVis {
     }
     wrangleData() {
         let vis = this
-
+        // Create scales
         vis.scales = {};
         vis.features.forEach(f => {
             vis.scales[f] = d3.scaleLinear()
@@ -112,7 +112,7 @@ class RadarVis {
     }
     updateVis() {
         let vis = this
-        // Draw
+        // Draw paths
         const paths = vis.svg.selectAll('.radar-path')
             .data(vis.displayData)
         paths.enter().append('path')
@@ -131,6 +131,7 @@ class RadarVis {
             .attr("fill", d => vis.colors(d[0].state))
         paths.exit().remove()
 
+        // Draw circles
         const circles = vis.svg.selectAll(`.radar-circle`)
             .data(vis.displayData.map(x => vis.getPathCoordinates(x).map(y => {
                 y.state = x.name

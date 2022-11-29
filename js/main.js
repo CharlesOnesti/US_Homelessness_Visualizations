@@ -11,8 +11,6 @@ let racePieVis;
 let timelineVis;
 let radarVis;
 
-let selectedTimeRange = [];
-let selectedState = '';
 let selectedCategory;
 let slider;
 let timePeriod;
@@ -165,6 +163,7 @@ function showEdition(d) {
 	table.appendChild(tblBody)
 }
 
+// Zoom In and Out  for Timeline vis
 const updateTimeline = () => {
 	if (timelineState === 'Absolute') {
 		document.getElementById('timeline-button').innerText = 'Zoom Out Y-Axis'
