@@ -11,14 +11,13 @@ let racePieVis;
 let timelineVis;
 let radarVis;
 
-let selectedTimeRange = [];
-let selectedState = '';
 let selectedCategory;
 let slider;
 let timePeriod;
 let dotPlotYear = 2007;
 let dotPlotState = 'Total';
 let radarState = 'All';
+let timelineState = 'Absolute'
 
 let parseDate = d3.timeParse("%Y")
 
@@ -163,4 +162,16 @@ function showEdition(d) {
 		tblBody.appendChild(row);
 	}
 	table.appendChild(tblBody)
+}
+
+// Zoom In and Out  for Timeline vis
+const updateTimeline = () => {
+	if (timelineState === 'Absolute') {
+		document.getElementById('timeline-button').innerText = 'Zoom Out Y-Axis'
+		timelineState = 'Relative'
+	} else {
+		document.getElementById('timeline-button').innerText = 'Zoom In Y-Axis'
+		timelineState = 'Absolute'
+	}
+	timelineVis.wrangleData()
 }

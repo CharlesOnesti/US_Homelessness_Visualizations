@@ -1,5 +1,6 @@
-/**** ADD YOUR STYLES ****/
-
+/****************/
+/*    FullpageJS    */
+/****************/
 .body {
     font-family: "American Typewriter", serif;
     color: black;
@@ -24,9 +25,21 @@
     height: 100vh;
 }
 
+/****************/
+/*    DOTPLOT    */
+/****************/
+
+.dotplot-text {
+    font-family: "American Typewriter", serif;
+}
+
 #display-year {
     font-size: 30px;
 }
+
+/****************/
+/*    Cate map   */
+/****************/
 
 #cate-map {
     font-family: "American Typewriter", serif;
@@ -82,9 +95,17 @@
     text-align: center;
 }
 
+/****************/
+/*    Contact   */
+/****************/
+
 #table-summary {
     font-family: American Typewriter, serif;
     font-size: 18px
+}
+
+#table-name {
+    font-size: 23px;
 }
 
 #filter {
@@ -109,18 +130,17 @@
     color: #85005b;
 }
 
-/*Pie Graph Style*/
-/*#pieGender #pieRace {*/
-/*    text-align: center;*/
-/*}*/
+/****************/
+/*   Pie chart   */
+/****************/
+
 #pieGender {
-    height: 550px;
+    height: 460px;
 }
 
 #pieRace {
-    height: 550px;
+    height: 460px;
 }
-
 
 .pie-svg {
     display: block;
@@ -129,7 +149,6 @@
 
 .pie-title, #pieTooltip, #timelineTooltip {
     font-family: "American Typewriter", serif;
-    /*font-weight: bold;*/
     font-size: 24px;
 }
 
@@ -152,14 +171,15 @@
 
 }
 
-#top-title {
+.top-title {
     text-align: left;
-    margin-bottom: 25px;
+    margin-bottom: 0px;
     font-weight: bold;
     font-size: 3rem;
 }
 #authors {
     font-size: 20px;
+    margin-top: 20px;
     text-align: left;
     color: #4A8BDF;
 }
@@ -175,12 +195,18 @@
 
 }
 
-/*.text {*/
-/*    background-color: #2D375A;*/
-/*}*/
 /****************/
 /*    SLIDER    */
 /****************/
+
+#slider-time > svg > g > g.axis * text {
+    font-size: 15px;
+    fill: #2D375A;
+}
+#slider-time > svg > g > g.slider > g > text {
+    font-weight: bold;
+    font-size: 17px;
+}
 
 #time-period-slider {
     width: 200px;
@@ -213,11 +239,24 @@
 }
 
 p, li {font-family: "American Typewriter", serif; color: #2D375A}
+=======
+    font-style: italic;
+}
 
-/*Timeline Style*/
+p, li {
+    font-family: "American Typewriter", serif;
+    font-size: 17px;
+    color: #2D375A
+}
+
+/****************/
+/*   Timeline   */
+/****************/
+
 #timeline {
     width: 100%;
     height: 400px;
+    justify-content: center;
 }
 
 .dropdown-div {
@@ -234,15 +273,23 @@ p, li {font-family: "American Typewriter", serif; color: #2D375A}
     margin-top: 30px;
 }
 
-.dotplot-text {
-    font-family: "American Typewriter", serif;
+.timeline-button-container {
+    display: flex;
+    justify-content: center;
+    width: 180px;
 }
+
+#timeline-button {
+    font-family: "American Typewriter", serif;
+    background-color: #A0006DFF
+}
+
+/****************/
+/*   Can do   */
+/****************/
 
 text, select {
     font-family: "American Typewriter", serif;
-}
-#timeline-p {
-    margin-top: 40px;
 }
 
 b {
@@ -252,7 +299,6 @@ b {
 .can-do-p {
     font-size: 24px;
 }
-
 
 #slider-time > svg > g > g.axis * text {
     font-size: 15px;
@@ -269,4 +315,8 @@ b {
 
 #pieRace {
     height: 550px;
+
+.icon-span {
+    margin-left:1.1rem;
+    display:inline-block;
 }

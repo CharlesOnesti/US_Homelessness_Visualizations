@@ -81,7 +81,7 @@ class RadarVis {
         vis.colors = d3.scaleOrdinal()
             .domain(vis.data.map(x => x.name))
             .range(['#4A8BDF','#2D375A', '#ABB0B8', '#A0006D', '#F0C3EB', '#ABB0B8']);
-            //['#4A8BDF','#2D375A', '#A0006D','#F0C3EB'
+
         // add tooltip
         vis.tooltip = d3.select('body')
             .append("div")
@@ -91,7 +91,7 @@ class RadarVis {
     }
     wrangleData() {
         let vis = this
-
+        // Create scales
         vis.scales = {};
         vis.features.forEach(f => {
             vis.scales[f] = d3.scaleLinear()
@@ -112,8 +112,7 @@ class RadarVis {
     }
     updateVis() {
         let vis = this
-        console.log(vis.displayData)
-        // Draw
+        // Draw paths
         const paths = vis.svg.selectAll('.radar-path')
             .data(vis.displayData)
         paths.enter().append('path')
@@ -132,11 +131,12 @@ class RadarVis {
             .attr("fill", d => vis.colors(d[0].state))
         paths.exit().remove()
 
+        // Draw circles
         const circles = vis.svg.selectAll(`.radar-circle`)
             .data(vis.displayData.map(x => vis.getPathCoordinates(x).map(y => {
                 y.state = x.name
                 return y
-            })).flat())
+            })).flat(), k => k.name)
         circles.enter().append('circle')
             .attr('class', d=> `radar-circle radar-circle-${d.state.split(' ').join('_')}`)
             .on('mouseover', function(event, d) {
@@ -152,8 +152,8 @@ class RadarVis {
                     .style("left", (event.pageX + 10) + 'px') //event.pageX & event.pageY refer to the mouse Coors on the webpage, not the Coors inside the svg
                     .style("top", (event.pageY + 20) + 'px')
                     .html(`
-                         <div>
-                             <h5>${vis.data.find(x => x.name === d.state)[d.name]}</h5>
+                         <div style="border: solid grey; border-radius: 5px; background: whitesmoke; padding: 8px; height: 45px;">
+                             <p>${vis.data.find(x => x.name === d.state)[d.name]}</p>
                          </div>
                     `)
             })
@@ -163,6 +163,9 @@ class RadarVis {
                     .attr("opacity", 0.5)
                 vis.tooltip
                     .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``)
                 let c = vis.svg.selectAll(`.radar-circle`)
                     .attr('opacity', 1.0)
                 c.raise()

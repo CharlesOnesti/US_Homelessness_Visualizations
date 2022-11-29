@@ -22,7 +22,8 @@
 		<- - - - - - - - - - - - -->
 		<div class="section" id="sec1">
 			<div class="container">
-				<h1 id="top-title" class="title">Homelessness in the United States</h1>
+				<h1 class="title top-title">Don’t Look Away Now — </h1>
+				<h1 class="title top-title">The Crisis of Homelessness in the United States</h1>
 				<h2 id="authors" class="subtitles"> By Caroline Abel, Charles Onesti, and Emma Ton</h2>
 				<img id="title-img" src="./img/homeless_art-transformed.webp">
 			</div>
@@ -236,7 +237,8 @@
 					</div>
 					<div class="col-5 dropdown-div">
 						<p class="select-p instructions">
-							<i>Use the dropdown to select one of the top 5 states or all to compare the states.
+							<i>
+							Use the dropdown to select one of the top 5 states or all to compare the states. Hover each dot to get the specific value of each vertex and highlight that state's area in the All States selection.
 							</i>
 						</p>
 						<select class="custom-select" onChange="changeRadarState(this.options[this.selectedIndex].value)">
@@ -282,9 +284,13 @@
 		<div class="section" id="sec8">
 			<div class="container">
 				<h3 class="title">Recent Policies and Events and their Effect on Overall Homelessness</h3>
-				<div class="row justify-content-center">
+				<div class="row">
+					<div class="timeline-button-container">
+						<button class="btn btn-primary" id="timeline-button" type="button" onclick="updateTimeline()">Zoom In Y-Axis</button>
+					</div>
 					<div id="timeline"></div>
 				</div>
+
 				<div class="row">
 					<p id="timeline-p">The circles on the timeline above show the relative size of total homelessness in that year.
 					</p>
@@ -326,7 +332,7 @@
 						</span></p>
 					<p class="can-do-p">
 						<i class="fa-solid fa-hand-holding-medical fa-lg"></i>
-						<span class="icon11">Donate clothes and food.</span></p>
+            <span class="icon11">Donate clothes and food.</span></p>
 					<p class="can-do-p">
 						<i class="fa-solid fa-book fa-lg"></i>
 						<span class="icon15">Educate yourself and others about the homeless population and the homelessness issue.</span>
