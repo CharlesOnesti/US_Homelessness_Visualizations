@@ -1,3 +1,6 @@
+/****************/
+/*    FullpageJS    */
+/****************/
 .body {
     font-family: "American Typewriter", serif;
     color: black;
@@ -22,9 +25,21 @@
     height: 100vh;
 }
 
+/****************/
+/*    DOTPLOT    */
+/****************/
+
+.dotplot-text {
+    font-family: "American Typewriter", serif;
+}
+
 #display-year {
     font-size: 30px;
 }
+
+/****************/
+/*    Cate map   */
+/****************/
 
 #cate-map {
     font-family: "American Typewriter", serif;
@@ -41,7 +56,7 @@
     font-family: American Typewriter, serif;
 }
 
-#year-start {
+#year-start, label {
     font-family: American Typewriter, serif;
 }
 
@@ -51,6 +66,10 @@
     font-size: 23px;
     text-align: center;
 }
+
+/****************/
+/*    Contact   */
+/****************/
 
 #table-summary {
     font-family: American Typewriter, serif;
@@ -75,15 +94,17 @@
     color: #85005b;
 }
 
-/*Pie Graph Style*/
+/****************/
+/*   Pie chart   */
+/****************/
+
 #pieGender {
-    height: 550px;
+    height: 460px;
 }
 
 #pieRace {
-    height: 550px;
+    height: 460px;
 }
-
 
 .pie-svg {
     display: block;
@@ -141,6 +162,15 @@
 /*    SLIDER    */
 /****************/
 
+#slider-time > svg > g > g.axis * text {
+    font-size: 15px;
+    fill: #2D375A;
+}
+#slider-time > svg > g > g.slider > g > text {
+    font-weight: bold;
+    font-size: 17px;
+}
+
 #time-period-slider {
     width: 200px;
     display: inline-block;
@@ -178,7 +208,10 @@ p, li {
     color: #2D375A
 }
 
-/*Timeline Style*/
+/****************/
+/*   Timeline   */
+/****************/
+
 #timeline {
     width: 100%;
     height: 400px;
@@ -199,9 +232,20 @@ p, li {
     margin-top: 30px;
 }
 
-.dotplot-text {
-    font-family: "American Typewriter", serif;
+.timeline-button-container {
+    display: flex;
+    justify-content: center;
+    width: 180px;
 }
+
+#timeline-button {
+    font-family: "American Typewriter", serif;
+    background-color: #A0006DFF
+}
+
+/****************/
+/*   Can do   */
+/****************/
 
 text, select {
     font-family: "American Typewriter", serif;
@@ -215,31 +259,7 @@ b {
     font-size: 24px;
 }
 
-
-#slider-time > svg > g > g.axis * text {
-    font-size: 15px;
-    fill: #2D375A;
-}
-#slider-time > svg > g > g.slider > g > text {
-    font-weight: bold;
-    font-size: 17px;
-}
-
-#pieGender {
-    height: 460px;
-}
-
-#pieRace {
-    height: 460px;
-}
-
-.timeline-button-container {
-    display: flex;
-    justify-content: center;
-    width: 180px;
-}
-
-#timeline-button {
-    font-family: "American Typewriter", serif;
-    background-color: #A0006DFF
+.icon-span {
+    margin-left:1.1rem;
+    display:inline-block;
 }
