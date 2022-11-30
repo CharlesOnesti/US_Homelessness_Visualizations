@@ -51,10 +51,12 @@
 .icon11 {
     margin-left:1.1rem;
     display:inline-block;
+    font-family: "American Typewriter", serif;
 }
 
 .icon15 {
     margin-left:1.5rem; display:inline-block;
+    font-family: "American Typewriter", serif;
 }
 
 #remarkable {
@@ -239,7 +241,7 @@
 p, li {
     font-family: "American Typewriter", serif;
     font-size: 17px;
-    color: #2D375A
+    color: #2D375A;
 }
 
 /****************/
@@ -290,7 +292,34 @@ b {
 }
 
 .can-do-p {
+    font-family: "American Typewriter", serif;
     font-size: 24px;
 }
 
+/****************/
+/*   References   */
+/****************/
 
+.linking {
+    padding-top: 0px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    font-size: 17px;
+}
+
+a:link {
+    color: #2D375A;
+}
+
+a:hover {
+    color: #4A8BDF;
+}
+
+a:visited {
+    color: #A0006DFF;
+}
+
+
+li{
+   margin: 10px 0;
+}

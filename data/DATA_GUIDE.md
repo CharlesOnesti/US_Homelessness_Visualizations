@@ -1,5 +1,5 @@
 ### About Our Data 
-We got our datasets from the U.S. Department of Housing and Urban Development’s official website. We then process and clean our data with R and RStudio. All our datasets and cleaner files are stored in the data folder in our project repository.
+We got our datasets from the U.S. Department of Housing and Urban Development’s official website. 
 
 The structure for the data folder is as follows:
 
@@ -22,7 +22,9 @@ data
 ```
 The `map_category` folder stores data for homelessness categories (individuals, families, veterans, and total homeless population) across all US states for the years between 2007-2020. All the data in this folder is used for the category map and the radar map showing the top 5 states with the most homelessness.
 
-The `script` folder stores our R markdown files documenting our data cleaning process.
+The `script` folder stores our R markdown files documenting our data cleaning process. We renamed all our data fields for easy future references, merged data from different years where it is necessary (as in the case for our dot plot), and made sure they are of correct data types.
+
+
 
 The `governors_usa.csv` file stores data on governor's name and their contact information for all states. This is used in our contact map section. 
 
