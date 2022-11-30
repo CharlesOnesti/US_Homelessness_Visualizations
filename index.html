@@ -373,28 +373,70 @@
 			</div>
 		</div>
 		<!-- - - - - - - - - - - - >
-		About section
+		Reference section
 		<- - - - - - - - - - - - -->
 		<div class="section" id="sec12">
 			<div class="container">
 				<div class="row justify-content-center">
 					<h3 class="title">References</h3>
-					<i><ul>
+
+					<div class="row justify-content-center">
+						<div class="col-2 linking">
+							<a href="https://github.com/CharlesOnesti/Onesti_Abel_Ton_CS171_Final">
+								<i class="fa-brands fa-github fa-lg"></i>
+								<span class="icon11">
+							Project Github
+						</span></a>
+						</div>
+						<div class="col-2 linking">
+							<a href="https://docs.google.com/document/d/1SKUV3RnabXFBrdPKYr70lonRGwcH8bHzALpNjXKVNEs/edit?usp=sharing">
+								<i class="fa-regular fa-file fa-lg"></i>
+								<span class="icon11">
+									Process Book
+						</span></a>
+						</div>
+					</div>
+					<ul>
 						<li>The U.S. Department of
 							Housing and Urban Development (2022). 2007-2021 Point in Time Estimates of Homelessness by State</li>
 						<li>The U.S. Department of
 							Housing and Urban Development (2022). 2007-2021 Housing Inventory Count By State</li>
 						<li>Bureau of Economic Analysis (2021). Gross Domestic Product in the US </li>
 						<li>Lopez, German. Homeless in America (July 15, 2022). The New York Times</li>
-						<li><a href="https://www.naco.org/articles/affordable-housing-federal-programs-and-legislation#:~:text=Affordable%20Housing%20%2D%20The%20U.S.%20Department,of%20the%20resident(s)">Housing Voucher Increase</a></li>
-						<li><a href="https://unitedtoendhomelessness.org/blog/types-of-housing-support-for-the-homeless/#:~:text=Transitional%20shelters%20are%20a%20program,months%20for%20people%20experiencing%20homelessness">Shelter Definitions</a></li>
-						<li><a href="https://ibo.nyc.ny.us/iboreports/adams-increases-funds-for-homeless-shelters-but-more-needed-for-shelters-and-other-programs-fopb-march-2022.pdf">NY Homeleness Spending 2021</a>
-						<li><a href="https://lao.ca.gov/Publications/Report/4521#:~:text=Update%20on%20Key%20Recent%20Homelessness,programs%20across%20various%20state%20departments">CA Homeleness Spending 2021</a></li>
-						<li><a href="https://www.dcfpi.org/all/whats-in-the-approved-fiscal-year-2021-budget-for-homeless-services/">DC Homeleness Spending 2021</a></li>
-						<li><a href="https://www.statista.com/statistics/727847/homelessness-rate-in-the-us-by-state/">Percent homelessness by state</a></li>
-						<li><a href="https://www.jchs.harvard.edu/ARH_2017_cost_burdens_by_state_total">Median housing cost to income ratio</a></li>
-
-					</ul></i>
+						<li>
+							National Association of Counties (May 14, 2018). Affordable Housing Federal Programs and Legislation.
+						</li>
+						<li>
+							United to End Homelessness (2022). Types of Housing Support for the Homeless
+						<li>New York City Independent Budget Office (March 2022). Adams Increases Funds for Homeless Shelters, But More Needed for Shelters & Other Programs
+						</li>
+						<li>
+							The California Legislature's Nonpartisan Fiscal and Policy Advisor (2022). The Governor’s Homelessness Plan 2022-2023
+						</li>
+						<li>
+							Coventry, K. What’s In the Approved Fiscal Year 2021 Budget for Homeless Services? (October 2, 2020). DC Fiscal Policy Institute
+						</li>
+						<li>
+							Statista Research Department (2022). Estimated rate of homelessness in the United States in 2020, by state (per 10,000 population)
+						</li>
+						<li>
+							Joint  Center for Housing Studies of Harvard University (2022). Renter Cost Burdens, States
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- - - - - - - - - - - - >
+		Acknowledgement section
+		<- - - - - - - - - - - - -->
+		<div class="section" id="sec13">
+			<div class="container">
+				<h3 class="title">Acknowledgement</h3>
+				<div class="row justify-content-center">
+					<i class="can-do-p">
+						We would like to thank Professor Hanspeter Pfister, our project mentor Jacob Troidl, together with the dedicated teaching
+						staff and our wonderful classmates for all the learning opportunities and support in CS171 - Harvard Visualization course.
+					</i>
 				</div>
 			</div>
 		</div>
@@ -439,10 +481,11 @@
 <script type="text/javascript">
 	var myFullpage = new fullpage('#fullpage', {
 		anchors: [
-			'background-section', 'dotplot-section', 'rising-insights-section',
-			'pie-section', 'category-section', 'radar-section',
-			'history-transition-section', 'timeline-section', 'message-section',
-			'do-section', 'contact-section', "about-section"
+			'background-section', 'dotplot-section', 'rising-insights-section', 'guide-section',
+			'pie-section', 'guide-2', 'category-section', 'radar-section',
+			 'message-section', 'timeline-section', 'message-2',
+			'do-section', 'contact-section', "reference-section",
+			"acknowledgement-section"
 		],
 		navigation: true,
 		navigationPosition: 'right',
@@ -452,7 +495,7 @@
 
 
 
-<!-- own js files -->
+<!-- own js files-->
 <script src="js/contactVis.js"></script>
 <script src="js/cateMapVis.js"></script>
 <script src="js/dotPlotVis.js"></script>
