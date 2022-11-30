@@ -17,7 +17,12 @@ retrieved
 from the U.S. Department of Housing and Urban Development’s official 
 <a href="https://www.hud.gov/">website</a>. We also consult other sources for information 
 on specialized terms and definitions, past policies and budget dedicated to homelessness, and 
-the housing burden in the US. For more detailed information, scroll down to see the `references` section below. 
+the housing burden in the US. For more detailed information on our sources, scroll down to see the `references` section below. 
+
+In addition to references where we retrieve raw datasets, 
+you can find the our detailed `DATA_GUIDE.md`, our cleaner files, 
+and our processed data in the `data` folder. See 
+the `Project Structure` section below on how our project is set up.
 
 ## Project Structure 
 
@@ -26,7 +31,7 @@ Our core project structure is as follows:
 ```
 ├── .idea
 ├── css /* styling */
-├── data /* datasets, cleaner files */
+├── data /* data guide, datasets, cleaner files */ 
 ├── img /* images */
 |
 ├── js /* code for visualizations */

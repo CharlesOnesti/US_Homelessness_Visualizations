@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9936c9f-4598-407a-b22a-b57e9e77eec6" name="Changes" comment="dotplot data and rmd script">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,6 +102,7 @@
       <workItem from="1669675315607" duration="4863000" />
       <workItem from="1669680620105" duration="46000" />
       <workItem from="1669765702948" duration="6362000" />
+      <workItem from="1669832719560" duration="287000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
