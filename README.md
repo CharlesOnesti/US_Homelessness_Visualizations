@@ -1,23 +1,23 @@
 # Don’t Look Away Now — The Crisis of Homelessness in the United States
 
 ## Background and Motivation 
-There are at least half a million people in the state of homelessness in America. As residents of the world’s 
+There are at least half a million homeless people in the United States. As residents of the world’s 
 largest economy with 23 trillion USD, we can do better. 
 
 Using data from federal- and state-level organizations' official websites, we hope to present the problem of 
 homelessness through interactive 
 visualizations. Through interacting with our website, users will have an understanding of how big the problem is,
-how it has evolved in the past decade, and what are some constructive actions they can take on to help. 
+how it has evolved in the past decade, and what are some constructive actions they can take to help. 
 
 
 ## About Our Data  
 This repository contains all the data and code for visualizing homelessness
-in the US between 2007 - 2020. The datasets on homelessness breakdown in gender, race, housing situations, and homelessness categories are 
+in the U.S. between 2007 - 2020. The datasets on homelessness (which includes fields on gender, race, housing situations, and homelessness categories) are 
 retrieved 
 from the U.S. Department of Housing and Urban Development’s official 
 <a href="https://www.hud.gov/">website</a>. We also consult other sources for information 
 on specialized terms and definitions, past policies and budget dedicated to homelessness, and 
-the housing burden in the US. For more detailed information on our sources, scroll down to see the `references` section below. 
+the housing burden in the U.S. For more detailed information on our sources, scroll down to see the `references` section below. 
 
 In addition to references where we retrieve raw datasets, 
 you can find the our detailed `DATA_GUIDE.md`, our cleaner files, 
@@ -62,7 +62,7 @@ for more information on libraries used */
 ```
 
 ## Helpful URLs
-- <a href="">Screencast Video</a>
+- <a href="https://drive.google.com/file/d/1MFdEPUjgHYdupsBSMJVsC1PsUoeRIljK/view?usp=sharing">Screencast Video</a>
 
 - <a href="https://charlesonesti.github.io/Onesti_Abel_Ton_CS171_Final/">Github Webpage</a>
 - <a href="https://docs.google.com/document/d/1SKUV3RnabXFBrdPKYr70lonRGwcH8bHzALpNjXKVNEs/edit?usp=sharing">Process Book</a>
